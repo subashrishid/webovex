@@ -62,8 +62,40 @@
       border-bottom:1px solid var(--glass-b);
     }
     .nav-logo {
+      display:flex; align-items:center; gap:.6rem; text-decoration:none;
+    }
+    .logo-3d {
+      width:42px; height:42px; perspective:600px; display:inline-block; position:relative;
+    }
+    .logo-3d-inner {
+      width:100%; height:100%; position:relative;
+      transform-style:preserve-3d; transform:rotateY(-12deg) rotateX(5deg);
+      animation:logoFloat 4s ease-in-out infinite;
+    }
+    .logo-3d-face {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      font-family:var(--fd); font-size:1.7rem; font-weight:900; border-radius:10px;
+    }
+    .logo-3d-front {
+      background:linear-gradient(135deg,#7c3aed,#c84aed,#06b6d4);
+      color:#fff; z-index:3;
+      box-shadow:0 0 20px rgba(124,58,237,.5), 0 0 40px rgba(200,74,237,.2);
+    }
+    .logo-3d-right {
+      background:linear-gradient(180deg,#5b21b6,#4c1d95);
+      color:transparent; transform:rotateY(90deg) translateZ(21px); width:8px;
+    }
+    .logo-3d-bottom {
+      background:linear-gradient(180deg,#4c1d95,#1e1b4b);
+      color:transparent; transform:rotateX(-90deg) translateZ(21px); height:8px;
+    }
+    @keyframes logoFloat {
+      0%,100%{ transform:rotateY(-12deg) rotateX(5deg); }
+      50%{ transform:rotateY(-6deg) rotateX(2deg) translateY(-2px); }
+    }
+    .nav-logo-text {
       font-family:var(--fd); font-size:1.6rem; font-weight:800;
-      letter-spacing:-.03em; text-decoration:none;
+      letter-spacing:-.03em;
       background:linear-gradient(135deg,var(--purple),var(--cyan));
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
@@ -220,6 +252,50 @@
     .tag { background:rgba(124,58,237,.1); border:1px solid rgba(124,58,237,.28); border-radius:50px; padding:.3rem .9rem; font-size:.78rem; color:#a78bfa; font-weight:500; transition:background .2s,transform .2s; }
     .tag:hover { background:rgba(124,58,237,.22); transform:scale(1.06); }
 
+    /* ── PROCESS TIMELINE ── */
+    .process-track { position:relative; display:flex; flex-direction:column; gap:2rem; padding-left:40px; }
+    .process-line { position:absolute; left:19px; top:0; bottom:0; width:2px; background:linear-gradient(180deg,var(--purple),var(--cyan),var(--amber),var(--pink),var(--emerald)); border-radius:2px; }
+    .proc-step { display:flex; align-items:flex-start; gap:1.5rem; position:relative; }
+    .proc-node { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--fd); font-size:.75rem; font-weight:800; color:var(--white); position:relative; flex-shrink:0; margin-left:-40px; z-index:2; }
+    .pn-p{background:var(--purple)} .pn-c{background:var(--cyan)} .pn-a{background:var(--amber)} .pn-k{background:var(--pink)} .pn-e{background:var(--emerald)}
+    .proc-pulse { position:absolute; inset:-4px; border-radius:50%; border:2px solid currentColor; opacity:0; animation:procpulse 2.5s ease-out infinite; }
+    .pn-p .proc-pulse{border-color:var(--purple)} .pn-c .proc-pulse{border-color:var(--cyan)} .pn-a .proc-pulse{border-color:var(--amber)} .pn-k .proc-pulse{border-color:var(--pink)} .pn-e .proc-pulse{border-color:var(--emerald)}
+    @keyframes procpulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(2.2);opacity:0} }
+    .proc-card { flex:1; background:var(--glass); border:1px solid var(--glass-b); border-radius:1rem; padding:1.5rem 1.8rem; backdrop-filter:blur(12px); transition:border-color .3s,transform .3s,box-shadow .3s; }
+    .proc-card:hover { transform:translateX(8px); }
+    .pc-p:hover{border-color:rgba(124,58,237,.45);box-shadow:0 8px 30px rgba(124,58,237,.12)}
+    .pc-c:hover{border-color:rgba(6,182,212,.45);box-shadow:0 8px 30px rgba(6,182,212,.12)}
+    .pc-a:hover{border-color:rgba(245,158,11,.45);box-shadow:0 8px 30px rgba(245,158,11,.12)}
+    .pc-k:hover{border-color:rgba(236,72,153,.45);box-shadow:0 8px 30px rgba(236,72,153,.12)}
+    .pc-e:hover{border-color:rgba(16,185,129,.45);box-shadow:0 8px 30px rgba(16,185,129,.12)}
+    .proc-card h3 { font-family:var(--fd); font-size:1.05rem; font-weight:700; margin-bottom:.5rem; }
+    .proc-card p { color:var(--g400); font-size:.875rem; line-height:1.75; margin-bottom:.8rem; }
+    .proc-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .proc-tags span { background:rgba(255,255,255,.05); border:1px solid var(--glass-b); border-radius:50px; padding:.2rem .65rem; font-size:.72rem; color:var(--g300); font-weight:500; }
+
+    /* ── TERMINAL SHOWCASE ── */
+    .term-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .term-grid .term-window:last-child { grid-column:1/-1; }
+    .term-window { background:#0d1117; border:1px solid rgba(255,255,255,.08); border-radius:1rem; overflow:hidden; transition:transform .3s,box-shadow .3s; }
+    .term-window:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,.4); }
+    .term-bar { display:flex; align-items:center; gap:.75rem; padding:.65rem 1rem; background:rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.06); }
+    .term-dots { display:flex; gap:.45rem; }
+    .td { width:11px; height:11px; border-radius:50%; }
+    .td-r{background:#ff5f56} .td-y{background:#ffbd2e} .td-g{background:#27c93f}
+    .term-title { font-size:.72rem; color:var(--g500); font-weight:500; font-family:var(--fd); }
+    .term-body { padding:1.25rem 1.5rem; overflow-x:auto; }
+    .term-code { font-family:'SF Mono','Fira Code',monospace; font-size:.8rem; line-height:1.8; color:var(--g300); white-space:pre; }
+    .tc-key{color:#ff7b72} .tc-str{color:#79c0ff} .tc-val{color:#a5d6ff} .tc-fn{color:#d2a8ff} .tc-cmt{color:var(--g500)}
+
+    @media(max-width:768px){
+      .process-track{padding-left:36px;}
+      .proc-node{width:36px;height:36px;margin-left:-36px;font-size:.7rem;}
+      .process-line{left:17px;}
+      .term-grid{grid-template-columns:1fr;}
+      .term-grid .term-window:last-child{grid-column:auto;}
+      .term-code{font-size:.7rem;}
+    }
+
     /* ── PROJECTS ── */
     .proj-list { display:flex; flex-direction:column; gap:2rem; }
     .proj-card { background:var(--glass); border:1px solid var(--glass-b); border-radius:1.3rem; overflow:hidden; backdrop-filter:blur(12px); transition:transform .3s,box-shadow .3s; }
@@ -301,13 +377,18 @@
 
     /* ── FOOTER ── */
     footer { border-top:1px solid var(--glass-b); padding:3.5rem 2rem 2.5rem; text-align:center; }
-    .foot-logo { font-family:var(--fd); font-size:2.2rem; font-weight:800; letter-spacing:-.03em; background:linear-gradient(135deg,var(--purple),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:block; margin-bottom:.3rem; }
-    .foot-byline { color:var(--g600); font-size:.8rem; margin-bottom:1.5rem; }
+    .foot-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:2rem; }
+    .foot-left { text-align:left; }
+    .foot-logo-row { display:flex; align-items:center; gap:.7rem; margin-bottom:.3rem; }
+    .logo-3d-lg { width:50px; height:50px; }
+    .logo-3d-lg .logo-3d-front { font-size:2rem; }
+    .foot-logo { font-family:var(--fd); font-size:2.2rem; font-weight:800; letter-spacing:-.03em; background:linear-gradient(135deg,var(--purple),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .foot-byline { color:var(--g600); font-size:.8rem; }
     .foot-studio { display:inline-flex; align-items:center; gap:.75rem; background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(6,182,212,.08)); border:1px solid rgba(124,58,237,.3); border-radius:.75rem; padding:.6rem 1.4rem; margin-bottom:1.5rem; }
     .foot-studio-name { font-family:var(--fd); font-size:.95rem; font-weight:700; background:linear-gradient(135deg,var(--purple),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .foot-studio-sep { color:var(--g600); }
     .foot-studio-sub { color:var(--g500); font-size:.76rem; font-weight:500; }
-    .foot-links { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
+    .foot-links { display:flex; gap:2rem; flex-wrap:wrap; align-items:flex-start; padding-top:.5rem; }
     .foot-links a { color:var(--g500); text-decoration:none; font-size:.85rem; transition:color .2s; }
     .foot-links a:hover { color:var(--white); }
     .foot-copy { color:var(--g600); font-size:.78rem; }
@@ -332,6 +413,9 @@
       .skills-grid{grid-template-columns:1fr;}
       .svc-grid{grid-template-columns:1fr;}
       .contact-grid{grid-template-columns:1fr;gap:2rem;}
+      .foot-top{flex-direction:column;align-items:center;gap:1.5rem;}
+      .foot-left{text-align:center;}
+      .foot-links{justify-content:center;}
       #toast{left:1rem;right:1rem;bottom:1rem;max-width:none;}
     }
     @media(max-width:500px){
@@ -346,8 +430,12 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">Webovex</a>
+  <a href="#hero" class="nav-logo">
+    <span class="logo-3d"><span class="logo-3d-inner"><span class="logo-3d-face logo-3d-front">W</span><span class="logo-3d-face logo-3d-right"></span><span class="logo-3d-face logo-3d-bottom"></span></span></span>
+    <span class="nav-logo-text">Webovex</span>
+  </a>
   <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -361,6 +449,7 @@
 </nav>
 
 <nav class="mob-menu" id="mobMenu">
+  <a href="#hero"     class="mlink">Home</a>
   <a href="#about"    class="mlink">About</a>
   <a href="#projects" class="mlink">Projects</a>
   <a href="#skills"   class="mlink">Skills</a>
@@ -411,8 +500,8 @@
     </div>
     <div class="hero-metrics">
       <div class="hm-chip">
-        <span class="hm-num grad">2+</span>
-        <span class="hm-lbl">Years Exp</span>
+        <span class="hm-num grad">5+</span>
+        <span class="hm-lbl">Tech Stacks</span>
       </div>
       <div class="hm-div"></div>
       <div class="hm-chip">
@@ -487,8 +576,8 @@
   <div class="about-grid">
     <div class="stat-cards anim d1">
       <div class="stat-card">
-        <div class="stat-num" data-target="2" data-sfx="+">0+</div>
-        <div class="stat-lbl">Years Experience</div>
+        <div class="stat-num" data-target="5" data-sfx="+">0+</div>
+        <div class="stat-lbl">Tech Stacks</div>
       </div>
       <div class="stat-card">
         <div class="stat-num" data-target="35" data-sfx="+">0+</div>
@@ -513,6 +602,146 @@
         <span class="tag">PERN Stack</span><span class="tag">Django</span><span class="tag">Docker</span>
         <span class="tag">Nginx</span><span class="tag">JWT</span><span class="tag">E-Commerce</span>
         <span class="tag">Sequelize</span><span class="tag">PostgreSQL</span><span class="tag">AES-256</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW I BUILD — Development Process -->
+<div class="sec" id="process">
+  <div class="anim">
+    <p class="sec-label">How I Build</p>
+    <h2 class="sec-title">Development Process</h2>
+  </div>
+  <div class="process-track">
+    <div class="process-line"></div>
+    <div class="proc-step anim d1">
+      <div class="proc-node pn-p"><span class="proc-pulse"></span>01</div>
+      <div class="proc-card pc-p">
+        <h3>Architecture & Planning</h3>
+        <p>Define system architecture, database schemas, API contracts, and security boundaries before writing a single line of code.</p>
+        <div class="proc-tags"><span>System Design</span><span>DB Schema</span><span>API Blueprint</span></div>
+      </div>
+    </div>
+    <div class="proc-step anim d2">
+      <div class="proc-node pn-c"><span class="proc-pulse"></span>02</div>
+      <div class="proc-card pc-c">
+        <h3>Backend Engineering</h3>
+        <p>Build REST APIs with Express.js or Django, implement authentication flows, database models with Sequelize/Django ORM, and server-side validation.</p>
+        <div class="proc-tags"><span>REST APIs</span><span>ORM Models</span><span>Auth Flows</span></div>
+      </div>
+    </div>
+    <div class="proc-step anim d3">
+      <div class="proc-node pn-a"><span class="proc-pulse"></span>03</div>
+      <div class="proc-card pc-a">
+        <h3>Frontend & Integration</h3>
+        <p>Craft responsive React UIs with state management (Zustand), data fetching (React Query), and seamless API integration with real-time validation.</p>
+        <div class="proc-tags"><span>React 18</span><span>State Mgmt</span><span>API Integration</span></div>
+      </div>
+    </div>
+    <div class="proc-step anim d4">
+      <div class="proc-node pn-k"><span class="proc-pulse"></span>04</div>
+      <div class="proc-card pc-k">
+        <h3>Security Hardening</h3>
+        <p>Implement JWT auth, AES-256 encryption, CSRF/XSS protection, rate limiting, Helmet.js headers, and penetration testing before deployment.</p>
+        <div class="proc-tags"><span>JWT</span><span>AES-256</span><span>OWASP Top 10</span></div>
+      </div>
+    </div>
+    <div class="proc-step anim d5">
+      <div class="proc-node pn-e"><span class="proc-pulse"></span>05</div>
+      <div class="proc-card pc-e">
+        <h3>Deploy & Monitor</h3>
+        <p>Containerize with Docker, configure Nginx reverse proxy, deploy to AWS/cloud, set up SSL certificates, and automated monitoring with Node-Cron.</p>
+        <div class="proc-tags"><span>Docker</span><span>Nginx</span><span>AWS</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TERMINAL SHOWCASE -->
+<div class="sec" id="terminal">
+  <div class="anim">
+    <p class="sec-label">Under The Hood</p>
+    <h2 class="sec-title">Tech Stack In Action</h2>
+  </div>
+  <div class="term-grid">
+    <div class="term-window anim d1">
+      <div class="term-bar">
+        <div class="term-dots"><span class="td td-r"></span><span class="td td-y"></span><span class="td td-g"></span></div>
+        <span class="term-title">backend — docker-compose.yml</span>
+      </div>
+      <div class="term-body">
+        <pre class="term-code"><span class="tc-key">services</span>:
+  <span class="tc-str">app</span>:
+    <span class="tc-key">build</span>: .
+    <span class="tc-key">ports</span>: [<span class="tc-val">"3000:3000"</span>]
+    <span class="tc-key">environment</span>:
+      - <span class="tc-str">JWT_SECRET</span>=<span class="tc-val">*****</span>
+      - <span class="tc-str">AES_KEY</span>=<span class="tc-val">*****</span>
+      - <span class="tc-str">DB_HOST</span>=<span class="tc-val">postgres</span>
+    <span class="tc-key">depends_on</span>: [<span class="tc-val">postgres</span>]
+
+  <span class="tc-str">postgres</span>:
+    <span class="tc-key">image</span>: <span class="tc-val">postgres:15-alpine</span>
+    <span class="tc-key">volumes</span>:
+      - <span class="tc-val">pgdata:/var/lib/postgresql/data</span>
+
+  <span class="tc-str">nginx</span>:
+    <span class="tc-key">image</span>: <span class="tc-val">nginx:alpine</span>
+    <span class="tc-key">ports</span>: [<span class="tc-val">"443:443"</span>]</pre>
+      </div>
+    </div>
+    <div class="term-window anim d2">
+      <div class="term-bar">
+        <div class="term-dots"><span class="td td-r"></span><span class="td td-y"></span><span class="td td-g"></span></div>
+        <span class="term-title">security — middleware.js</span>
+      </div>
+      <div class="term-body">
+        <pre class="term-code"><span class="tc-key">const</span> securityStack = [
+  <span class="tc-fn">helmet</span>(),
+  <span class="tc-fn">cors</span>({ origin: <span class="tc-val">WHITELIST</span> }),
+  <span class="tc-fn">rateLimit</span>({
+    windowMs: <span class="tc-val">15 * 60 * 1000</span>,
+    max: <span class="tc-val">100</span>
+  }),
+  <span class="tc-fn">xssSanitize</span>(),
+  <span class="tc-fn">csrfProtection</span>(),
+  <span class="tc-fn">hpp</span>()
+];
+
+<span class="tc-key">const</span> <span class="tc-fn">authGuard</span> = (req, res, next) =&gt; {
+  <span class="tc-key">const</span> token = req.headers[<span class="tc-val">'authorization'</span>];
+  <span class="tc-key">const</span> decoded = <span class="tc-fn">jwt.verify</span>(token, SECRET);
+  req.user = decoded;
+  <span class="tc-fn">next</span>();
+};</pre>
+      </div>
+    </div>
+    <div class="term-window anim d3">
+      <div class="term-bar">
+        <div class="term-dots"><span class="td td-r"></span><span class="td td-y"></span><span class="td td-g"></span></div>
+        <span class="term-title">deploy — terminal</span>
+      </div>
+      <div class="term-body">
+        <pre class="term-code"><span class="tc-cmt">$ docker compose up -d --build</span>
+<span class="tc-str">[+] Building app...</span>
+<span class="tc-str">[+] Running postgres:15-alpine</span>
+<span class="tc-str">[+] Running nginx:alpine</span>
+<span class="tc-val">✓ All 3 containers started</span>
+
+<span class="tc-cmt">$ curl -I https://app.webovex.com</span>
+HTTP/2 <span class="tc-val">200 OK</span>
+X-Frame-Options: <span class="tc-val">DENY</span>
+X-Content-Type: <span class="tc-val">nosniff</span>
+Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
+X-XSS-Protection: <span class="tc-val">1; mode=block</span>
+
+<span class="tc-val">✓ Security headers verified</span>
+<span class="tc-val">✓ SSL/TLS active — Grade A+</span></pre>
       </div>
     </div>
   </div>
@@ -720,19 +949,27 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="foot-logo">Webovex</span>
-  <div class="foot-byline">by Subash N — Full-Stack Developer &amp; System Architect</div>
+  <div class="foot-top">
+    <div class="foot-left">
+      <div class="foot-logo-row">
+        <span class="logo-3d logo-3d-lg"><span class="logo-3d-inner"><span class="logo-3d-face logo-3d-front">W</span><span class="logo-3d-face logo-3d-right"></span><span class="logo-3d-face logo-3d-bottom"></span></span></span>
+        <span class="foot-logo">Webovex</span>
+      </div>
+      <div class="foot-byline">by Subash N — Full-Stack Developer &amp; System Architect</div>
+    </div>
+    <div class="foot-links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
   <div class="foot-studio">
     <span class="foot-studio-name">Full-Stack Development Studio</span>
     <span class="foot-studio-sep">·</span>
     <span class="foot-studio-sub">Chennai, Tamil Nadu</span>
-  </div>
-  <div class="foot-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
   </div>
   <p class="foot-copy">© 2026 Subash N &nbsp;·&nbsp; Webovex &nbsp;·&nbsp; Built with passion in Chennai 🚀</p>
 </footer>
@@ -804,7 +1041,7 @@
      4. Account → API Keys → copy Public Key
      Then replace the 3 values below: */
   const EJS_SERVICE  = 'service_4t2u74e';
-  const EJS_TEMPLATE = 'template_min3e1k';
+  const EJS_TEMPLATE = 'template_vsc0zp9';
   const EJS_KEY      = 'XOHWfdpZo10SaqOFd';
 
   document.getElementById('cForm').addEventListener('submit', async ev => {
@@ -868,7 +1105,7 @@
               }
             })
           });
-        } catch(_) { /* auto-reply optional, don't block main flow */ }
+        } catch(e) { console.error('EmailJS auto-reply failed:', e); }
 
         ev.target.reset();
         showToast('✅ Message sent! I\'ll reply within 24 hours.');
