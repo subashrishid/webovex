@@ -59,18 +59,15 @@
     ::-webkit-scrollbar-thumb { background: rgba(124,58,237,.5); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(124,58,237,.8); }
 
-    /* UTILITY */
     .grad { background: linear-gradient(135deg, var(--purple), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .grad-ap { background: linear-gradient(135deg, var(--amber), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .grad-ep { background: linear-gradient(135deg, var(--emerald), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    /* SCROLL ANIMATION */
     .anim { opacity: 0; transform: translateY(30px); transition: opacity .65s ease, transform .65s ease; }
     .anim.visible { opacity: 1; transform: translateY(0); }
     .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
     .d4{transition-delay:.4s} .d5{transition-delay:.5s} .d6{transition-delay:.6s}
 
-    /* ── NAV ── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.1rem 2.5rem; display: flex; align-items: center; justify-content: space-between; transition: background .35s, backdrop-filter .35s, border-bottom .35s; }
     nav.scrolled { background: rgba(8,8,16,.9); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border-bottom: 1px solid var(--glass-b); }
     .nav-logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
@@ -97,7 +94,6 @@
     .mob-menu a:last-child { border-bottom: none; }
     .mob-menu a:hover { color: var(--white); }
 
-    /* ── HERO ── */
     #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 8rem 2rem 5rem; text-align: center; }
     .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .28; pointer-events: none; will-change: transform; transform: translateZ(0); }
     .blob-1 { width: 560px; height: 560px; background: radial-gradient(circle, var(--purple) 0%, transparent 70%); top: -120px; left: -120px; animation: bf1 7s ease-in-out infinite alternate; }
@@ -127,7 +123,6 @@
     .btn-ghost { background: transparent; color: var(--white); padding: .9rem 2.1rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: .95rem; border: 1.5px solid rgba(255,255,255,.25); display: inline-block; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
     .btn-ghost:hover { border-color: var(--purple); background: rgba(124,58,237,.1); transform: translateY(-2px); }
 
-    /* Tech pills */
     .pill-row { display: flex; flex-wrap: wrap; gap: .65rem; justify-content: center; margin-bottom: 3rem; }
     .tech-pill { border-radius: 50px; padding: .42rem 1.1rem; font-size: .8rem; font-weight: 600; backdrop-filter: blur(10px); animation: pillwave 3s ease-in-out infinite; transition: transform .25s, box-shadow .25s, filter .25s; will-change: transform; cursor: default; }
     .tech-pill:nth-child(1){background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.4);color:#93c5fd;box-shadow:0 0 12px rgba(96,165,250,.15);animation-delay:0s;}
@@ -147,79 +142,27 @@
     .hm-lbl { font-size: .7rem; color: var(--g500); font-weight: 500; white-space: nowrap; display: block; margin-top: .2rem; }
     .hm-div { width: 1px; background: var(--glass-b); align-self: stretch; }
 
-    /* ── MARQUEE ── */
-    .marquee-wrap {
-      padding: 0;
-      overflow: hidden;
-      position: relative;
-      border-top: 1px solid var(--glass-b);
-      border-bottom: 1px solid var(--glass-b);
-      background: rgba(255,255,255,0.02);
-    }
-    /* NO fade blur — removed ::before/::after */
-    .mq-track, .mq-track-rev {
-      display: flex;
-      width: max-content;
-      will-change: transform;
-    }
+    .marquee-wrap { padding: 0; overflow: hidden; position: relative; border-top: 1px solid var(--glass-b); border-bottom: 1px solid var(--glass-b); background: rgba(255,255,255,0.02); }
+    .mq-track, .mq-track-rev { display: flex; width: max-content; will-change: transform; }
     .mq-track:hover, .mq-track-rev:hover { cursor: default; }
-
-    /* Text marquee row */
-    .mq-row-text {
-      padding: .7rem 0;
-      border-bottom: 1px solid var(--glass-b);
-    }
-    .mq-item {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .3rem 1.4rem;
-      font-size: .82rem; font-weight: 600;
-      color: var(--g300); /* bright — was g500 */
-      white-space: nowrap;
-      border-right: 1px solid var(--glass-b);
-      transition: color .2s;
-    }
+    .mq-row-text { padding: .7rem 0; border-bottom: 1px solid var(--glass-b); }
+    .mq-item { display: inline-flex; align-items: center; gap: .5rem; padding: .3rem 1.4rem; font-size: .82rem; font-weight: 600; color: var(--g300); white-space: nowrap; border-right: 1px solid var(--glass-b); transition: color .2s; }
     .mq-item:hover { color: #fff; }
     .mq-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
     .mp .mq-dot{background:var(--purple)} .mc .mq-dot{background:var(--cyan)}
     .ma .mq-dot{background:var(--amber)} .mk .mq-dot{background:var(--pink)}
     .me .mq-dot{background:var(--emerald)} .mi .mq-dot{background:var(--indigo)}
-
-    /* Logo/image marquee row */
-    .mq-row-img {
-      padding: .65rem 0;
-    }
-    .mq-logo {
-      display: inline-flex; align-items: center; gap: .55rem;
-      padding: .35rem 1.6rem;
-      font-size: .78rem; font-weight: 600;
-      white-space: nowrap;
-      border-right: 1px solid var(--glass-b);
-      transition: transform .2s, filter .2s;
-      cursor: default;
-      color: var(--g300);
-    }
+    .mq-row-img { padding: .65rem 0; }
+    .mq-logo { display: inline-flex; align-items: center; gap: .55rem; padding: .35rem 1.6rem; font-size: .78rem; font-weight: 600; white-space: nowrap; border-right: 1px solid var(--glass-b); transition: transform .2s, filter .2s; cursor: default; color: var(--g300); }
     .mq-logo:hover { transform: scale(1.12); filter: brightness(1.4); }
-    .mq-logo img {
-      width: 22px; height: 22px;
-      object-fit: contain;
-      border-radius: 4px;
-      filter: brightness(0.9) saturate(1.1);
-    }
-    .mq-logo-icon {
-      width: 22px; height: 22px;
-      border-radius: 6px;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
+    .mq-logo img { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; filter: brightness(0.9) saturate(1.1); }
+    .mq-logo-icon { width: 22px; height: 22px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
 
-    /* ── SECTION BASE ── */
     .sec { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
     .sec-label { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; background: linear-gradient(135deg,var(--purple),var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: .65rem; }
     .sec-title { font-family: var(--fd); font-size: clamp(1.8rem,4vw,2.75rem); font-weight: 700; margin-bottom: 3rem; line-height: 1.2; }
     .divider { max-width: 1200px; margin: 0 auto; height: 1px; background: linear-gradient(90deg,transparent,var(--glass-b),transparent); }
 
-    /* ── ABOUT ── */
     .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3.5rem; align-items: center; }
     .stat-cards { display: flex; flex-direction: column; gap: 1rem; }
     .stat-card { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 1.1rem; padding: 1.6rem 2rem; backdrop-filter: blur(12px); text-align: center; transition: border-color .25s, transform .25s; }
@@ -235,7 +178,6 @@
     .tag { background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.28); border-radius: 50px; padding: .3rem .9rem; font-size: .78rem; color: #a78bfa; font-weight: 500; transition: background .2s, transform .2s; }
     .tag:hover { background: rgba(124,58,237,.22); transform: scale(1.06); }
 
-    /* ── PROCESS TIMELINE ── */
     .process-track { position: relative; display: flex; flex-direction: column; gap: 2rem; padding-left: 40px; }
     .process-line { position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg,var(--purple),var(--cyan),var(--amber),var(--pink),var(--emerald)); border-radius: 2px; }
     .proc-step { display: flex; align-items: flex-start; gap: 1.5rem; position: relative; }
@@ -252,7 +194,6 @@
     .proc-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
     .proc-tags span { background: rgba(255,255,255,.05); border: 1px solid var(--glass-b); border-radius: 50px; padding: .2rem .65rem; font-size: .72rem; color: var(--g300); font-weight: 500; }
 
-    /* ── TERMINAL ── */
     .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .term-grid .term-window:last-child { grid-column: 1/-1; }
     .term-window { background: #0d1117; border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; overflow: hidden; transition: transform .3s, box-shadow .3s; }
@@ -266,115 +207,19 @@
     .term-code { font-family: 'SF Mono','Fira Code',monospace; font-size: .8rem; line-height: 1.8; color: var(--g300); white-space: pre; }
     .tc-key{color:#ff7b72} .tc-str{color:#79c0ff} .tc-val{color:#a5d6ff} .tc-fn{color:#d2a8ff} .tc-cmt{color:var(--g500)}
 
-    /* ── GALAXY UNIVERSE — embedded section ── */
-    #galaxy-container {
-      position: relative;
-      width: 100%;
-      height: 560px;
-      background: transparent;
-      cursor: grab;
-    }
+    #galaxy-container { position: relative; width: 100%; height: 560px; background: transparent; cursor: grab; }
     #galaxy-container:active { cursor: grabbing; }
-
-    /* Break galaxy section out of max-width constraint */
-    #tech-orbit {
-      max-width: 100% !important;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-    #tech-orbit .anim.d1 {
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-    }
-    #galaxy-canvas {
-      display: block;
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-    /* Galaxy HUD elements */
-    #galaxy-legend {
-      position: absolute;
-      bottom: 24px;
-      left: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: .38rem;
-      z-index: 10;
-      pointer-events: none;
-    }
-    .gleg-item {
-      display: flex;
-      align-items: center;
-      gap: .45rem;
-      font-size: .6rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(148,163,184,.55);
-      font-family: 'Exo 2', sans-serif;
-    }
+    #tech-orbit { max-width: 100% !important; padding-left: 2rem; padding-right: 2rem; }
+    #tech-orbit .anim.d1 { width: 100vw; margin-left: calc(-50vw + 50%); }
+    #galaxy-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
+    #galaxy-legend { position: absolute; bottom: 24px; left: 24px; display: flex; flex-direction: column; gap: .38rem; z-index: 10; pointer-events: none; }
+    .gleg-item { display: flex; align-items: center; gap: .45rem; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(148,163,184,.55); font-family: 'Exo 2', sans-serif; }
     .gleg-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    #galaxy-hint {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      font-size: .62rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(148,163,184,.4);
-      pointer-events: none;
-      z-index: 10;
-      animation: ghintPulse 3s ease-in-out infinite;
-      font-family: 'Exo 2', sans-serif;
-    }
+    #galaxy-hint { position: absolute; bottom: 24px; right: 24px; display: flex; align-items: center; gap: .5rem; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(148,163,184,.4); pointer-events: none; z-index: 10; animation: ghintPulse 3s ease-in-out infinite; font-family: 'Exo 2', sans-serif; }
     @keyframes ghintPulse { 0%,100%{opacity:.4} 50%{opacity:.85} }
-    #galaxy-badge {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      font-family: 'Orbitron', monospace;
-      font-size: .58rem;
-      letter-spacing: .12em;
-      color: rgba(167,139,250,.65);
-      text-align: right;
-      pointer-events: none;
-      z-index: 10;
-    }
+    #galaxy-badge { position: absolute; top: 20px; right: 24px; font-family: 'Orbitron', monospace; font-size: .58rem; letter-spacing: .12em; color: rgba(167,139,250,.65); text-align: right; pointer-events: none; z-index: 10; }
     #galaxy-badge span { display: block; font-size: 1.4rem; font-weight: 700; color: #a78bfa; line-height: 1; }
-    #galaxy-zoom-hint {
-      position: absolute;
-      top: 50%;
-      left: 16px;
-      transform: translateY(-50%);
-      font-size: .55rem;
-      letter-spacing: .18em;
-      color: rgba(148,163,184,.3);
-      writing-mode: vertical-rl;
-      text-transform: uppercase;
-      pointer-events: none;
-      z-index: 10;
-      font-family: 'Exo 2', sans-serif;
-    }
-    #galaxy-tooltip {
-      position: absolute;
-      background: rgba(8,8,20,.9);
-      border: 1px solid rgba(124,58,237,.5);
-      border-radius: 10px;
-      padding: .5rem .9rem;
-      font-size: .72rem;
-      color: #e2e8f0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .18s;
-      backdrop-filter: blur(12px);
-      white-space: nowrap;
-      z-index: 20;
-      font-family: 'Exo 2', sans-serif;
-    }
+    #galaxy-tooltip { position: absolute; background: rgba(8,8,20,.9); border: 1px solid rgba(124,58,237,.5); border-radius: 10px; padding: .5rem .9rem; font-size: .72rem; color: #e2e8f0; pointer-events: none; opacity: 0; transition: opacity .18s; backdrop-filter: blur(12px); white-space: nowrap; z-index: 20; font-family: 'Exo 2', sans-serif; }
     #galaxy-tooltip.show { opacity: 1; }
     #galaxy-tooltip strong { display: block; font-family: 'Orbitron', monospace; font-size: .65rem; color: #a78bfa; margin-bottom: .15rem; }
 
@@ -382,13 +227,9 @@
       #galaxy-container { height: 400px; }
       #tech-orbit .anim.d1 { width: 100vw; margin-left: calc(-50vw + 50%); }
       #galaxy-badge { display: none; }
-      #galaxy-zoom-hint { display: none; }
     }
-    @media(max-width:480px) {
-      #galaxy-container { height: 320px; }
-    }
+    @media(max-width:480px) { #galaxy-container { height: 320px; } }
 
-    /* ── ARCHITECTURE FLOW ── */
     .arch-flow { display:flex; align-items:center; justify-content:center; gap:0; margin:3rem auto 0; flex-wrap:wrap; max-width:900px; }
     .arch-block { background:var(--glass); border:1px solid var(--glass-b); border-radius:14px; padding:1.5rem 1.2rem; text-align:center; min-width:130px; flex:1; max-width:160px; transition:transform .3s, box-shadow .3s, border-color .3s; }
     .arch-block:hover { transform:translateY(-6px); }
@@ -396,7 +237,6 @@
     .arch-name { font-family:var(--fd); font-size:.9rem; font-weight:700; color:var(--white); margin-bottom:.25rem; }
     .arch-sub { font-size:.7rem; color:var(--g500); }
     .arch-arrow { font-size:1.5rem; color:var(--purple); padding:0 .3rem; flex-shrink:0; animation:archPulse 2s ease-in-out infinite; }
-    .arch-arrow:nth-of-type(2){animation-delay:.4s;} .arch-arrow:nth-of-type(3){animation-delay:.8s;} .arch-arrow:nth-of-type(4){animation-delay:1.2s;}
     @keyframes archPulse { 0%,100%{opacity:.4;transform:translateX(0);} 50%{opacity:1;transform:translateX(4px);} }
     .ab-client{border-color:rgba(96,165,250,.3);} .ab-client:hover{box-shadow:0 0 25px rgba(96,165,250,.2);}
     .ab-api{border-color:rgba(124,58,237,.3);} .ab-api:hover{box-shadow:0 0 25px rgba(124,58,237,.2);}
@@ -404,7 +244,6 @@
     .ab-secure{border-color:rgba(245,158,11,.3);} .ab-secure:hover{box-shadow:0 0 25px rgba(245,158,11,.2);}
     .ab-deploy{border-color:rgba(16,185,129,.3);} .ab-deploy:hover{box-shadow:0 0 25px rgba(16,185,129,.2);}
 
-    /* ── WHY CHOOSE ME ── */
     .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
     .why-card { background:var(--glass); border:1px solid var(--glass-b); border-radius:16px; padding:2rem 1.5rem; position:relative; overflow:hidden; transition:transform .35s, box-shadow .35s, border-color .35s; }
     .why-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--purple),var(--cyan)); opacity:0; transition:opacity .35s; }
@@ -420,7 +259,6 @@
     .why-card.visible .why-bar-fill, .why-card:hover .why-bar-fill { width:var(--w,95%); }
     .wbf-purple{background:linear-gradient(90deg,var(--purple),#a78bfa);} .wbf-cyan{background:linear-gradient(90deg,var(--cyan),#67e8f9);} .wbf-emerald{background:linear-gradient(90deg,var(--emerald),#6ee7b7);} .wbf-amber{background:linear-gradient(90deg,var(--amber),#fcd34d);} .wbf-pink{background:linear-gradient(90deg,var(--pink),#f9a8d4);} .wbf-indigo{background:linear-gradient(90deg,var(--indigo),#a5b4fc);}
 
-    /* ── PROJECTS ── */
     .proj-list { display: flex; flex-direction: column; gap: 2rem; }
     .proj-card { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 1.3rem; overflow: hidden; backdrop-filter: blur(12px); transition: transform .3s, box-shadow .3s; }
     .proj-card:hover { transform: translateY(-6px); }
@@ -441,7 +279,6 @@
     .hi { font-style: normal; flex-shrink: 0; margin-top: 1px; }
     .hi-1{color:#a78bfa} .hi-2{color:var(--amber)}
 
-    /* ── SKILLS ── */
     .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .sk-card { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 1.2rem; padding: 1.75rem; backdrop-filter: blur(12px); transition: border-color .25s, transform .25s; }
     .sk-card:hover { transform: translateY(-3px); }
@@ -455,7 +292,6 @@
     .sk-tag:hover { transform: scale(1.08); }
     .sk-p .sk-tag:hover{background:rgba(124,58,237,.2);border-color:var(--purple);color:#c4b5fd} .sk-c .sk-tag:hover{background:rgba(6,182,212,.2);border-color:var(--cyan);color:#67e8f9} .sk-a .sk-tag:hover{background:rgba(245,158,11,.2);border-color:var(--amber);color:#fcd34d} .sk-k .sk-tag:hover{background:rgba(236,72,153,.2);border-color:var(--pink);color:#f9a8d4}
 
-    /* ── SERVICES ── */
     .svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
     .svc-card { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 1.2rem; padding: 2rem; backdrop-filter: blur(12px); transition: transform .3s, border-color .3s; }
     .svc-card:hover { transform: translateY(-5px); }
@@ -464,7 +300,6 @@
     .svc-title { font-family: var(--fd); font-size: 1.05rem; font-weight: 700; margin-bottom: .65rem; }
     .svc-desc { color: var(--g400); font-size: .875rem; line-height: 1.75; }
 
-    /* ── CONTACT ── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
     .contact-col { display: flex; flex-direction: column; gap: 1rem; }
     .contact-card { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 1rem; padding: 1.1rem 1.4rem; backdrop-filter: blur(12px); display: flex; align-items: center; gap: .9rem; transition: border-color .2s, transform .25s; }
@@ -483,13 +318,11 @@
     .ferr { color: #f87171; font-size: .78rem; margin-top: .28rem; display: none; }
     .ferr.show { display: block; }
 
-    /* ── TOAST ── */
     #toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; background: rgba(10,10,22,.95); backdrop-filter: blur(12px); border: 1px solid rgba(34,197,94,.4); border-radius: 1rem; padding: 1rem 1.5rem; color: var(--white); font-size: .875rem; font-weight: 500; max-width: 360px; box-shadow: 0 8px 40px rgba(0,0,0,.45); transform: translateY(100px) scale(.95); opacity: 0; transition: transform .42s cubic-bezier(.175,.885,.32,1.275), opacity .42s ease; pointer-events: none; }
     #toast.show { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
     #toast.toast-err { border-color: rgba(248,113,113,.4); }
     .btn-loading { opacity: .7; cursor: not-allowed; pointer-events: none; }
 
-    /* ── FOOTER ── */
     footer { border-top: 1px solid var(--glass-b); padding: 3.5rem 2rem 2.5rem; text-align: center; }
     .foot-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 2rem; }
     .foot-left { text-align: left; }
@@ -507,16 +340,10 @@
     .foot-links a:hover { color: var(--white); }
     .foot-copy { color: var(--g600); font-size: .78rem; }
 
-    /* ── REDUCED MOTION ── */
     @media(prefers-reduced-motion:reduce) {
       *, *::before, *::after { animation-duration:0.01ms!important; animation-iteration-count:1!important; transition-duration:0.01ms!important; scroll-behavior:auto!important; }
     }
-
-    /* ── RESPONSIVE ── */
-    @media(max-width:1024px) {
-      .svc-grid { grid-template-columns: 1fr 1fr; }
-      .why-grid { grid-template-columns: repeat(2,1fr); }
-    }
+    @media(max-width:1024px) { .svc-grid { grid-template-columns: 1fr 1fr; } .why-grid { grid-template-columns: repeat(2,1fr); } }
     @media(max-width:768px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links, .nav-cta { display: none; }
@@ -561,7 +388,6 @@
 
 <body>
 
-  <!-- NAV -->
   <nav id="nav">
     <a href="#hero" class="nav-logo">
       <span class="logo-3d"><span class="logo-3d-inner">W</span></span>
@@ -591,7 +417,6 @@
     <a href="#contact" class="mlink" style="color:#a78bfa;font-weight:700;">Hire Me →</a>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -643,10 +468,7 @@
     </div>
   </section>
 
-  <!-- MARQUEE — Row 1: Text, Row 2: Logos (reverse direction) -->
   <div class="marquee-wrap">
-
-    <!-- Row 1: Tech text (left scroll) -->
     <div class="mq-row-text">
       <div class="mq-track">
         <span class="mq-item mp"><span class="mq-dot"></span>React 18</span>
@@ -669,7 +491,6 @@
         <span class="mq-item mk"><span class="mq-dot"></span>CSRF / XSS</span>
         <span class="mq-item mc"><span class="mq-dot"></span>REST APIs</span>
         <span class="mq-item mi"><span class="mq-dot"></span>Vite</span>
-        <!-- duplicate -->
         <span class="mq-item mp"><span class="mq-dot"></span>React 18</span>
         <span class="mq-item mp"><span class="mq-dot"></span>Tailwind CSS</span>
         <span class="mq-item mc"><span class="mq-dot"></span>Node.js</span>
@@ -692,8 +513,6 @@
         <span class="mq-item mi"><span class="mq-dot"></span>Vite</span>
       </div>
     </div>
-
-    <!-- Row 2: Tech logo icons (right scroll — opposite direction) -->
     <div class="mq-row-img">
       <div class="mq-track-rev">
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(97,218,251,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/react/react-original.svg" alt="React"></span>React</span>
@@ -712,7 +531,6 @@
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(0,150,136,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/mongodb/mongodb-original.svg" alt="MongoDB"></span>MongoDB</span>
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(227,79,38,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/html5/html5-original.svg" alt="HTML5"></span>HTML5</span>
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(38,77,228,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/css3/css3-original.svg" alt="CSS3"></span>CSS3</span>
-        <!-- duplicate for seamless loop -->
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(97,218,251,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/react/react-original.svg" alt="React"></span>React</span>
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(104,160,99,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/nodejs/nodejs-original.svg" alt="Node.js"></span>Node.js</span>
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(51,103,145,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></span>PostgreSQL</span>
@@ -731,12 +549,10 @@
         <span class="mq-logo"><span class="mq-logo-icon" style="background:rgba(38,77,228,.15)"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/css3/css3-original.svg" alt="CSS3"></span>CSS3</span>
       </div>
     </div>
-
   </div>
 
   <div class="divider"></div>
 
-  <!-- ABOUT -->
   <div class="sec" id="about">
     <div class="anim"><p class="sec-label">About Me</p></div>
     <div class="about-grid">
@@ -766,7 +582,6 @@
 
   <div class="divider"></div>
 
-  <!-- HOW I BUILD -->
   <div class="sec" id="process">
     <div class="anim"><p class="sec-label">How I Build</p><h2 class="sec-title">Development Process</h2></div>
     <div class="process-track">
@@ -796,7 +611,6 @@
 
   <div class="divider"></div>
 
-  <!-- TERMINAL SHOWCASE -->
   <div class="sec" id="terminal">
     <div class="anim"><p class="sec-label">Under The Hood</p><h2 class="sec-title">Tech Stack In Action</h2></div>
     <div class="term-grid">
@@ -865,9 +679,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div class="divider"></div>
 
-  <!-- ════════════════════════════════════════
-       TECH STACK UNIVERSE — Galaxy Edition
-  ════════════════════════════════════════ -->
   <div class="sec" id="tech-orbit">
     <div class="anim">
       <p class="sec-label">My Arsenal</p>
@@ -875,8 +686,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
     </div>
     <div id="galaxy-container" class="anim d1">
       <canvas id="galaxy-canvas"></canvas>
-
-      <!-- Legend -->
       <div id="galaxy-legend">
         <div class="gleg-item"><div class="gleg-dot" style="background:#67e8f9"></div>Frontend</div>
         <div class="gleg-item"><div class="gleg-dot" style="background:#86efac"></div>Backend</div>
@@ -885,17 +694,8 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
         <div class="gleg-item"><div class="gleg-dot" style="background:#93c5fd"></div>Database</div>
         <div class="gleg-item"><div class="gleg-dot" style="background:#c4b5fd"></div>DevOps / Infra</div>
       </div>
-
-      <!-- Hint -->
       <div id="galaxy-hint">⟳&nbsp; Drag to explore</div>
-
-      <!-- Badge -->
       <div id="galaxy-badge"><span>24</span>Technologies</div>
-
-      <!-- Zoom hint -->
-      <!-- zoom hint removed -->
-
-      <!-- Tooltip -->
       <div id="galaxy-tooltip">
         <strong id="gtt-name"></strong>
         <span id="gtt-cat"></span>
@@ -905,7 +705,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div class="divider"></div>
 
-  <!-- SYSTEM ARCHITECTURE -->
   <div class="sec" id="architecture">
     <div class="anim"><p class="sec-label">How It Connects</p><h2 class="sec-title">System Architecture</h2></div>
     <div class="arch-flow anim d1">
@@ -923,7 +722,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div class="divider"></div>
 
-  <!-- WHY CHOOSE ME -->
   <div class="sec" id="why-me">
     <div class="anim"><p class="sec-label">Why Work With Me</p><h2 class="sec-title">What You Get</h2></div>
     <div class="why-grid">
@@ -938,7 +736,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div class="divider"></div>
 
-  <!-- PROJECTS -->
   <div class="sec" id="projects">
     <div class="anim"><p class="sec-label">Featured Work</p><h2 class="sec-title">Platforms I've Built</h2></div>
     <div class="proj-list">
@@ -987,7 +784,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div class="divider"></div>
 
-  <!-- SKILLS -->
   <div class="sec" id="skills">
     <div class="anim"><p class="sec-label">Tech Stack</p><h2 class="sec-title">Tools I Work With</h2></div>
     <div class="skills-grid">
@@ -1012,7 +808,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div class="divider"></div>
 
-  <!-- SERVICES -->
   <div class="sec" id="services">
     <div class="anim"><p class="sec-label">What I Do</p><h2 class="sec-title">Services I Offer</h2></div>
     <div class="svc-grid">
@@ -1027,7 +822,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div class="divider"></div>
 
-  <!-- CONTACT -->
   <div class="sec" id="contact">
     <div class="anim"><p class="sec-label">Get In Touch</p><h2 class="sec-title">Let's Build Something Great</h2></div>
     <div class="contact-grid">
@@ -1040,8 +834,10 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
       </div>
       <div class="cf anim d2">
         <form id="cForm" novalidate>
+          <!-- Honeypot field — spam bots fill this, humans don't -->
+          <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="fg"><label for="fName">Full Name</label><input type="text" id="fName" class="fc" placeholder="John Doe" autocomplete="name" /><span class="ferr" id="eN">Please enter your full name.</span></div>
-          <div class="fg"><label for="fEmail">Email Address</label><input type="email" id="fEmail" class="fc" placeholder="john@example.com" autocomplete="email" /><span class="ferr" id="eE">Please enter a valid email address.</span></div>
+          <div class="fg"><label for="fEmail">Email Address</label><input type="email" id="fEmail" class="fc" placeholder="john@company.com" autocomplete="email" /><span class="ferr" id="eE">Please enter a valid email address.</span></div>
           <div class="fg">
             <label for="fSubject">Subject</label>
             <select id="fSubject" class="fc"><option value="">Select a subject…</option><option value="web-app">Web App Development</option><option value="ecommerce">E-Commerce Website</option><option value="django">Django System</option><option value="devops">DevOps Setup</option><option value="security">Security Audit</option><option value="api">API Integration</option><option value="other">Other</option></select>
@@ -1054,7 +850,6 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="foot-top">
       <div class="foot-left">
@@ -1078,13 +873,10 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
 
   <div id="toast" role="alert" aria-live="polite"><span id="toastMsg">✅ Message sent! I'll reply within 24 hours.</span></div>
 
-  <!-- ════════════════════════════════════════════════════════
-       GALAXY TECH UNIVERSE — Embedded Canvas Engine
-  ════════════════════════════════════════════════════════ -->
+  <!-- GALAXY ENGINE -->
   <script>
   (function() {
     'use strict';
-
     const TECHS = [
       {name:'React',      cat:'Frontend',  color:'#67e8f9',glow:'#06b6d4',size:2.8,icon:'⚛'},
       {name:'Next.js',    cat:'Frontend',  color:'#93c5fd',glow:'#3b82f6',size:2.0,icon:'▲'},
@@ -1111,378 +903,63 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
       {name:'Git',        cat:'DevOps',    color:'#fca5a5',glow:'#dc2626',size:1.8,icon:'🌿'},
       {name:'Linux',      cat:'DevOps',    color:'#fde68a',glow:'#d97706',size:1.6,icon:'🐧'},
     ];
-
     const container = document.getElementById('galaxy-container');
     const canvas = document.getElementById('galaxy-canvas');
     const ctx = canvas.getContext('2d');
-
     let W, H, cx, cy;
     let isVisible = false;
-    let frameId = null;
-
-    function resize() {
-      W = canvas.width = container.offsetWidth;
-      H = canvas.height = container.offsetHeight;
-      cx = W / 2; cy = H / 2;
-    }
+    function resize() { W = canvas.width = container.offsetWidth; H = canvas.height = container.offsetHeight; cx = W/2; cy = H/2; }
     resize();
-    window.addEventListener('resize', resize, { passive: true });
-
-    // ── Scene state ──────────────────────────────────
-    const rotX = 0.42; // fixed tilt — never changes
-    let rotY = 0.0;
-    let velY = 0;
-    let isDragging = false, lastMX = 0;
-    let autoSpin = true;
-    let autoSpinTimer = null;
-
-    // ── Gaussian random ──
-    function gaussRand() {
-      let u = 0, v = 0;
-      while (!u) u = Math.random();
-      while (!v) v = Math.random();
-      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
-    }
-
-    // ── Galaxy stars ─────────────────────────────────
-    const STAR_COUNT = 1800; // slightly reduced for embedded perf
-    const stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-      const arm = Math.floor(Math.random() * 3);
-      const armAngle = (arm / 3) * Math.PI * 2;
-      const r = Math.pow(Math.random(), 0.45) * 720 + 18;
-      const spiral = r * 0.012;
-      const scatter = (Math.random() - 0.5) * (r * 0.28);
-      const angle = armAngle + spiral + scatter * 0.04;
-      const x = Math.cos(angle) * r + gaussRand() * 16;
-      const z = Math.sin(angle) * r + gaussRand() * 16;
-      const y = gaussRand() * (20 + r * 0.04);
-      const brightness = Math.random();
-      const innerFrac = 1 - Math.min(r / 720, 1);
-      const hue = innerFrac > 0.7
-        ? `hsl(${260 + Math.random() * 30},70%,${55 + brightness * 35}%)`
-        : brightness > 0.85
-          ? `hsl(${180 + Math.random() * 40},80%,${80 + brightness * 18}%)`
-          : `hsl(${210 + Math.random() * 80},${40 + brightness * 40}%,${45 + brightness * 40}%)`;
-      stars.push({ x, y, z, size: 0.4 + brightness * 1.5, color: hue, twinkle: Math.random() * Math.PI * 2 });
-    }
-
-    const CORE_STARS = [];
-    for (let i = 0; i < 150; i++) {
-      const r = Math.abs(gaussRand()) * 50;
-      const a = Math.random() * Math.PI * 2;
-      const b = Math.random() * Math.PI;
-      CORE_STARS.push({
-        x: Math.sin(b) * Math.cos(a) * r,
-        y: Math.cos(b) * r * 0.42,
-        z: Math.sin(b) * Math.sin(a) * r,
-        size: 0.5 + Math.random() * 2.0,
-        color: `hsl(${260 + Math.random() * 60},80%,${70 + Math.random() * 28}%)`
-      });
-    }
-
-    // ── Tech nodes ───────────────────────────────────
-    // ── Tech nodes — 2D elliptical orbits, always visible ──
-    // 4 rings × 6 planets = 24 total
-    // rFrac = orbit radius as fraction of usable half-width
-    const RINGS = [0.12, 0.30, 0.55, 0.88];
-    const PER_RING = 6;
-    const techNodes = TECHS.map((t, i) => {
-      const ring = Math.floor(i / PER_RING);
-      const pos  = i % PER_RING;
-      // Stagger start angle per ring so they don't stack
-      const startAngle = (pos / PER_RING) * Math.PI * 2 + ring * 0.52;
-      return {
-        ...t,
-        ring,
-        startAngle,
-        rFrac: RINGS[ring],
-        pulse:      Math.random() * Math.PI * 2,
-        floatSpeed: 0.5 + Math.random() * 0.5,
-        floatAmp:   1.5 + Math.random() * 2.5,
-        floatPhase: Math.random() * Math.PI * 2
-      };
-    });
-
-    // ── Compute screen position for a node ──────────────
-    // Returns {sx, sy, depth} — guaranteed within canvas
-    function nodePos(n, time, ry) {
-      const angle = n.startAngle + ry;
-      const margin = 8; // minimal margin — planets reach near edge
-      const rx = n.rFrac * (W / 2 - margin);
-      const tiltY = 0.28; // vertical compression
-      const ry2 = rx * tiltY;
-      const sx = cx + Math.cos(angle) * rx;
-      // float bob
-      const floatY = Math.sin(time * n.floatSpeed + n.floatPhase) * n.floatAmp;
-      const sy = cy + Math.sin(angle) * ry2 + floatY;
-      // depth: simulate front/back — sin(angle) -1..1 → depth 0.6..1.0
-      const depth = 0.6 + 0.4 * ((Math.sin(angle) + 1) / 2);
-      return { sx, sy, depth };
-    }
-
-    // ── hex → rgba ───────────────────────────────────
-    function hexAlpha(hex, a) {
-      const r = parseInt(hex.slice(1, 3), 16);
-      const g = parseInt(hex.slice(3, 5), 16);
-      const b = parseInt(hex.slice(5, 7), 16);
-      return `rgba(${r},${g},${b},${a})`;
-    }
-
-    // ── Input ────────────────────────────────────────
-    canvas.addEventListener('mousedown', e => {
-      isDragging = true;
-      lastMX = e.clientX;
-      autoSpin = false; clearTimeout(autoSpinTimer);
-    });
-    window.addEventListener('mouseup', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      autoSpinTimer = setTimeout(() => autoSpin = true, 4000);
-    });
-    window.addEventListener('mousemove', e => {
-      if (!isDragging) { checkHover(e.clientX, e.clientY); return; }
-      velY += (e.clientX - lastMX) * 0.0008;
-      lastMX = e.clientX;
-    });
-
-    canvas.addEventListener('touchstart', e => {
-      isDragging = true;
-      lastMX = e.touches[0].clientX;
-      autoSpin = false; clearTimeout(autoSpinTimer);
-    }, { passive: true });
-    window.addEventListener('touchend', () => {
-      isDragging = false;
-      autoSpinTimer = setTimeout(() => autoSpin = true, 4000);
-    });
-    window.addEventListener('touchmove', e => {
-      if (!isDragging) return;
-      velY += (e.touches[0].clientX - lastMX) * 0.0008;
-      lastMX = e.touches[0].clientX;
-    }, { passive: true });
-
-    // ── 3D projection — used for background stars only ──
-    function project(px, py, pz, rx, ry) {
-      const cosY = Math.cos(ry), sinY = Math.sin(ry);
-      let x1 = px * cosY + pz * sinY;
-      let z1 = -px * sinY + pz * cosY;
-      let y1 = py;
-      const cosX = Math.cos(rx), sinX = Math.sin(rx);
-      let y2 = y1 * cosX - z1 * sinX;
-      let z2 = y1 * sinX + z1 * cosX;
-      const fov = 900;
-      const depth = fov / (fov + z2 + 300);
-      const sx = cx + x1 * depth;
-      const sy = cy + y2 * depth;
-      return { sx, sy, depth, z2 };
-    }
-
-    // ── Tooltip ──────────────────────────────────────
-    const tooltip = document.getElementById('galaxy-tooltip');
-    const ttName = document.getElementById('gtt-name');
-    const ttCat = document.getElementById('gtt-cat');
-    let hoveredNode = null;
-
-    function checkHover(mx, my) {
-      const rect = canvas.getBoundingClientRect();
-      const lx = mx - rect.left, ly = my - rect.top;
-      let found = null, bestDist = 35;
-      for (const n of techNodes) {
-        const p = nodePos(n, Date.now() * 0.001, rotY);
-        const hitR = (10 + n.size * 5) * p.depth;
-        const dist = Math.hypot(lx - p.sx, ly - p.sy);
-        if (dist < hitR && dist < bestDist) { bestDist = dist; found = { n, p }; }
-      }
-      if (found) {
-        hoveredNode = found.n;
-        ttName.textContent = found.n.name;
-        ttCat.textContent = found.n.cat;
-        const tx = Math.min(found.p.sx + 16, W - 140);
-        const ty = Math.max(found.p.sy - 10, 10);
-        tooltip.style.left = tx + 'px';
-        tooltip.style.top = ty + 'px';
-        tooltip.classList.add('show');
-        canvas.style.cursor = 'pointer';
-      } else {
-        hoveredNode = null;
-        tooltip.classList.remove('show');
-        canvas.style.cursor = isDragging ? 'grabbing' : 'grab';
-      }
-    }
-
-    // ── Main render ──────────────────────────────────
-    let t = 0;
-
-    function frame() {
-      if (!isVisible) { frameId = requestAnimationFrame(frame); return; }
-      frameId = requestAnimationFrame(frame);
-      t += 0.016;
-
-      if (autoSpin) velY += 0.00015;
-      velY *= 0.88;
-      rotY += velY;
-
-      ctx.clearRect(0, 0, W, H);
-
-      // BG — match site bg
-      ctx.fillStyle = '#080810';
-      ctx.fillRect(0, 0, W, H);
-
-      // Galaxy glow
-      const ggl = ctx.createRadialGradient(cx, cy, 0, cx, cy, 320);
-      ggl.addColorStop(0, 'rgba(124,58,237,0.10)');
-      ggl.addColorStop(0.4, 'rgba(6,182,212,0.04)');
-      ggl.addColorStop(1, 'transparent');
-      ctx.fillStyle = ggl; ctx.fillRect(0, 0, W, H);
-
-      // Stars
-      const allStars = [...stars, ...CORE_STARS].map(s => {
-        const p = project(s.x, s.y, s.z, rotX, rotY);
-        return { ...s, ...p };
-      }).sort((a, b) => a.z2 - b.z2);
-
-      for (const s of allStars) {
-        if (s.depth < 0.01) continue;
-        const tw = s.twinkle !== undefined ? 0.6 + 0.4 * Math.sin(t * 1.8 + s.twinkle) : 1;
-        const sz = s.size * s.depth * tw;
-        if (sz < 0.2) continue;
-        ctx.globalAlpha = Math.min(1, s.depth * 0.8 * tw);
-        ctx.fillStyle = s.color;
-        ctx.beginPath(); ctx.arc(s.sx, s.sy, sz, 0, Math.PI * 2); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-
-      // Core glow
-      const coreP = project(0, 0, 0, rotX, rotY);
-      const coreR = 65 * coreP.depth;
-      const coreG = ctx.createRadialGradient(coreP.sx, coreP.sy, 0, coreP.sx, coreP.sy, coreR);
-      coreG.addColorStop(0, 'rgba(200,150,255,0.50)');
-      coreG.addColorStop(0.3, 'rgba(124,58,237,0.25)');
-      coreG.addColorStop(0.7, 'rgba(6,182,212,0.06)');
-      coreG.addColorStop(1, 'transparent');
-      ctx.fillStyle = coreG;
-      ctx.beginPath(); ctx.arc(coreP.sx, coreP.sy, coreR * 1.8, 0, Math.PI * 2); ctx.fill();
-
-      // Tech nodes — elliptical orbit, always visible
-      const nodeProj = techNodes.map(n => {
-        const p = nodePos(n, t, rotY);
-        return { n, sx: p.sx, sy: p.sy, depth: p.depth };
-      }).sort((a, b) => a.depth - b.depth); // back-to-front
-
-      for (const { n, sx, sy, depth } of nodeProj) {
-        const scale = depth; // 0.6 – 1.0
-        const baseR = (10 + n.size * 5.5) * scale;
-        const isHovered = hoveredNode === n;
-        const pulse = 0.75 + 0.25 * Math.sin(t * 1.5 + n.pulse);
-        const nodeAlpha = Math.max(0.40, Math.min(1, 0.40 + 0.60 * (depth + 1) / 2));
-        ctx.globalAlpha = nodeAlpha;
-
-        // Atmosphere
-        const atmosR = baseR * (isHovered ? 3.2 : 2.4) * pulse;
-        const atG = ctx.createRadialGradient(sx, sy, 0, sx, sy, atmosR);
-        atG.addColorStop(0, hexAlpha(n.glow, isHovered ? 0.55 : 0.28));
-        atG.addColorStop(0.5, hexAlpha(n.glow, isHovered ? 0.14 : 0.07));
-        atG.addColorStop(1, 'transparent');
-        ctx.fillStyle = atG;
-        ctx.beginPath(); ctx.arc(sx, sy, atmosR, 0, Math.PI * 2); ctx.fill();
-
-        // Sphere
-        const sphereG = ctx.createRadialGradient(
-          sx - baseR * 0.28, sy - baseR * 0.28, baseR * 0.05, sx, sy, baseR
-        );
-        sphereG.addColorStop(0, 'rgba(255,255,255,0.42)');
-        sphereG.addColorStop(0.35, n.color);
-        sphereG.addColorStop(1, hexAlpha(n.glow, 0.9));
-        ctx.fillStyle = sphereG;
-        ctx.beginPath(); ctx.arc(sx, sy, baseR * (isHovered ? 1.15 : 1.0), 0, Math.PI * 2); ctx.fill();
-
-        // Ring for prominent techs
-        if (n.size > 1.9) {
-          ctx.strokeStyle = hexAlpha(n.color, 0.32);
-          ctx.lineWidth = 1.4 * scale;
-          ctx.beginPath();
-          ctx.ellipse(sx, sy, baseR * 1.65, baseR * 0.48, -0.3, 0, Math.PI * 2);
-          ctx.stroke();
-        }
-
-        // Specular
-        const specG = ctx.createRadialGradient(
-          sx - baseR * 0.3, sy - baseR * 0.3, 0,
-          sx - baseR * 0.2, sy - baseR * 0.2, baseR * 0.4
-        );
-        specG.addColorStop(0, 'rgba(255,255,255,0.48)');
-        specG.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.fillStyle = specG;
-        ctx.beginPath(); ctx.arc(sx - baseR * 0.22, sy - baseR * 0.22, baseR * 0.4, 0, Math.PI * 2); ctx.fill();
-
-        // Label pill — clamp so text stays inside canvas
-        const nameFontSize = Math.max(8, Math.min(14, (8 + n.size * 1.7) * scale));
-        ctx.font = `700 ${nameFontSize}px 'Exo 2', sans-serif`;
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        const nameW = ctx.measureText(n.name).width;
-        const pillPad = 4.5 * scale;
-        const pillH = nameFontSize + pillPad * 2;
-        const pillW = nameW + pillPad * 3.5;
-        const labelY = sy + baseR + pillH * 0.5 + 4 * scale;
-        // clamp label x so pill doesn't overflow canvas
-        const labelX = Math.max(pillW / 2 + 4, Math.min(W - pillW / 2 - 4, sx));
-
-        ctx.fillStyle = 'rgba(4,4,16,0.80)';
-        ctx.beginPath();
-        if (ctx.roundRect) { ctx.roundRect(labelX - pillW / 2, labelY - pillH / 2, pillW, pillH, pillH / 2); }
-        else { ctx.rect(labelX - pillW / 2, labelY - pillH / 2, pillW, pillH); }
-        ctx.fill();
-
-        ctx.strokeStyle = hexAlpha(n.color, 0.50);
-        ctx.lineWidth = 0.75;
-        ctx.beginPath();
-        if (ctx.roundRect) { ctx.roundRect(labelX - pillW / 2, labelY - pillH / 2, pillW, pillH, pillH / 2); }
-        else { ctx.rect(labelX - pillW / 2, labelY - pillH / 2, pillW, pillH); }
-        ctx.stroke();
-
-        ctx.shadowColor = n.glow;
-        ctx.shadowBlur = isHovered ? 12 : 7;
-        ctx.fillStyle = isHovered ? '#ffffff' : hexAlpha(n.color, 0.95);
-        ctx.fillText(n.name, labelX, labelY);
-        ctx.shadowBlur = 0;
-
-        if (isHovered || (depth > 0.7 && scale > 0.75)) {
-          const catSize = Math.max(6, nameFontSize * 0.70);
-          ctx.font = `400 ${catSize}px 'Exo 2', sans-serif`;
-          ctx.fillStyle = hexAlpha(n.color, 0.58);
-          ctx.shadowColor = n.glow; ctx.shadowBlur = 4;
-          ctx.fillText(n.cat, labelX, labelY + pillH * 0.55 + catSize);
-          ctx.shadowBlur = 0;
-        }
-
-        ctx.globalAlpha = 1;
-      }
-
-      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
-
-      // Lens flare
-      const flareA = 0.14 + 0.10 * Math.sin(t * 0.7);
-      const flareLine = ctx.createLinearGradient(coreP.sx - 260, coreP.sy, coreP.sx + 260, coreP.sy);
-      flareLine.addColorStop(0, 'transparent');
-      flareLine.addColorStop(0.5, `rgba(200,160,255,${flareA})`);
-      flareLine.addColorStop(1, 'transparent');
-      ctx.fillStyle = flareLine;
-      ctx.fillRect(coreP.sx - 260, coreP.sy - 1, 520, 2);
-    }
-
-    // ── Visibility observer ──────────────────────────
-    const visObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { isVisible = e.isIntersecting; });
-    }, { rootMargin: '100px' });
+    window.addEventListener('resize', resize, {passive:true});
+    const rotX = 0.42;
+    let rotY = 0.0, velY = 0, isDragging = false, lastMX = 0, autoSpin = true, autoSpinTimer = null;
+    function gaussRand() { let u=0,v=0; while(!u)u=Math.random(); while(!v)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+    const STAR_COUNT = 1800, stars = [];
+    for(let i=0;i<STAR_COUNT;i++){const arm=Math.floor(Math.random()*3),armAngle=(arm/3)*Math.PI*2,r=Math.pow(Math.random(),0.45)*720+18,spiral=r*0.012,scatter=(Math.random()-0.5)*(r*0.28),angle=armAngle+spiral+scatter*0.04,x=Math.cos(angle)*r+gaussRand()*16,z=Math.sin(angle)*r+gaussRand()*16,y=gaussRand()*(20+r*0.04),brightness=Math.random(),innerFrac=1-Math.min(r/720,1),hue=innerFrac>0.7?`hsl(${260+Math.random()*30},70%,${55+brightness*35}%)`:brightness>0.85?`hsl(${180+Math.random()*40},80%,${80+brightness*18}%)`:`hsl(${210+Math.random()*80},${40+brightness*40}%,${45+brightness*40}%)`;stars.push({x,y,z,size:0.4+brightness*1.5,color:hue,twinkle:Math.random()*Math.PI*2});}
+    const CORE_STARS=[];
+    for(let i=0;i<150;i++){const r=Math.abs(gaussRand())*50,a=Math.random()*Math.PI*2,b=Math.random()*Math.PI;CORE_STARS.push({x:Math.sin(b)*Math.cos(a)*r,y:Math.cos(b)*r*0.42,z:Math.sin(b)*Math.sin(a)*r,size:0.5+Math.random()*2.0,color:`hsl(${260+Math.random()*60},80%,${70+Math.random()*28}%)`});}
+    const RINGS=[0.12,0.30,0.55,0.88],PER_RING=6;
+    const techNodes=TECHS.map((t,i)=>{const ring=Math.floor(i/PER_RING),pos=i%PER_RING,startAngle=(pos/PER_RING)*Math.PI*2+ring*0.52;return{...t,ring,startAngle,rFrac:RINGS[ring],pulse:Math.random()*Math.PI*2,floatSpeed:0.5+Math.random()*0.5,floatAmp:1.5+Math.random()*2.5,floatPhase:Math.random()*Math.PI*2};});
+    function nodePos(n,time,ry){const angle=n.startAngle+ry,margin=8,rx=n.rFrac*(W/2-margin),tiltY=0.28,ry2=rx*tiltY,sx=cx+Math.cos(angle)*rx,floatY=Math.sin(time*n.floatSpeed+n.floatPhase)*n.floatAmp,sy=cy+Math.sin(angle)*ry2+floatY,depth=0.6+0.4*((Math.sin(angle)+1)/2);return{sx,sy,depth};}
+    function hexAlpha(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return`rgba(${r},${g},${b},${a})`;}
+    canvas.addEventListener('mousedown',e=>{isDragging=true;lastMX=e.clientX;autoSpin=false;clearTimeout(autoSpinTimer);});
+    window.addEventListener('mouseup',()=>{if(!isDragging)return;isDragging=false;autoSpinTimer=setTimeout(()=>autoSpin=true,4000);});
+    window.addEventListener('mousemove',e=>{if(!isDragging){checkHover(e.clientX,e.clientY);return;}velY+=(e.clientX-lastMX)*0.0008;lastMX=e.clientX;});
+    canvas.addEventListener('touchstart',e=>{isDragging=true;lastMX=e.touches[0].clientX;autoSpin=false;clearTimeout(autoSpinTimer);},{passive:true});
+    window.addEventListener('touchend',()=>{isDragging=false;autoSpinTimer=setTimeout(()=>autoSpin=true,4000);});
+    window.addEventListener('touchmove',e=>{if(!isDragging)return;velY+=(e.touches[0].clientX-lastMX)*0.0008;lastMX=e.touches[0].clientX;},{passive:true});
+    function project(px,py,pz,rx,ry){const cosY=Math.cos(ry),sinY=Math.sin(ry),x1=px*cosY+pz*sinY,z1=-px*sinY+pz*cosY,y1=py,cosX=Math.cos(rx),sinX=Math.sin(rx),y2=y1*cosX-z1*sinX,z2=y1*sinX+z1*cosX,fov=900,depth=fov/(fov+z2+300),sx=cx+x1*depth,sy=cy+y2*depth;return{sx,sy,depth,z2};}
+    const tooltip=document.getElementById('galaxy-tooltip'),ttName=document.getElementById('gtt-name'),ttCat=document.getElementById('gtt-cat');
+    let hoveredNode=null;
+    function checkHover(mx,my){const rect=canvas.getBoundingClientRect(),lx=mx-rect.left,ly=my-rect.top;let found=null,bestDist=35;for(const n of techNodes){const p=nodePos(n,Date.now()*0.001,rotY),hitR=(10+n.size*5)*p.depth,dist=Math.hypot(lx-p.sx,ly-p.sy);if(dist<hitR&&dist<bestDist){bestDist=dist;found={n,p};}}if(found){hoveredNode=found.n;ttName.textContent=found.n.name;ttCat.textContent=found.n.cat;tooltip.style.left=Math.min(found.p.sx+16,W-140)+'px';tooltip.style.top=Math.max(found.p.sy-10,10)+'px';tooltip.classList.add('show');canvas.style.cursor='pointer';}else{hoveredNode=null;tooltip.classList.remove('show');canvas.style.cursor=isDragging?'grabbing':'grab';}}
+    let t=0;
+    function frame(){if(!isVisible){requestAnimationFrame(frame);return;}requestAnimationFrame(frame);t+=0.016;if(autoSpin)velY+=0.00015;velY*=0.88;rotY+=velY;ctx.clearRect(0,0,W,H);ctx.fillStyle='#080810';ctx.fillRect(0,0,W,H);const ggl=ctx.createRadialGradient(cx,cy,0,cx,cy,320);ggl.addColorStop(0,'rgba(124,58,237,0.10)');ggl.addColorStop(0.4,'rgba(6,182,212,0.04)');ggl.addColorStop(1,'transparent');ctx.fillStyle=ggl;ctx.fillRect(0,0,W,H);
+    const allStars=[...stars,...CORE_STARS].map(s=>{const p=project(s.x,s.y,s.z,rotX,rotY);return{...s,...p};}).sort((a,b)=>a.z2-b.z2);
+    for(const s of allStars){if(s.depth<0.01)continue;const tw=s.twinkle!==undefined?0.6+0.4*Math.sin(t*1.8+s.twinkle):1,sz=s.size*s.depth*tw;if(sz<0.2)continue;ctx.globalAlpha=Math.min(1,s.depth*0.8*tw);ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(s.sx,s.sy,sz,0,Math.PI*2);ctx.fill();}
+    ctx.globalAlpha=1;
+    const coreP=project(0,0,0,rotX,rotY),coreR=65*coreP.depth,coreG=ctx.createRadialGradient(coreP.sx,coreP.sy,0,coreP.sx,coreP.sy,coreR);
+    coreG.addColorStop(0,'rgba(200,150,255,0.50)');coreG.addColorStop(0.3,'rgba(124,58,237,0.25)');coreG.addColorStop(0.7,'rgba(6,182,212,0.06)');coreG.addColorStop(1,'transparent');ctx.fillStyle=coreG;ctx.beginPath();ctx.arc(coreP.sx,coreP.sy,coreR*1.8,0,Math.PI*2);ctx.fill();
+    const nodeProj=techNodes.map(n=>{const p=nodePos(n,t,rotY);return{n,sx:p.sx,sy:p.sy,depth:p.depth};}).sort((a,b)=>a.depth-b.depth);
+    for(const{n,sx,sy,depth}of nodeProj){const scale=depth,baseR=(10+n.size*5.5)*scale,isHovered=hoveredNode===n,pulse=0.75+0.25*Math.sin(t*1.5+n.pulse),nodeAlpha=Math.max(0.40,Math.min(1,0.40+0.60*(depth+1)/2));ctx.globalAlpha=nodeAlpha;
+    const atmosR=baseR*(isHovered?3.2:2.4)*pulse,atG=ctx.createRadialGradient(sx,sy,0,sx,sy,atmosR);atG.addColorStop(0,hexAlpha(n.glow,isHovered?0.55:0.28));atG.addColorStop(0.5,hexAlpha(n.glow,isHovered?0.14:0.07));atG.addColorStop(1,'transparent');ctx.fillStyle=atG;ctx.beginPath();ctx.arc(sx,sy,atmosR,0,Math.PI*2);ctx.fill();
+    const sphereG=ctx.createRadialGradient(sx-baseR*0.28,sy-baseR*0.28,baseR*0.05,sx,sy,baseR);sphereG.addColorStop(0,'rgba(255,255,255,0.42)');sphereG.addColorStop(0.35,n.color);sphereG.addColorStop(1,hexAlpha(n.glow,0.9));ctx.fillStyle=sphereG;ctx.beginPath();ctx.arc(sx,sy,baseR*(isHovered?1.15:1.0),0,Math.PI*2);ctx.fill();
+    if(n.size>1.9){ctx.strokeStyle=hexAlpha(n.color,0.32);ctx.lineWidth=1.4*scale;ctx.beginPath();ctx.ellipse(sx,sy,baseR*1.65,baseR*0.48,-0.3,0,Math.PI*2);ctx.stroke();}
+    const specG=ctx.createRadialGradient(sx-baseR*0.3,sy-baseR*0.3,0,sx-baseR*0.2,sy-baseR*0.2,baseR*0.4);specG.addColorStop(0,'rgba(255,255,255,0.48)');specG.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=specG;ctx.beginPath();ctx.arc(sx-baseR*0.22,sy-baseR*0.22,baseR*0.4,0,Math.PI*2);ctx.fill();
+    const nameFontSize=Math.max(8,Math.min(14,(8+n.size*1.7)*scale));ctx.font=`700 ${nameFontSize}px 'Exo 2', sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';const nameW=ctx.measureText(n.name).width,pillPad=4.5*scale,pillH=nameFontSize+pillPad*2,pillW=nameW+pillPad*3.5,labelY=sy+baseR+pillH*0.5+4*scale,labelX=Math.max(pillW/2+4,Math.min(W-pillW/2-4,sx));
+    ctx.fillStyle='rgba(4,4,16,0.80)';ctx.beginPath();if(ctx.roundRect){ctx.roundRect(labelX-pillW/2,labelY-pillH/2,pillW,pillH,pillH/2);}else{ctx.rect(labelX-pillW/2,labelY-pillH/2,pillW,pillH);}ctx.fill();
+    ctx.strokeStyle=hexAlpha(n.color,0.50);ctx.lineWidth=0.75;ctx.beginPath();if(ctx.roundRect){ctx.roundRect(labelX-pillW/2,labelY-pillH/2,pillW,pillH,pillH/2);}else{ctx.rect(labelX-pillW/2,labelY-pillH/2,pillW,pillH);}ctx.stroke();
+    ctx.shadowColor=n.glow;ctx.shadowBlur=isHovered?12:7;ctx.fillStyle=isHovered?'#ffffff':hexAlpha(n.color,0.95);ctx.fillText(n.name,labelX,labelY);ctx.shadowBlur=0;
+    if(isHovered||(depth>0.7&&scale>0.75)){const catSize=Math.max(6,nameFontSize*0.70);ctx.font=`400 ${catSize}px 'Exo 2', sans-serif`;ctx.fillStyle=hexAlpha(n.color,0.58);ctx.shadowColor=n.glow;ctx.shadowBlur=4;ctx.fillText(n.cat,labelX,labelY+pillH*0.55+catSize);ctx.shadowBlur=0;}
+    ctx.globalAlpha=1;}
+    ctx.textAlign='left';ctx.textBaseline='alphabetic';
+    const flareA=0.14+0.10*Math.sin(t*0.7),flareLine=ctx.createLinearGradient(coreP.sx-260,coreP.sy,coreP.sx+260,coreP.sy);flareLine.addColorStop(0,'transparent');flareLine.addColorStop(0.5,`rgba(200,160,255,${flareA})`);flareLine.addColorStop(1,'transparent');ctx.fillStyle=flareLine;ctx.fillRect(coreP.sx-260,coreP.sy-1,520,2);}
+    const visObs=new IntersectionObserver(entries=>{entries.forEach(e=>{isVisible=e.isIntersecting;});},{rootMargin:'100px'});
     visObs.observe(container);
-
-    // Start loop
-    frameId = requestAnimationFrame(frame);
-
+    requestAnimationFrame(frame);
   })();
   </script>
 
-  <!-- ════════ SITE SCRIPTS ════════ -->
+  <!-- SITE SCRIPTS -->
   <script>
     /* NAV SCROLL */
     const nav = document.getElementById('nav');
@@ -1517,7 +994,7 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
     }, { threshold: 0.3 });
     document.querySelectorAll('.why-card').forEach(el => whyObs.observe(el));
 
-    /* INTERSECTION OBSERVER — scroll animations */
+    /* SCROLL ANIMATIONS */
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
@@ -1555,54 +1032,117 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
       setTimeout(() => t.classList.remove('show'), 5000);
     }
 
-    /* FORM */
+    /* ═══════════════════════════════════════════════════════
+       FORM — Fixed for ALL email domains (Gmail + Corporate)
+       
+       ROOT CAUSE FIX:
+       Old code used "await" on EmailJS → corporate mail servers
+       timeout/block → entire form hangs and shows nothing.
+       
+       NEW: EmailJS is fire-and-forget (.catch only, no await).
+       Web3Forms handles YOUR notification (works for all domains).
+       User sees success immediately after Web3Forms confirms.
+    ═══════════════════════════════════════════════════════ */
     const WEB3FORMS_KEY = 'ad1afb3d-9b62-428c-9a43-ff37f11090c2';
-    const EJS_SERVICE = 'service_4t2u74e';
-    const EJS_TEMPLATE = 'template_vsc0zp9';
-    const EJS_KEY = 'XOHWfdpZo10SaqOFd';
+    const EJS_SERVICE   = 'service_4t2u74e';
+    const EJS_TEMPLATE  = 'template_vsc0zp9';
+    const EJS_KEY       = 'XOHWfdpZo10SaqOFd';
 
     document.getElementById('cForm').addEventListener('submit', async ev => {
       ev.preventDefault();
       let ok = true;
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const fName = document.getElementById('fName');
-      const fEmail = document.getElementById('fEmail');
+      const fName    = document.getElementById('fName');
+      const fEmail   = document.getElementById('fEmail');
       const fSubject = document.getElementById('fSubject');
-      const fMsg = document.getElementById('fMsg');
+      const fMsg     = document.getElementById('fMsg');
+
+      /* Validation */
       const fields = [
-        { f: fName, e: document.getElementById('eN'), bad: v => v.trim().length < 2 },
-        { f: fEmail, e: document.getElementById('eE'), bad: v => !emailRe.test(v.trim()) },
+        { f: fName,    e: document.getElementById('eN'), bad: v => v.trim().length < 2 },
+        { f: fEmail,   e: document.getElementById('eE'), bad: v => !emailRe.test(v.trim()) },
         { f: fSubject, e: document.getElementById('eS'), bad: v => !v },
       ];
       fields.forEach(({ f, e, bad }) => {
         if (bad(f.value)) { f.classList.add('err'); e.classList.add('show'); ok = false; }
-        else { f.classList.remove('err'); e.classList.remove('show'); }
+        else              { f.classList.remove('err'); e.classList.remove('show'); }
       });
       if (!ok) return;
-      const btn = ev.target.querySelector('button[type="submit"]');
+
+      const btn      = ev.target.querySelector('button[type="submit"]');
       const origText = btn.textContent;
-      btn.textContent = '⏳ Sending…'; btn.classList.add('btn-loading');
+      btn.textContent = '⏳ Sending…';
+      btn.classList.add('btn-loading');
+
+      const clientName    = fName.value.trim();
+      const clientEmail   = fEmail.value.trim();
+      const subjectLabel  = fSubject.options[fSubject.selectedIndex].text;
+      const clientMessage = fMsg.value.trim() || '(No message provided)';
+
       try {
-        const subjectLabel = fSubject.options[fSubject.selectedIndex].text;
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
+        /* ── STEP 1: Web3Forms → Notifies YOU (subashrishid@gmail.com) ──
+           Works for ALL sender email domains — Gmail, Yahoo, Outlook,
+           corporate @company.com, etc. This is the primary submission.
+        ── */
+        const w3Res  = await fetch('https://api.web3forms.com/submit', {
+          method:  'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ access_key: WEB3FORMS_KEY, from_name: 'Webovex Portfolio', subject: `New Enquiry: ${subjectLabel} — from ${fName.value.trim()}`, name: fName.value.trim(), email: fEmail.value.trim(), service: subjectLabel, message: fMsg.value.trim() })
+          body: JSON.stringify({
+            access_key:   WEB3FORMS_KEY,
+            from_name:    'Webovex Portfolio',
+            subject:      `New Enquiry: ${subjectLabel} — from ${clientName}`,
+            name:         clientName,
+            email:        clientEmail,
+            service:      subjectLabel,
+            message:      clientMessage,
+            botcheck:     ''   /* honeypot — must be empty */
+          })
         });
-        const data = await res.json();
-        if (data.success) {
-          try {
-            await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ service_id: EJS_SERVICE, template_id: EJS_TEMPLATE, user_id: EJS_KEY, template_params: { to_name: fName.value.trim(), to_email: fEmail.value.trim(), service: subjectLabel, from_name: 'Subash N — Webovex', reply_to: 'subashrishid@gmail.com' } })
-            });
-          } catch (e) { console.error('EmailJS auto-reply failed:', e); }
-          ev.target.reset();
-          showToast('✅ Message sent! I\'ll reply within 24 hours.');
-        } else { showToast('❌ Failed to send. Please try again or email directly.', true); }
-      } catch (err) { showToast('❌ Network error. Please check your connection.', true); }
-      finally { btn.textContent = origText; btn.classList.remove('btn-loading'); }
+        const w3Data = await w3Res.json();
+
+        if (!w3Data.success) {
+          showToast('❌ Submission failed. Please email subashrishid@gmail.com directly.', true);
+          return;
+        }
+
+        /* ── STEP 2: EmailJS → Sends confirmation to CLIENT
+           FIRE-AND-FORGET — no "await", never blocks the user.
+           Corporate mail servers (Outlook, Exchange, custom domains)
+           often reject/delay automated emails. By removing "await",
+           the form succeeds instantly regardless of EmailJS response.
+           If EmailJS works → client gets a confirmation email.
+           If EmailJS fails (corporate spam filter) → form still works.
+        ── */
+        fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            service_id:  EJS_SERVICE,
+            template_id: EJS_TEMPLATE,
+            user_id:     EJS_KEY,
+            template_params: {
+              to_name:   clientName,
+              to_email:  clientEmail,   /* client's email — any domain */
+              service:   subjectLabel,
+              from_name: 'Subash N — Webovex',
+              reply_to:  'subashrishid@gmail.com',
+              message:   clientMessage
+            }
+          })
+        }).catch(err => console.warn('EmailJS confirmation (non-blocking):', err));
+        /* ↑ Only .catch() — never blocks, never fails the form */
+
+        /* ── STEP 3: Instant success for the user ── */
+        ev.target.reset();
+        showToast('✅ Message sent! I\'ll reply within 24 hours.');
+
+      } catch (err) {
+        console.error('Form submit error:', err);
+        showToast('❌ Network error. Please check your connection and try again.', true);
+      } finally {
+        btn.textContent = origText;
+        btn.classList.remove('btn-loading');
+      }
     });
 
     /* SMOOTH SCROLL */
@@ -1611,31 +1151,28 @@ X-XSS-Protection: <span class="tc-val">1; mode=block</span>
       if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     }));
   </script>
+
+  <!-- MARQUEE ENGINE -->
   <script>
-  // ── JS Marquee Engine — RAF based, always works ──
   (function() {
     const tracks = [
-      { el: document.querySelector('.mq-track'),     speed: 0.6,  dir: 1  }, // right →
-      { el: document.querySelector('.mq-track-rev'), speed: 0.5,  dir: -1 }  // left ←
+      { el: document.querySelector('.mq-track'),     speed: 0.6, dir:  1 },
+      { el: document.querySelector('.mq-track-rev'), speed: 0.5, dir: -1 }
     ];
-
     tracks.forEach(t => {
       if (!t.el) return;
-      // start position: right-scrolling starts at -half, left starts at 0
       t.x = t.dir === 1 ? -(t.el.scrollWidth / 2) : 0;
       t.paused = false;
       t.el.parentElement.addEventListener('mouseenter', () => t.paused = true);
       t.el.parentElement.addEventListener('mouseleave', () => t.paused = false);
     });
-
     function tick() {
       tracks.forEach(t => {
         if (!t.el || t.paused) return;
         t.x += t.speed * t.dir;
         const half = t.el.scrollWidth / 2;
-        // seamless loop
-        if (t.dir === 1  && t.x >= 0)     t.x = -half;
-        if (t.dir === -1 && t.x <= -half)  t.x = 0;
+        if (t.dir === 1  && t.x >= 0)    t.x = -half;
+        if (t.dir === -1 && t.x <= -half) t.x = 0;
         t.el.style.transform = `translateX(${t.x}px)`;
       });
       requestAnimationFrame(tick);
