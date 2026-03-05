@@ -761,7 +761,7 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
         if (!notifyRes.ok) {
           const errText = await notifyRes.text();
           console.error('EmailJS notify error:', errText);
-          showToast('❌ Submission failed. Please email subashrishid@gmail.com directly.', true);
+          showToast('❌ EmailJS Error: ' + errText, true);
           return;
         }
 
