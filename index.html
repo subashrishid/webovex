@@ -696,18 +696,16 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
     function showToast(msg,isErr=false){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.toggle('toast-err',isErr);t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5000);}
 
     /* ═══════════════════════════════════════════════════════════
-       CONTACT FORM — Dual Email System
+       CONTACT FORM — EmailJS Only (No Web3Forms)
 
-       1. Web3Forms  → உங்களுக்கு notification (clean format)
-       2. EmailJS    → Client-க்கு confirmation email
+       1. EmailJS → உங்களுக்கு notification email
+       2. EmailJS → Client-க்கு confirmation email
           (Gmail, Yahoo, Outlook — எல்லா domain-ம் work ஆகும்)
     ═══════════════════════════════════════════════════════════ */
-    const W3F_KEY = 'ad1afb3d-9b62-428c-9a43-ff37f11090c2';
-
-    /* EmailJS — client confirmation email (primary) */
     const EJS_SVC = 'service_q9r9259';
     const EJS_TPL = 'template_7mtemk4';
     const EJS_KEY = 'XOHWfdpZo10SaqOFd';
+    const OWNER_EMAIL = 'subashrishid@gmail.com';
 
     document.getElementById('cForm').addEventListener('submit', async ev => {
       ev.preventDefault();
@@ -739,58 +737,46 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
       const serviceLabel = fSubject.options[fSubject.selectedIndex].text;
       const clientMsg    = fMsg.value.trim() || '(No message provided)';
 
+      const sendEmail = (params) => fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: EJS_SVC, template_id: EJS_TPL, user_id: EJS_KEY,
+          template_params: params
+        })
+      });
+
       try {
 
-        /* ── Step 1: Web3Forms → YOU get notified (clean notification) ── */
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key:   W3F_KEY,
-            subject:      `New Enquiry: ${serviceLabel} — ${clientName}`,
-            from_name:    'Webovex Portfolio',
-            name:         clientName,
-            email:        clientEmail,
-            service:      serviceLabel,
-            message:      clientMsg,
-            botcheck:     ''
-          })
+        /* ── Step 1: Notification → YOU get notified ── */
+        const notifyRes = await sendEmail({
+          to_name:   'Subash',
+          to_email:  OWNER_EMAIL,
+          service:   serviceLabel,
+          message:   `From: ${clientName}\nEmail: ${clientEmail}\nService: ${serviceLabel}\nMessage: ${clientMsg}`,
+          from_name: 'Webovex Contact Form',
+          reply_to:  clientEmail
         });
 
-        const resText = await res.text();
-        console.log('Web3Forms raw response:', resText);
-        let data;
-        try { data = JSON.parse(resText); } catch(e) { data = { success: false, message: resText }; }
-
-        if (!data.success) {
-          console.error('Web3Forms error:', data);
-          showToast('❌ Error: ' + (data.message || 'Submission failed. Please email subashrishid@gmail.com'), true);
+        if (!notifyRes.ok) {
+          const errText = await notifyRes.text();
+          console.error('EmailJS notify error:', errText);
+          showToast('❌ Submission failed. Please email subashrishid@gmail.com directly.', true);
           return;
         }
 
-        /* ── Step 2: EmailJS → Client gets confirmation email ──
-           Works with ALL domains: Gmail, Yahoo, Outlook, etc.  */
+        /* ── Step 2: Confirmation → Client gets thank you email ── */
         try {
-          await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              service_id:  EJS_SVC,
-              template_id: EJS_TPL,
-              user_id:     EJS_KEY,
-              template_params: {
-                to_name:   clientName,
-                to_email:  clientEmail,
-                service:   serviceLabel,
-                message:   clientMsg,
-                from_name: 'Subash N — Webovex',
-                reply_to:  'subashrishid@gmail.com'
-              }
-            })
+          await sendEmail({
+            to_name:   clientName,
+            to_email:  clientEmail,
+            service:   serviceLabel,
+            message:   clientMsg,
+            from_name: 'Subash N — Webovex',
+            reply_to:  OWNER_EMAIL
           });
         } catch (ejsErr) {
-          console.warn('EmailJS confirmation failed:', ejsErr);
-          /* Don't block — Web3Forms notification was sent successfully */
+          console.warn('Confirmation email failed:', ejsErr);
         }
 
         /* ── Step 3: Success ── */
