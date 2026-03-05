@@ -274,6 +274,7 @@
     @media(max-width:768px){nav{padding:1rem 1.25rem;}.nav-links,.nav-cta{display:none;}.ham{display:flex;}#hero{padding:5.5rem 1.25rem 3.5rem;}.blob-1{width:280px;height:280px;top:-60px;left:-60px;}.blob-2{width:240px;height:240px;bottom:-60px;right:-60px;}.blob-3{display:none;}.sec{padding:4rem 1.25rem;}.hero-metrics{display:none;}.about-grid{grid-template-columns:1fr;gap:2.5rem;}.stat-cards{flex-direction:row;}.stat-card{flex:1;padding:1.2rem .8rem;}.stat-num{font-size:2.4rem;}.highlights{grid-template-columns:1fr;}.skills-grid{grid-template-columns:1fr;}.svc-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;gap:2rem;}.arch-flow{flex-direction:column;gap:0;align-items:center;}.arch-block{max-width:100%;width:100%;}.arch-arrow{transform:rotate(90deg);}.why-grid{grid-template-columns:1fr;}.term-grid{grid-template-columns:1fr;}.term-grid .term-window:last-child{grid-column:auto;}.term-code{font-size:.7rem;}.foot-top{flex-direction:column;align-items:center;gap:1.5rem;}.foot-left{text-align:center;}.foot-links{justify-content:center;}#toast{left:1rem;right:1rem;bottom:1rem;max-width:none;}.process-track{padding-left:36px;}.proc-node{width:36px;height:36px;margin-left:-36px;font-size:.7rem;}.process-line{left:17px;}}
     @media(max-width:500px){.hero-h1{font-size:2.2rem;}.stat-cards{flex-direction:column;}.hero-btns{flex-direction:column;align-items:stretch;}.btn-fill,.btn-ghost{text-align:center;}}
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -696,7 +697,7 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
     function showToast(msg,isErr=false){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.toggle('toast-err',isErr);t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5000);}
 
     /* ═══════════════════════════════════════════════════════════
-       CONTACT FORM — EmailJS Only (No Web3Forms)
+       CONTACT FORM — EmailJS SDK (No Web3Forms)
 
        1. EmailJS → உங்களுக்கு notification email
        2. EmailJS → Client-க்கு confirmation email
@@ -706,6 +707,9 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
     const EJS_TPL = 'template_7mtemk4';
     const EJS_KEY = 'kZS3jYfnudOKH8as5';
     const OWNER_EMAIL = 'subashrishid@gmail.com';
+
+    /* Initialize EmailJS SDK */
+    emailjs.init(EJS_KEY);
 
     document.getElementById('cForm').addEventListener('submit', async ev => {
       ev.preventDefault();
@@ -737,19 +741,10 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
       const serviceLabel = fSubject.options[fSubject.selectedIndex].text;
       const clientMsg    = fMsg.value.trim() || '(No message provided)';
 
-      const sendEmail = (params) => fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          service_id: EJS_SVC, template_id: EJS_TPL, user_id: EJS_KEY,
-          template_params: params
-        })
-      });
-
       try {
 
         /* ── Step 1: Notification → YOU get notified ── */
-        const notifyRes = await sendEmail({
+        await emailjs.send(EJS_SVC, EJS_TPL, {
           to_name:   'Subash',
           to_email:  OWNER_EMAIL,
           service:   serviceLabel,
@@ -758,16 +753,9 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
           reply_to:  clientEmail
         });
 
-        if (!notifyRes.ok) {
-          const errText = await notifyRes.text();
-          console.error('EmailJS notify error:', errText);
-          showToast('❌ EmailJS Error: ' + errText, true);
-          return;
-        }
-
         /* ── Step 2: Confirmation → Client gets thank you email ── */
         try {
-          await sendEmail({
+          await emailjs.send(EJS_SVC, EJS_TPL, {
             to_name:   clientName,
             to_email:  clientEmail,
             service:   serviceLabel,
@@ -785,7 +773,7 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
 
       } catch (err) {
         console.error('Form submission error:', err);
-        showToast('❌ Network error. Please try again or email subashrishid@gmail.com', true);
+        showToast('❌ Error: ' + (err.text || 'Network error. Please try again or email subashrishid@gmail.com'), true);
       } finally {
         btn.textContent = origTxt;
         btn.classList.remove('btn-loading');
