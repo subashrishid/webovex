@@ -602,7 +602,7 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
     <div class="anim"><p class="sec-label">Get In Touch</p><h2 class="sec-title">Let's Build Something Great</h2></div>
     <div class="contact-grid">
       <div class="contact-col anim d1">
-        <div class="contact-card"><span class="cc-icon">📧</span><span class="cc-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d6e687f7c6e756f746e7574795d7a707c7471337e7270">[email&#160;protected]</a></span></div>
+        <div class="contact-card"><span class="cc-icon">📧</span><span class="cc-text">subashrishid@gmail.com</span></div>
         <div class="contact-card"><span class="cc-icon">📱</span><span class="cc-text">9952019436</span></div>
         <div class="contact-card"><span class="cc-icon">🏢</span><span class="cc-text">Webovex</span></div>
         <div class="contact-card"><span class="cc-icon">📍</span><span class="cc-text">Chennai, Tamil Nadu</span></div>
@@ -639,8 +639,8 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
 
   <div id="toast" role="alert" aria-live="polite"><span id="toastMsg"></span></div>
 
-  <!-- GALAXY ENGINE (unchanged) -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <!-- GALAXY ENGINE -->
+  <script>
   (function(){'use strict';const TECHS=[{name:'React',cat:'Frontend',color:'#67e8f9',glow:'#06b6d4',size:2.8},{name:'Next.js',cat:'Frontend',color:'#93c5fd',glow:'#3b82f6',size:2.0},{name:'TypeScript',cat:'Frontend',color:'#60a5fa',glow:'#2563eb',size:1.8},{name:'Tailwind',cat:'Frontend',color:'#67e8f9',glow:'#0891b2',size:1.6},{name:'HTML5',cat:'Frontend',color:'#fca5a5',glow:'#ef4444',size:1.4},{name:'CSS3',cat:'Frontend',color:'#93c5fd',glow:'#3b82f6',size:1.4},{name:'Node.js',cat:'Backend',color:'#86efac',glow:'#16a34a',size:2.6},{name:'Express',cat:'Backend',color:'#d1fae5',glow:'#059669',size:1.8},{name:'Django',cat:'Backend',color:'#6ee7b7',glow:'#10b981',size:2.2},{name:'REST API',cat:'Backend',color:'#a7f3d0',glow:'#34d399',size:1.6},{name:'Python',cat:'Language',color:'#fde68a',glow:'#f59e0b',size:2.4},{name:'JavaScript',cat:'Language',color:'#fef08a',glow:'#ca8a04',size:2.0},{name:'Bash',cat:'Language',color:'#fcd34d',glow:'#d97706',size:1.4},{name:'PostgreSQL',cat:'Database',color:'#93c5fd',glow:'#1d4ed8',size:2.4},{name:'MongoDB',cat:'Database',color:'#86efac',glow:'#15803d',size:1.8},{name:'Redis',cat:'Database',color:'#fca5a5',glow:'#dc2626',size:1.5},{name:'SQL',cat:'Database',color:'#bfdbfe',glow:'#3b82f6',size:1.4},{name:'JWT',cat:'Auth',color:'#f9a8d4',glow:'#db2777',size:2.0},{name:'OAuth 2.0',cat:'Auth',color:'#f0abfc',glow:'#a21caf',size:1.8},{name:'HTTPS/SSL',cat:'Auth',color:'#c4b5fd',glow:'#7c3aed',size:1.5},{name:'Docker',cat:'DevOps',color:'#7dd3fc',glow:'#0284c7',size:2.4},{name:'Nginx',cat:'DevOps',color:'#bbf7d0',glow:'#16a34a',size:2.0},{name:'Git',cat:'DevOps',color:'#fca5a5',glow:'#dc2626',size:1.8},{name:'Linux',cat:'DevOps',color:'#fde68a',glow:'#d97706',size:1.6}];
   const container=document.getElementById('galaxy-container'),canvas=document.getElementById('galaxy-canvas'),ctx=canvas.getContext('2d');let W,H,cx,cy,isVisible=false,isMob=false;
   function resize(){const dpr=window.devicePixelRatio||1;W=container.offsetWidth;H=container.offsetHeight;canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);canvas.style.width=W+'px';canvas.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);cx=W/2;cy=H/2;isMob=W<500;}resize();window.addEventListener('resize',resize,{passive:true});
@@ -715,19 +715,11 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
     /* TOAST */
     function showToast(msg,isErr=false){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.toggle('toast-err',isErr);t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5000);}
 
-    /* ═══════════════════════════════════════════════════════════
-       CONTACT FORM — EmailJS SDK (No Web3Forms)
-
-       1. EmailJS → உங்களுக்கு notification email
-       2. EmailJS → Client-க்கு confirmation email
-          (Gmail, Yahoo, Outlook — எல்லா domain-ம் work ஆகும்)
-    ═══════════════════════════════════════════════════════════ */
     const EJS_SVC = 'service_q9r9259';
     const EJS_TPL = 'template_7mtemk4';
     const EJS_KEY = 'kZS3jYfnudOKH8as5';
     const OWNER_EMAIL = 'subashrishid@gmail.com';
 
-    /* Initialize EmailJS SDK */
     emailjs.init(EJS_KEY);
 
     document.getElementById('cForm').addEventListener('submit', async ev => {
@@ -761,8 +753,6 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
       const clientMsg    = fMsg.value.trim() || '(No message provided)';
 
       try {
-
-        /* ── Step 1: Notification → YOU get notified ── */
         await emailjs.send(EJS_SVC, EJS_TPL, {
           to_name:   'Subash',
           to_email:  OWNER_EMAIL,
@@ -771,8 +761,6 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
           from_name: 'Webovex Contact Form',
           reply_to:  clientEmail
         });
-
-        /* ── Step 2: Confirmation → Client gets thank you email ── */
         try {
           await emailjs.send(EJS_SVC, EJS_TPL, {
             to_name:   clientName,
@@ -785,11 +773,8 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
         } catch (ejsErr) {
           console.warn('Confirmation email failed:', ejsErr);
         }
-
-        /* ── Step 3: Success ── */
         ev.target.reset();
         showToast('✅ Successfully submitted!');
-
       } catch (err) {
         console.error('Form submission error:', err);
         showToast('❌ Error: ' + (err.text || 'Network error. Please try again or email subashrishid@gmail.com'), true);
@@ -803,6 +788,9 @@ Strict-Transport-Security: <span class="tc-val">max-age=31536000</span>
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}));
   </script>
 
-  <!-- MARQUEE -->
+  <!-- MARQUEE — Fixed complete script (was truncated in index.html) -->
   <script>
-  (function(){const tracks=[{el:document.querySelector('.mq-track'),speed:.6,dir:1},{el:document.querySelector('.mq-track-rev'),speed:.5,dir:-1}];tracks.forEach(t=>{if(!t.el)return;t.x=t.dir===1?-(t.el.scrollWidth/2):0;t.paused=false;t.el.parentElement.addEventListener('mouseenter',()=>t.paused=true);t.el.parentElement.addEventListener('mouseleave',()=>t.paused=false);});function tick(){tracks.forEach(t=>{if(!t.el||t.paused)return;t.x+=t.s
+  (function(){const tracks=[{el:document.querySelector('.mq-track'),speed:.6,dir:1},{el:document.querySelector('.mq-track-rev'),speed:.5,dir:-1}];tracks.forEach(t=>{if(!t.el)return;t.x=t.dir===1?-(t.el.scrollWidth/2):0;t.paused=false;t.el.parentElement.addEventListener('mouseenter',()=>t.paused=true);t.el.parentElement.addEventListener('mouseleave',()=>t.paused=false);});function tick(){tracks.forEach(t=>{if(!t.el||t.paused)return;t.x+=t.speed*t.dir;const h=t.el.scrollWidth/2;if(t.dir===1&&t.x>=0)t.x=-h;if(t.dir===-1&&t.x<=-h)t.x=0;t.el.style.transform=`translateX(${t.x}px)`;});requestAnimationFrame(tick);}requestAnimationFrame(tick);})();
+  </script>
+</body>
+</html>
