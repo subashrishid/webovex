@@ -5,7 +5,7 @@
 Webovex builds scalable digital products, modern web applications, and enterprise IT systems.
 
 ## 🌐 Official Website
-https://www.webovex.com
+https://webovex.com
 
 ## 💻 Technologies
 - PERN Stack
