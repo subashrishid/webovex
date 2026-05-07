@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import emailjs from '@emailjs/browser';
 
@@ -8,534 +8,357 @@ const EJS_KEY = 'kZS3jYfnudOKH8as5';
 const OWNER_EMAIL = 'subashrishid@gmail.com';
 
 const services = [
-  { name: 'React Web Apps', detail: 'Interfaces, dashboards, portals, and product workflows', color: '#5eead4', metric: 'UI' },
-  { name: 'Django Systems', detail: 'Python apps, admin flows, RBAC, and secure business logic', color: '#86efac', metric: 'PY' },
-  { name: 'PERN Platforms', detail: 'Node APIs, PostgreSQL data models, and production services', color: '#93c5fd', metric: 'API' },
-  { name: 'DevOps Launch', detail: 'Docker, Nginx, SSL, CI paths, and deployment handoff', color: '#facc15', metric: 'OPS' },
-  { name: 'Security Layer', detail: 'JWT, validation, encryption, headers, and hardening', color: '#fb7185', metric: 'SSL' },
-  { name: 'E-Commerce', detail: 'Catalogs, carts, payments, admin panels, and automation', color: '#c084fc', metric: 'PAY' },
+  { title: 'React UI', text: 'Dashboards, portals, product screens', tag: 'Frontend' },
+  { title: 'Django', text: 'Admin systems, RBAC, Python logic', tag: 'Backend' },
+  { title: 'PERN APIs', text: 'Node, Express, PostgreSQL, REST', tag: 'API' },
+  { title: 'DevOps', text: 'Docker, Nginx, SSL, deployment', tag: 'Launch' },
+  { title: 'Security', text: 'JWT, validation, encryption, hardening', tag: 'Secure' },
+  { title: 'E-Commerce', text: 'Carts, payments, catalog, automation', tag: 'Commerce' },
 ];
 
 const projects = [
   {
     title: 'Enterprise Platform',
-    type: 'Compliance, renewal and workflow automation',
-    value: 'Automates reminders, secure records, team workflows, deployment, and operational visibility.',
-    stack: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'Nginx', 'JWT', 'AES-256'],
+    text: 'Compliance, renewal reminders, secure records, team workflows, and production deployment.',
+    stack: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'Nginx', 'JWT'],
   },
   {
     title: 'Enterprise IT Ticket Tool',
-    type: 'Helpdesk and ticket management system',
-    value: 'Organizes IT support, role access, file handling, SMTP alerts, and audit-friendly workflows.',
-    stack: ['Django', 'Python', 'SQLite', 'Bootstrap', 'Waitress', 'WhiteNoise'],
+    text: 'Django helpdesk system with roles, file handling, SMTP alerts, and audit-friendly workflows.',
+    stack: ['Django', 'Python', 'SQLite', 'Bootstrap', 'Waitress'],
   },
 ];
 
-const processSteps = ['Discover', 'Design', 'Build', 'Secure', 'Deploy', 'Support'];
-const skills = ['React', 'Node.js', 'Express', 'PostgreSQL', 'Django', 'Python', 'Docker', 'Nginx', 'AWS', 'JWT', 'REST APIs', 'Security'];
-const navLinks = [
-  ['#hero', 'Home'],
-  ['#services', 'Services'],
-  ['#process', 'Process'],
-  ['#projects', 'Projects'],
-  ['#skills', 'Skills'],
-  ['#contact', 'Contact'],
-];
+const process = ['Inquiry', 'Design', 'Build', 'Secure', 'Deploy', 'Support'];
+const navLinks = [['#hero', 'Home'], ['#services', 'Services'], ['#process', 'Process'], ['#projects', 'Projects'], ['#contact', 'Contact']];
 
-function makeCanvasLabel(text, color, options = {}) {
+function makeLabel(text, color = '#f97316', width = 280) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   const dpr = 2;
-  const width = options.width || 360;
-  const height = options.height || 108;
   canvas.width = width * dpr;
-  canvas.height = height * dpr;
+  canvas.height = 92 * dpr;
   ctx.scale(dpr, dpr);
-
-  ctx.clearRect(0, 0, width, height);
-  ctx.font = `800 ${options.fontSize || 21}px Space Grotesk, Inter, sans-serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  const labelWidth = Math.min(width - 26, ctx.measureText(text).width + 54);
-  const x = (width - labelWidth) / 2;
-
-  ctx.fillStyle = 'rgba(7, 12, 24, 0.84)';
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.16)';
-  ctx.lineWidth = 1;
+  ctx.fillStyle = '#ffffff';
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.16)';
+  ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.roundRect(x, 26, labelWidth, 48, 16);
+  ctx.roundRect(8, 14, width - 16, 54, 14);
   ctx.fill();
   ctx.stroke();
-  ctx.shadowColor = color;
-  ctx.shadowBlur = 18;
   ctx.fillStyle = color;
-  ctx.fillText(text, width / 2, 50);
-
+  ctx.font = '900 21px Space Grotesk, Inter, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, width / 2, 41);
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
-  const material = new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false });
-  const sprite = new THREE.Sprite(material);
-  sprite.scale.set(options.scaleX || 2.1, options.scaleY || 0.64, 1);
+  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false }));
+  sprite.scale.set(width / 150, 0.62, 1);
   return sprite;
 }
 
-function glowMaterial(color, opacity = 0.2) {
-  return new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false });
-}
-
-function createRoundedPanel(width, height, color) {
-  const group = new THREE.Group();
-  const panel = new THREE.Mesh(
-    new THREE.BoxGeometry(width, height, 0.04),
+function box(w, h, d, color, options = {}) {
+  return new THREE.Mesh(
+    new THREE.BoxGeometry(w, h, d),
     new THREE.MeshStandardMaterial({
-      color: 0x08111f,
-      emissive: color,
-      emissiveIntensity: 0.08,
-      metalness: 0.42,
-      roughness: 0.24,
-      transparent: true,
-      opacity: 0.88,
+      color,
+      metalness: options.metalness ?? 0.2,
+      roughness: options.roughness ?? 0.42,
+      emissive: options.emissive ?? 0x000000,
+      emissiveIntensity: options.emissiveIntensity ?? 0,
     })
   );
-  const edge = new THREE.LineSegments(
-    new THREE.EdgesGeometry(panel.geometry),
-    new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.68 })
-  );
-  group.add(panel, edge);
-  return group;
 }
 
-function createServerRack(index, lowPower) {
-  const rack = new THREE.Group();
-  const shell = new THREE.Mesh(
-    new THREE.BoxGeometry(0.72, 2.7, 0.72),
-    new THREE.MeshStandardMaterial({
-      color: 0x0b1222,
-      emissive: index % 2 ? 0x071b2d : 0x160d2a,
-      emissiveIntensity: 0.28,
-      metalness: 0.62,
-      roughness: 0.3,
-    })
-  );
+function addEdges(mesh, color = 0x1f2937, opacity = 0.16) {
   const edges = new THREE.LineSegments(
-    new THREE.EdgesGeometry(shell.geometry),
-    new THREE.LineBasicMaterial({ color: index % 2 ? 0x22d3ee : 0xa78bfa, transparent: true, opacity: 0.52 })
+    new THREE.EdgesGeometry(mesh.geometry),
+    new THREE.LineBasicMaterial({ color, transparent: true, opacity })
   );
-  rack.add(shell, edges);
+  edges.position.copy(mesh.position);
+  edges.rotation.copy(mesh.rotation);
+  edges.scale.copy(mesh.scale);
+  mesh.parent?.add(edges);
+  return edges;
+}
 
-  const bayCount = lowPower ? 5 : 8;
-  rack.userData.lights = [];
-  for (let i = 0; i < bayCount; i += 1) {
-    const bay = new THREE.Mesh(
-      new THREE.BoxGeometry(0.58, 0.16, 0.03),
-      new THREE.MeshBasicMaterial({ color: i % 2 ? 0x1e293b : 0x111827, transparent: true, opacity: 0.9 })
-    );
-    bay.position.set(0, 1.0 - i * 0.27, 0.38);
-    rack.add(bay);
+function worker(color = 0xf97316) {
+  const g = new THREE.Group();
+  const skin = new THREE.MeshStandardMaterial({ color: 0xf2b28f, roughness: 0.55 });
+  const orange = new THREE.MeshStandardMaterial({ color, roughness: 0.45 });
+  const blue = new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.42 });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.45 });
 
-    const lightColor = [0x22c55e, 0x38bdf8, 0xfacc15, 0xfb7185][(i + index) % 4];
-    const led = new THREE.Mesh(
-      new THREE.SphereGeometry(0.025, 10, 10),
-      new THREE.MeshBasicMaterial({ color: lightColor, transparent: true, opacity: 0.82 })
-    );
-    led.position.set(-0.22 + (i % 3) * 0.18, 1.0 - i * 0.27, 0.42);
-    led.userData.phase = index * 0.7 + i * 0.42;
-    rack.userData.lights.push(led);
-    rack.add(led);
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.12, 0.32, 6, 12), blue);
+  body.position.y = 0.48;
+  const vest = box(0.29, 0.19, 0.08, color);
+  vest.position.y = 0.54;
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.12, 18, 18), skin);
+  head.position.y = 0.78;
+  const helmet = new THREE.Mesh(new THREE.SphereGeometry(0.13, 18, 18, 0, Math.PI * 2, 0, Math.PI * 0.55), orange);
+  helmet.position.y = 0.86;
+  const armL = new THREE.Mesh(new THREE.CapsuleGeometry(0.035, 0.28, 5, 8), skin);
+  const armR = armL.clone();
+  armL.position.set(-0.19, 0.54, 0.02);
+  armR.position.set(0.19, 0.54, 0.02);
+  armL.rotation.z = -0.72;
+  armR.rotation.z = 0.72;
+  const legL = new THREE.Mesh(new THREE.CapsuleGeometry(0.045, 0.26, 5, 8), dark);
+  const legR = legL.clone();
+  legL.position.set(-0.07, 0.18, 0);
+  legR.position.set(0.07, 0.18, 0);
+  g.add(body, vest, head, helmet, armL, armR, legL, legR);
+  g.userData.armL = armL;
+  g.userData.armR = armR;
+  g.userData.head = head;
+  return g;
+}
+
+function createScene(container) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = window.matchMedia('(max-width: 760px)').matches;
+  const lowPower = mobile || navigator.hardwareConcurrency <= 4;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !lowPower, powerPreference: lowPower ? 'low-power' : 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.15 : 1.55));
+  renderer.setClearColor(0xffffff, 0);
+  container.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
+  camera.position.set(5.4, 4.2, 7.2);
+  camera.lookAt(0, 0.8, 0);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 2.1));
+  const sun = new THREE.DirectionalLight(0xffffff, 3);
+  sun.position.set(4, 7, 6);
+  scene.add(sun);
+  const orangeLight = new THREE.PointLight(0xff7a18, 5.5, 16);
+  orangeLight.position.set(-1.8, 1.8, 2.4);
+  scene.add(orangeLight);
+  const blueLight = new THREE.PointLight(0x38bdf8, 2.8, 12);
+  blueLight.position.set(2.8, 2.2, -1.5);
+  scene.add(blueLight);
+
+  const world = new THREE.Group();
+  scene.add(world);
+
+  const base = box(6.9, 0.22, 4.9, 0xf8fafc, { roughness: 0.55 });
+  base.position.y = -0.12;
+  world.add(base);
+  addEdges(base, 0x94a3b8, 0.28);
+
+  const dashboard = box(2.55, 2.25, 0.16, 0x111827, { metalness: 0.48, roughness: 0.22, emissive: 0x050812, emissiveIntensity: 0.3 });
+  dashboard.position.set(-2.05, 1.28, -1.55);
+  dashboard.rotation.y = 0.08;
+  world.add(dashboard);
+  addEdges(dashboard, 0x0f172a, 0.4);
+
+  const screen = new THREE.Group();
+  const screenPanel = box(2.25, 1.74, 0.04, 0xffffff, { roughness: 0.18, emissive: 0xffffff, emissiveIntensity: 0.04 });
+  screenPanel.position.set(-2.05, 1.34, -1.45);
+  screen.add(screenPanel);
+  const chartBars = [0.42, 0.68, 0.52, 0.9, 0.62].map((h, i) => {
+    const b = box(0.16, h, 0.03, i % 2 ? 0x38bdf8 : 0xf97316, { emissive: i % 2 ? 0x0369a1 : 0xc2410c, emissiveIntensity: 0.25 });
+    b.position.set(-2.65 + i * 0.28, 0.83 + h / 2, -1.4);
+    screen.add(b);
+    return b;
+  });
+  const linePts = [-2.67, -2.35, -2.03, -1.72, -1.4].map((x, i) => new THREE.Vector3(x, 1.05 + Math.sin(i * 1.2) * 0.28 + i * 0.08, -1.38));
+  const chartLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(linePts), new THREE.LineBasicMaterial({ color: 0xf97316, linewidth: 2 }));
+  screen.add(chartLine);
+  const brandLabel = makeLabel('WEBOVEX', '#f97316', 300);
+  brandLabel.position.set(-2.04, 2.68, -1.38);
+  screen.add(brandLabel);
+  world.add(screen);
+
+  const conveyor = new THREE.Group();
+  const beltA = box(3.1, 0.18, 0.74, 0x27272a, { metalness: 0.35, roughness: 0.3 });
+  beltA.position.set(-0.4, 0.16, 0.6);
+  beltA.rotation.y = -0.55;
+  const beltB = box(2.45, 0.18, 0.74, 0x27272a, { metalness: 0.35, roughness: 0.3 });
+  beltB.position.set(0.7, 0.16, -0.28);
+  beltB.rotation.y = 0.58;
+  conveyor.add(beltA, beltB);
+  world.add(conveyor);
+
+  const boxes = [];
+  for (let i = 0; i < 13; i += 1) {
+    const parcel = box(0.34, 0.28, 0.34, 0xd97706, { roughness: 0.58 });
+    parcel.position.set(-2.2 + (i % 5) * 0.72, 0.36 + Math.floor(i / 5) * 0.1, 0.92 - (i % 3) * 0.46);
+    parcel.rotation.y = i * 0.4;
+    parcel.userData.offset = i * 0.18;
+    world.add(parcel);
+    addEdges(parcel, 0x7c2d12, 0.28);
+    boxes.push(parcel);
   }
-  return rack;
+
+  const racks = new THREE.Group();
+  for (let col = 0; col < 3; col += 1) {
+    for (let level = 0; level < 3; level += 1) {
+      const shelf = box(1.0, 0.08, 0.52, 0x475569, { metalness: 0.52, roughness: 0.34 });
+      shelf.position.set(1.55 + col * 0.88, 0.35 + level * 0.58, -1.2);
+      racks.add(shelf);
+      const crate = box(0.62, 0.34, 0.42, level % 2 ? 0xfb923c : 0xc2410c, { roughness: 0.62 });
+      crate.position.set(1.55 + col * 0.88, 0.55 + level * 0.58, -1.2);
+      racks.add(crate);
+      addEdges(crate, 0x7c2d12, 0.18);
+    }
+    const postA = box(0.06, 1.95, 0.06, 0x64748b, { metalness: 0.62, roughness: 0.24 });
+    const postB = postA.clone();
+    postA.position.set(1.08 + col * 0.88, 0.94, -0.9);
+    postB.position.set(2.02 + col * 0.88, 0.94, -1.5);
+    racks.add(postA, postB);
+  }
+  world.add(racks);
+
+  const laptopTable = box(1.2, 0.1, 0.82, 0x0f172a, { metalness: 0.42, roughness: 0.25 });
+  laptopTable.position.set(-0.4, 0.48, -0.95);
+  world.add(laptopTable);
+  const laptopBase = box(0.72, 0.04, 0.48, 0x1f2937, { metalness: 0.65, roughness: 0.25 });
+  const laptopScreen = box(0.7, 0.48, 0.04, 0x0f172a, { emissive: 0x0284c7, emissiveIntensity: 0.5 });
+  laptopBase.position.set(-0.4, 0.57, -0.86);
+  laptopScreen.position.set(-0.4, 0.86, -1.1);
+  laptopScreen.rotation.x = -0.55;
+  world.add(laptopBase, laptopScreen);
+
+  const dev = worker(0xf97316);
+  dev.position.set(-0.4, 0.14, -0.18);
+  dev.rotation.y = Math.PI;
+  world.add(dev);
+
+  const workerA = worker(0xf97316);
+  workerA.position.set(-2.8, 0.02, 0.88);
+  workerA.rotation.y = 0.8;
+  const workerB = worker(0xf97316);
+  workerB.position.set(1.15, 0.02, 1.65);
+  workerB.rotation.y = -0.9;
+  world.add(workerA, workerB);
+
+  const truck = new THREE.Group();
+  const cab = box(0.62, 0.5, 0.58, 0xf97316, { roughness: 0.38 });
+  const cargo = box(1.22, 0.62, 0.64, 0xffffff, { roughness: 0.35 });
+  cab.position.set(2.1, 0.35, 1.82);
+  cargo.position.set(2.86, 0.42, 1.82);
+  truck.add(cab, cargo);
+  for (let i = 0; i < 4; i += 1) {
+    const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.08, 18), new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.45 }));
+    wheel.rotation.z = Math.PI / 2;
+    wheel.position.set(2.1 + (i > 1 ? 0.76 : 0), 0.08, 1.48 + (i % 2) * 0.68);
+    truck.add(wheel);
+  }
+  const truckLabel = makeLabel('Webovex', '#f97316', 220);
+  truckLabel.position.set(2.86, 0.82, 1.46);
+  truck.add(truckLabel);
+  world.add(truck);
+
+  const techLabels = [
+    ['React', -2.05, 1.9, -1.36, '#38bdf8'],
+    ['Django', -2.05, 1.64, -1.36, '#16a34a'],
+    ['Docker', -2.05, 1.38, -1.36, '#2563eb'],
+    ['SSL', -2.05, 1.12, -1.36, '#f97316'],
+  ].map(([text, x, y, z, color]) => {
+    const label = makeLabel(text, color, 180);
+    label.position.set(x, y, z);
+    screen.add(label);
+    return label;
+  });
+
+  const dataDots = [];
+  const curves = [
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.4, 0.8, -0.86), new THREE.Vector3(-1.1, 1.1, -0.9), new THREE.Vector3(-2.0, 1.35, -1.3)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.2, 0.68, -0.5), new THREE.Vector3(0.8, 0.78, -0.8), new THREE.Vector3(2.1, 1.0, -1.2)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.3, 0.42, 0.5), new THREE.Vector3(1.4, 0.48, 1.25), new THREE.Vector3(2.65, 0.52, 1.7)]),
+  ];
+  curves.forEach((curve, curveIndex) => {
+    world.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(48)), new THREE.LineBasicMaterial({ color: curveIndex === 0 ? 0x38bdf8 : 0xf97316, transparent: true, opacity: 0.45 })));
+    for (let i = 0; i < 6; i += 1) {
+      const dot = new THREE.Mesh(new THREE.SphereGeometry(0.055, 16, 16), new THREE.MeshBasicMaterial({ color: curveIndex === 0 ? 0x38bdf8 : 0xf97316 }));
+      dot.userData.curve = curveIndex;
+      dot.userData.offset = i / 6;
+      dataDots.push(dot);
+      world.add(dot);
+    }
+  });
+
+  const serviceSprites = services.map((service, index) => {
+    const label = makeLabel(service.tag, index % 2 ? '#2563eb' : '#f97316', 190);
+    label.position.set(0.6 + Math.cos(index) * 2.3, 2.25 + Math.sin(index * 0.8) * 0.3, 0.4 + Math.sin(index) * 1.4);
+    world.add(label);
+    return label;
+  });
+
+  const resize = () => {
+    const { clientWidth, clientHeight } = container;
+    renderer.setSize(clientWidth, clientHeight, false);
+    camera.aspect = clientWidth / clientHeight;
+    camera.updateProjectionMatrix();
+  };
+
+  const clock = new THREE.Clock();
+  let frame = 0;
+  const animate = () => {
+    const t = clock.getElapsedTime();
+    if (!reduceMotion) {
+      world.rotation.y = Math.sin(t * 0.18) * 0.04;
+      dashboard.position.y = 1.28 + Math.sin(t * 0.8) * 0.025;
+      chartBars.forEach((bar, index) => {
+        bar.scale.y = 0.88 + Math.sin(t * 1.8 + index) * 0.1;
+      });
+      boxes.forEach((parcel, index) => {
+        parcel.position.y = 0.36 + Math.floor(index / 5) * 0.1 + Math.sin(t * 1.4 + parcel.userData.offset) * 0.03;
+        parcel.rotation.y += 0.004;
+      });
+      [dev, workerA, workerB].forEach((person, index) => {
+        person.userData.armL.rotation.x = Math.sin(t * 7 + index) * 0.12;
+        person.userData.armR.rotation.x = Math.sin(t * 7.5 + index) * 0.12;
+        person.userData.head.rotation.x = Math.sin(t * 1.3 + index) * 0.04;
+      });
+      dataDots.forEach((dot, index) => {
+        const curve = curves[dot.userData.curve];
+        dot.position.copy(curve.getPoint((t * (0.16 + dot.userData.curve * 0.03) + dot.userData.offset + index * 0.01) % 1));
+      });
+      serviceSprites.forEach((sprite, index) => {
+        sprite.position.y += Math.sin(t * 1.2 + index) * 0.0015;
+        sprite.lookAt(camera.position);
+      });
+      techLabels.forEach((label) => label.lookAt(camera.position));
+      truck.position.x = Math.sin(t * 0.35) * 0.04;
+      laptopScreen.material.emissiveIntensity = 0.42 + Math.sin(t * 3) * 0.12;
+    }
+    renderer.render(scene, camera);
+    frame = requestAnimationFrame(animate);
+  };
+
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+  animate();
+
+  return () => {
+    cancelAnimationFrame(frame);
+    window.removeEventListener('resize', resize);
+    scene.traverse((obj) => {
+      if (obj.geometry) obj.geometry.dispose();
+      if (obj.material) {
+        if (Array.isArray(obj.material)) obj.material.forEach((material) => material.dispose());
+        else obj.material.dispose();
+      }
+    });
+    renderer.dispose();
+    container.removeChild(renderer.domElement);
+  };
 }
 
-function createDeveloper() {
-  const dev = new THREE.Group();
-  const skin = new THREE.MeshStandardMaterial({ color: 0xf3b88f, roughness: 0.55 });
-  const shirt = new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.42, metalness: 0.08 });
-  const dark = new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.5 });
-
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 0.56, 8, 18), shirt);
-  body.position.set(0, 0.72, 0);
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.2, 22, 22), skin);
-  head.position.set(0, 1.2, 0.03);
-  const hair = new THREE.Mesh(new THREE.SphereGeometry(0.205, 18, 18, 0, Math.PI * 2, 0, Math.PI * 0.56), dark);
-  hair.position.set(0, 1.29, 0.02);
-
-  const leftArm = new THREE.Group();
-  const rightArm = new THREE.Group();
-  const armGeo = new THREE.CapsuleGeometry(0.055, 0.52, 6, 12);
-  const la = new THREE.Mesh(armGeo, skin);
-  const ra = new THREE.Mesh(armGeo, skin);
-  la.rotation.z = -0.92;
-  ra.rotation.z = 0.92;
-  la.position.set(-0.22, 0, 0);
-  ra.position.set(0.22, 0, 0);
-  leftArm.position.set(-0.15, 0.86, 0.09);
-  rightArm.position.set(0.15, 0.86, 0.09);
-  leftArm.add(la);
-  rightArm.add(ra);
-
-  const chair = new THREE.Mesh(
-    new THREE.BoxGeometry(0.62, 0.42, 0.5),
-    new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.2, roughness: 0.4 })
-  );
-  chair.position.set(0, 0.28, -0.1);
-
-  dev.add(chair, body, head, hair, leftArm, rightArm);
-  dev.userData.leftArm = leftArm;
-  dev.userData.rightArm = rightArm;
-  dev.userData.head = head;
-  dev.userData.body = body;
-  return dev;
-}
-
-function createLaptop() {
-  const laptop = new THREE.Group();
-  const baseMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.72, roughness: 0.22 });
-  const glow = new THREE.MeshBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.55 });
-  const base = new THREE.Mesh(new THREE.BoxGeometry(0.92, 0.05, 0.58), baseMat);
-  const screen = new THREE.Mesh(new THREE.BoxGeometry(0.88, 0.5, 0.04), baseMat);
-  const display = new THREE.Mesh(new THREE.PlaneGeometry(0.72, 0.34), glow);
-  const keyboard = new THREE.Mesh(new THREE.PlaneGeometry(0.66, 0.28), new THREE.MeshBasicMaterial({ color: 0x1f2937, transparent: true, opacity: 0.88 }));
-  base.position.set(0, 0.66, 0.38);
-  screen.position.set(0, 0.94, 0.13);
-  screen.rotation.x = -0.52;
-  display.position.set(0, 0.95, 0.105);
-  display.rotation.x = -0.52;
-  keyboard.position.set(0, 0.691, 0.42);
-  keyboard.rotation.x = -Math.PI / 2;
-  laptop.add(base, screen, display, keyboard);
-  laptop.userData.display = display;
-  return laptop;
-}
-
-function createDataDot(color, offset) {
-  const dot = new THREE.Mesh(
-    new THREE.SphereGeometry(0.045, 16, 16),
-    new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.95 })
-  );
-  dot.userData.offset = offset;
-  return dot;
-}
-
-function WebovexScene() {
-  const mountRef = useRef(null);
-  const fallbackRef = useRef(null);
+function IsometricScene() {
+  const ref = useRef(null);
 
   useEffect(() => {
-    const mount = mountRef.current;
-    const fallback = fallbackRef.current;
-    if (!mount) return undefined;
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const mobile = window.matchMedia('(max-width: 760px)').matches;
-    const lowPower = mobile || navigator.hardwareConcurrency <= 4;
-    let renderer;
-
-    try {
-      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !lowPower, powerPreference: lowPower ? 'low-power' : 'high-performance' });
-    } catch (_) {
-      fallback?.classList.add('visible');
-      return undefined;
-    }
-
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.15 : 1.65));
-    renderer.setClearColor(0x000000, 0);
-    mount.appendChild(renderer.domElement);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-    camera.position.set(0, 1.55, 8.8);
-
-    scene.add(new THREE.AmbientLight(0x9fc5ff, 0.72));
-    const key = new THREE.PointLight(0x67e8f9, 5.2, 24);
-    const magenta = new THREE.PointLight(0x8b5cf6, 4.8, 24);
-    const warm = new THREE.PointLight(0xfacc15, 1.8, 12);
-    key.position.set(-3.6, 4, 4.8);
-    magenta.position.set(4.2, 2.2, 4.4);
-    warm.position.set(0.2, 1.1, 2.8);
-    scene.add(key, magenta, warm);
-
-    const room = new THREE.Group();
-    scene.add(room);
-
-    const floor = new THREE.Mesh(
-      new THREE.PlaneGeometry(9.5, 6.4, 20, 14),
-      new THREE.MeshStandardMaterial({ color: 0x07111f, metalness: 0.28, roughness: 0.36, transparent: true, opacity: 0.76 })
-    );
-    floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -0.05;
-    room.add(floor);
-
-    const grid = new THREE.GridHelper(9.4, 20, 0x155e75, 0x1e293b);
-    grid.position.y = -0.035;
-    grid.material.transparent = true;
-    grid.material.opacity = 0.36;
-    room.add(grid);
-
-    const racks = [];
-    [-3.15, -2.25, 2.25, 3.15].forEach((x, index) => {
-      const rack = createServerRack(index, lowPower);
-      rack.position.set(x, 1.27, -1.25 - (index % 2) * 0.38);
-      rack.rotation.y = x < 0 ? 0.16 : -0.16;
-      room.add(rack);
-      racks.push(rack);
-    });
-
-    const desk = new THREE.Group();
-    const table = new THREE.Mesh(
-      new THREE.BoxGeometry(2.0, 0.11, 1.0),
-      new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.55, roughness: 0.28 })
-    );
-    table.position.set(0, 0.58, 0.45);
-    const legMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.62, roughness: 0.25 });
-    [-0.82, 0.82].forEach((x) => [-0.34, 0.34].forEach((z) => {
-      const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.66, 10), legMat);
-      leg.position.set(x, 0.27, z + 0.45);
-      desk.add(leg);
-    }));
-    desk.add(table);
-
-    const laptop = createLaptop();
-    const developer = createDeveloper();
-    developer.position.set(0, 0, 1.05);
-    developer.rotation.y = Math.PI;
-    desk.add(laptop, developer);
-    room.add(desk);
-
-    const logoCore = new THREE.Group();
-    const coreShape = new THREE.Mesh(
-      new THREE.OctahedronGeometry(0.72, 2),
-      new THREE.MeshStandardMaterial({ color: 0x0f172a, emissive: 0x312e81, emissiveIntensity: 0.56, metalness: 0.72, roughness: 0.18 })
-    );
-    const logoLabel = makeCanvasLabel('WEBOVEX', '#67e8f9', { width: 420, height: 120, scaleX: 2.35, scaleY: 0.68, fontSize: 24 });
-    logoLabel.position.set(0, 0.98, 0);
-    const wire = new THREE.Mesh(
-      new THREE.OctahedronGeometry(0.78, 1),
-      new THREE.MeshBasicMaterial({ color: 0x67e8f9, wireframe: true, transparent: true, opacity: 0.42 })
-    );
-    const halo = new THREE.Mesh(new THREE.SphereGeometry(1.05, 32, 32), glowMaterial(0x67e8f9, 0.08));
-    logoCore.add(coreShape, wire, halo, logoLabel);
-    logoCore.position.set(0, 2.2, -0.6);
-    room.add(logoCore);
-
-    const serviceModules = services.map((service, index) => {
-      const color = new THREE.Color(service.color);
-      const group = new THREE.Group();
-      const panel = createRoundedPanel(0.8, 0.44, color);
-      const label = makeCanvasLabel(service.metric, service.color, { width: 220, height: 82, scaleX: 0.98, scaleY: 0.34, fontSize: 20 });
-      label.position.z = 0.06;
-      group.add(panel, label);
-      group.userData = {
-        angle: (index / services.length) * Math.PI * 2,
-        radius: 2.1 + (index % 2) * 0.24,
-        baseY: 2.2 + Math.sin(index) * 0.18,
-      };
-      room.add(group);
-      return group;
-    });
-
-    const workflow = new THREE.Group();
-    const stepPositions = processSteps.map((_, index) => new THREE.Vector3(-2.85 + index * 1.14, 1.05 + Math.sin(index * 0.8) * 0.24, 1.35 - index * 0.35));
-    stepPositions.forEach((position, index) => {
-      const color = new THREE.Color(['#67e8f9', '#a78bfa', '#93c5fd', '#fb7185', '#facc15', '#86efac'][index]);
-      const node = new THREE.Group();
-      const box = new THREE.Mesh(
-        new THREE.BoxGeometry(0.48, 0.28, 0.48),
-        new THREE.MeshStandardMaterial({ color: 0x0d1728, emissive: color, emissiveIntensity: 0.16, metalness: 0.55, roughness: 0.24 })
-      );
-      const edge = new THREE.LineSegments(new THREE.EdgesGeometry(box.geometry), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.78 }));
-      const label = makeCanvasLabel(processSteps[index], `#${color.getHexString()}`, { width: 260, height: 86, scaleX: 1.12, scaleY: 0.36, fontSize: 18 });
-      label.position.y = 0.38;
-      node.add(box, edge, label);
-      node.position.copy(position);
-      node.userData.baseY = position.y;
-      node.userData.phase = index * 0.6;
-      workflow.add(node);
-    });
-
-    const workflowCurve = new THREE.CatmullRomCurve3(stepPositions);
-    workflow.add(new THREE.Line(
-      new THREE.BufferGeometry().setFromPoints(workflowCurve.getPoints(90)),
-      new THREE.LineBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.42 })
-    ));
-    const workflowDots = Array.from({ length: lowPower ? 6 : 12 }, (_, index) => {
-      const dot = createDataDot(index % 3 === 0 ? 0xfacc15 : 0x67e8f9, index / (lowPower ? 6 : 12));
-      workflow.add(dot);
-      return dot;
-    });
-    room.add(workflow);
-
-    const dataCurves = [
-      new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.95, 0.35), new THREE.Vector3(-1.2, 1.45, -0.2), new THREE.Vector3(-2.65, 1.6, -0.86)]),
-      new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.95, 0.35), new THREE.Vector3(1.2, 1.45, -0.2), new THREE.Vector3(2.65, 1.6, -0.86)]),
-      new THREE.CatmullRomCurve3([new THREE.Vector3(0, 1.06, 0.25), new THREE.Vector3(0, 1.75, -0.18), new THREE.Vector3(0, 2.2, -0.6)]),
-    ];
-    const dataDots = [];
-    dataCurves.forEach((curve, curveIndex) => {
-      room.add(new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints(curve.getPoints(42)),
-        new THREE.LineBasicMaterial({ color: curveIndex === 2 ? 0xa78bfa : 0x67e8f9, transparent: true, opacity: 0.24 })
-      ));
-      const count = lowPower ? 3 : 6;
-      for (let i = 0; i < count; i += 1) {
-        const dot = createDataDot(curveIndex === 1 ? 0x86efac : 0x67e8f9, i / count);
-        dot.userData.curveIndex = curveIndex;
-        room.add(dot);
-        dataDots.push(dot);
-      }
-    });
-
-    const dashboard = new THREE.Group();
-    projects.forEach((project, index) => {
-      const color = index ? 0x86efac : 0x67e8f9;
-      const card = createRoundedPanel(1.72, 0.9, color);
-      const label = makeCanvasLabel(project.title, index ? '#86efac' : '#67e8f9', { width: 420, height: 100, scaleX: 1.72, scaleY: 0.44, fontSize: 18 });
-      label.position.set(0, 0.12, 0.08);
-      card.add(label);
-      card.position.set(index ? 1.05 : -1.05, 1.75 - index * 0.2, -0.35 + index * 0.25);
-      card.userData.phase = index * 0.9;
-      dashboard.add(card);
-    });
-    room.add(dashboard);
-
-    const starCount = lowPower ? 120 : 260;
-    const starGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount; i += 1) {
-      positions[i * 3] = (Math.random() - 0.5) * 10;
-      positions[i * 3 + 1] = Math.random() * 5.8;
-      positions[i * 3 + 2] = -3.7 + Math.random() * 5.2;
-    }
-    starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particles = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x93c5fd, size: 0.022, transparent: true, opacity: 0.5 }));
-    scene.add(particles);
-
-    const states = {
-      hero: { camera: [0, 1.45, 8.6], look: [0, 1.25, -0.1], room: [0, 0.1, 0], scale: mobile ? 0.78 : 1 },
-      services: { camera: [1.3, 1.9, 7.4], look: [0, 1.75, -0.6], room: [-0.15, 0.08, 0], scale: mobile ? 0.76 : 1.04 },
-      process: { camera: [-0.55, 1.65, 6.7], look: [0, 1.25, 0.28], room: [-0.05, 0, 0], scale: mobile ? 0.78 : 1.08 },
-      projects: { camera: [0.9, 1.95, 7.1], look: [0, 1.7, -0.15], room: [-0.18, 0.02, 0], scale: mobile ? 0.76 : 1.02 },
-      architecture: { camera: [0, 1.65, 7.2], look: [0, 1.55, -1.0], room: [0.1, 0, 0], scale: mobile ? 0.74 : 1 },
-      skills: { camera: [-1.15, 1.75, 7.6], look: [0, 1.7, -0.72], room: [0.05, 0.02, 0], scale: mobile ? 0.76 : 1 },
-      contact: { camera: [0.15, 1.22, 7.8], look: [0, 0.95, 0.48], room: [0, 0, 0], scale: mobile ? 0.8 : 0.96 },
-    };
-    let current = states.hero;
-    let targetLook = new THREE.Vector3(...current.look);
-
-    const updateState = () => {
-      const ids = ['hero', 'services', 'process', 'projects', 'architecture', 'skills', 'contact'];
-      let best = 'hero';
-      let bestScore = -Infinity;
-      ids.forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const centerDistance = Math.abs(rect.top + rect.height * 0.42 - window.innerHeight * 0.5);
-        const score = -centerDistance;
-        if (score > bestScore) {
-          bestScore = score;
-          best = id;
-        }
-      });
-      current = states[best];
-      targetLook = new THREE.Vector3(...current.look);
-    };
-
-    const resize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      renderer.setSize(width, height, false);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      updateState();
-    };
-
-    const look = new THREE.Vector3(...current.look);
-    const clock = new THREE.Clock();
-    let raf = 0;
-
-    const animate = () => {
-      const t = clock.getElapsedTime();
-      camera.position.lerp(new THREE.Vector3(...current.camera), reduceMotion ? 1 : 0.055);
-      look.lerp(targetLook, reduceMotion ? 1 : 0.06);
-      room.position.lerp(new THREE.Vector3(...current.room), 0.045);
-      room.scale.lerp(new THREE.Vector3(current.scale, current.scale, current.scale), 0.045);
-
-      if (!reduceMotion) {
-        room.rotation.y = Math.sin(t * 0.18) * 0.035;
-        logoCore.rotation.y = t * 0.42;
-        logoCore.rotation.x = Math.sin(t * 0.5) * 0.12;
-        coreShape.scale.setScalar(1 + Math.sin(t * 2.1) * 0.025);
-        laptop.userData.display.material.opacity = 0.48 + Math.sin(t * 3.2) * 0.08;
-
-        developer.userData.leftArm.rotation.x = Math.sin(t * 8.5) * 0.1;
-        developer.userData.rightArm.rotation.x = Math.sin(t * 9.2 + 1.4) * 0.1;
-        developer.userData.head.rotation.x = -0.14 + Math.sin(t * 1.4) * 0.04;
-        developer.userData.body.rotation.z = Math.sin(t * 1.1) * 0.025;
-
-        racks.forEach((rack, rackIndex) => {
-          rack.userData.lights.forEach((led) => {
-            led.material.opacity = 0.42 + Math.abs(Math.sin(t * (2.4 + rackIndex * 0.12) + led.userData.phase)) * 0.58;
-          });
-        });
-
-        serviceModules.forEach((module, index) => {
-          const angle = module.userData.angle + t * (0.28 + index * 0.008);
-          module.position.set(
-            Math.cos(angle) * module.userData.radius,
-            module.userData.baseY + Math.sin(t * 1.15 + index) * 0.12,
-            -0.55 + Math.sin(angle) * module.userData.radius * 0.42
-          );
-          module.lookAt(camera.position);
-        });
-
-        workflow.children.forEach((child) => {
-          if (child.userData.baseY !== undefined) child.position.y = child.userData.baseY + Math.sin(t * 1.6 + child.userData.phase) * 0.055;
-        });
-        workflowDots.forEach((dot) => dot.position.copy(workflowCurve.getPoint((t * 0.13 + dot.userData.offset) % 1)));
-        dataDots.forEach((dot, index) => {
-          const curve = dataCurves[dot.userData.curveIndex];
-          dot.position.copy(curve.getPoint((t * (0.22 + dot.userData.curveIndex * 0.03) + dot.userData.offset + index * 0.01) % 1));
-          dot.material.opacity = 0.55 + Math.sin(t * 3 + index) * 0.24;
-        });
-        dashboard.children.forEach((card, index) => {
-          card.position.y = 1.75 - index * 0.2 + Math.sin(t * 1.2 + card.userData.phase) * 0.06;
-          card.lookAt(camera.position);
-        });
-        particles.rotation.y = t * 0.018;
-      }
-
-      camera.lookAt(look);
-      renderer.render(scene, camera);
-      raf = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('resize', resize, { passive: true });
-    window.addEventListener('scroll', updateState, { passive: true });
-    resize();
-    animate();
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('scroll', updateState);
-      renderer.dispose();
-      scene.traverse((object) => {
-        if (object.geometry) object.geometry.dispose();
-        if (object.material) {
-          if (Array.isArray(object.material)) object.material.forEach((material) => material.dispose());
-          else object.material.dispose();
-        }
-      });
-      mount.removeChild(renderer.domElement);
-    };
+    if (!ref.current) return undefined;
+    return createScene(ref.current);
   }, []);
 
-  return (
-    <>
-      <div className="webgl-layer" ref={mountRef} aria-hidden="true" />
-      <div className="webgl-fallback" ref={fallbackRef}>Webovex server room: developer, laptop, services, security, and cloud deployment.</div>
-    </>
-  );
+  return <div className="iso-scene" ref={ref} aria-label="Webovex 3D technical server factory animation" />;
 }
 
 function Nav() {
@@ -548,9 +371,9 @@ function Nav() {
           <span>Webovex</span>
         </a>
         <div className="nav-links">
-          {navLinks.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
+          {navLinks.map(([href, label]) => <a href={href} key={href}>{label}</a>)}
         </div>
-        <a className="nav-cta" href="#contact">Start a Project</a>
+        <a className="nav-cta" href="#contact">Start Project</a>
         <button className="menu-btn" type="button" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
           <span />
           <span />
@@ -558,8 +381,8 @@ function Nav() {
         </button>
       </nav>
       <div className={`mobile-menu ${open ? 'open' : ''}`}>
-        {navLinks.map(([href, label]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
-        <a href="#contact" onClick={() => setOpen(false)}>Start a Project</a>
+        {navLinks.map(([href, label]) => <a href={href} key={href} onClick={() => setOpen(false)}>{label}</a>)}
+        <a href="#contact" onClick={() => setOpen(false)}>Start Project</a>
       </div>
     </>
   );
@@ -567,53 +390,40 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="hero" className="hero panel">
-      <div className="hero-copy reveal-card">
-        <span className="eyebrow">3D full-stack studio in Chennai</span>
-        <h1>Webovex builds live-ready software from laptop to server room.</h1>
-        <p className="lead">React interfaces, Django systems, PERN platforms, e-commerce flows, secure APIs, Docker deployment, Nginx, SSL, and production handoff in one technical pipeline.</p>
+    <section className="hero" id="hero">
+      <div className="hero-copy">
+        <span className="eyebrow">Isometric 3D technical studio</span>
+        <h1>Webovex builds your software like a live server factory.</h1>
+        <p>React interfaces, Django systems, PERN APIs, security, Docker, Nginx, SSL, and cloud deployment move through one clear production pipeline.</p>
         <div className="hero-actions">
-          <a className="button primary" href="#contact">Start a Project</a>
-          <a className="button secondary" href="#process">See Workflow</a>
+          <a className="button primary" href="#contact">Build My Project</a>
+          <a className="button ghost" href="#services">See Modules</a>
         </div>
-        <div className="status-strip" aria-label="Webovex delivery signals">
-          <Metric value="React" label="Frontend" />
-          <Metric value="Django" label="Backend" />
-          <Metric value="Docker" label="Deploy" />
-          <Metric value="SSL" label="Secure" />
+        <div className="proof-strip">
+          <span>React</span>
+          <span>Django</span>
+          <span>Node APIs</span>
+          <span>Docker Deploy</span>
         </div>
       </div>
-      <div className="scene-callout">
-        <span>Live 3D workflow</span>
-        <strong>Developer laptop connected to Webovex server room</strong>
-        <p>Scroll to follow services, process, projects, and deployment.</p>
-      </div>
+      <IsometricScene />
     </section>
-  );
-}
-
-function Metric({ value, label }) {
-  return (
-    <div className="metric">
-      <strong>{value}</strong>
-      <span>{label}</span>
-    </div>
   );
 }
 
 function About() {
   return (
-    <section id="about" className="panel split-panel">
+    <section className="section split-section" id="about">
       <div>
         <span className="eyebrow">About Webovex</span>
-        <h2>Technical builds for clients who need real systems.</h2>
+        <h2>Full-stack systems, not plain static pages.</h2>
       </div>
-      <div className="glass-copy">
-        <p>I'm Subash N, a full-stack developer and system architect from Chennai. Webovex focuses on secure web apps, Django systems, e-commerce platforms, IT workflow tools, and production deployment paths that make sense for growing businesses.</p>
-        <div className="proof-list">
-          <span>System design before code</span>
-          <span>Security-first backend logic</span>
-          <span>Cloud-ready deployment handoff</span>
+      <div className="copy-panel">
+        <p>I'm Subash N, a full-stack developer and system architect from Chennai. Webovex builds secure web apps, Django systems, e-commerce platforms, IT workflow tools, and production deployment paths for growing businesses.</p>
+        <div className="pill-row">
+          <span>System design</span>
+          <span>Secure backend</span>
+          <span>Cloud handoff</span>
         </div>
       </div>
     </section>
@@ -622,19 +432,18 @@ function About() {
 
 function Services() {
   return (
-    <section id="services" className="panel">
+    <section className="section" id="services">
       <div className="section-head">
-        <span className="eyebrow">Server-room modules</span>
-        <h2>Each Webovex service becomes one connected technical unit.</h2>
-        <p>The 3D workflow turns your project into interface, API, database, security, deployment, and support modules.</p>
+        <span className="eyebrow">Technical modules</span>
+        <h2>Every service is one station in the Webovex production floor.</h2>
       </div>
-      <div className="service-console">
+      <div className="service-grid">
         {services.map((service, index) => (
-          <article className="service-card" key={service.name} style={{ '--accent': service.color }}>
-            <span className="service-index">{String(index + 1).padStart(2, '0')}</span>
-            <h3>{service.name}</h3>
-            <p>{service.detail}</p>
-            <strong>{service.metric}</strong>
+          <article className="service-card" key={service.title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <strong>{service.tag}</strong>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
           </article>
         ))}
       </div>
@@ -644,25 +453,16 @@ function Services() {
 
 function Process() {
   return (
-    <section id="process" className="panel">
+    <section className="section process-section" id="process">
       <div className="section-head">
         <span className="eyebrow">Movement pipeline</span>
-        <h2>From first idea to a deployed system with support.</h2>
-        <p>Data moves from the developer laptop through design, code, security, deployment, and ongoing handoff.</p>
+        <h2>Idea comes in. Production software goes live.</h2>
       </div>
-      <div className="pipeline-list">
-        {processSteps.map((step, index) => (
-          <article className="pipeline-card" key={step}>
+      <div className="process-line">
+        {process.map((step, index) => (
+          <article className="process-card" key={step}>
             <span>{String(index + 1).padStart(2, '0')}</span>
             <h3>{step}</h3>
-            <p>{[
-              'Clarify the business goal, users, content, and release path.',
-              'Plan screens, architecture, database models, APIs, and access.',
-              'Build frontend, backend, integrations, validation, and workflows.',
-              'Harden authentication, data handling, headers, and operational risks.',
-              'Package, deploy, verify DNS/SSL, and prepare production handoff.',
-              'Support improvements, bug fixes, scaling, and future modules.',
-            ][index]}</p>
           </article>
         ))}
       </div>
@@ -672,62 +472,18 @@ function Process() {
 
 function Projects() {
   return (
-    <section id="projects" className="panel">
+    <section className="section" id="projects">
       <div className="section-head">
-        <span className="eyebrow">Featured systems</span>
-        <h2>Project dashboards inside the Webovex server room.</h2>
-        <p>These systems show how Webovex turns technical stacks into practical business workflows.</p>
+        <span className="eyebrow">Built systems</span>
+        <h2>Project dashboards for real business workflows.</h2>
       </div>
-      <div className="project-stack">
+      <div className="project-grid">
         {projects.map((project) => (
           <article className="project-card" key={project.title}>
-            <div>
-              <span className="project-type">{project.type}</span>
-              <h3>{project.title}</h3>
-              <p>{project.value}</p>
-            </div>
-            <div className="stack-row">
+            <h3>{project.title}</h3>
+            <p>{project.text}</p>
+            <div className="pill-row">
               {project.stack.map((item) => <span key={item}>{item}</span>)}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Architecture() {
-  return (
-    <section id="architecture" className="panel split-panel">
-      <div>
-        <span className="eyebrow">Architecture map</span>
-        <h2>Every build connects UI, API, data, security, and deployment.</h2>
-      </div>
-      <div className="architecture-card">
-        {['Client UI', 'API Layer', 'Database', 'Security', 'Cloud Deploy'].map((item) => <span key={item}>{item}</span>)}
-      </div>
-    </section>
-  );
-}
-
-function Skills() {
-  const skillGroups = useMemo(() => [
-    ['Frontend', ['React', 'HTML5', 'CSS3', 'JavaScript']],
-    ['Backend', ['Node.js', 'Express', 'Django', 'Python']],
-    ['Data', ['PostgreSQL', 'SQLite', 'REST APIs']],
-    ['Launch', ['Docker', 'Nginx', 'AWS', 'SSL', 'JWT']],
-  ], []);
-
-  return (
-    <section id="skills" className="panel compact-panel">
-      <span className="eyebrow">Technical stack</span>
-      <h2>Production coverage from screen to cloud.</h2>
-      <div className="skills-board">
-        {skillGroups.map(([group, items]) => (
-          <article className="skill-group" key={group}>
-            <strong>{group}</strong>
-            <div className="skills-row">
-              {items.map((skill) => <span key={skill}>{skill}</span>)}
             </div>
           </article>
         ))}
@@ -802,18 +558,18 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="panel contact-panel">
+    <section className="section contact-section" id="contact">
       <div className="contact-copy">
-        <span className="eyebrow">Project inquiry</span>
-        <h2>Send your idea into the Webovex build room.</h2>
-        <p>Share the goal, deadline, and must-have features. I will reply with a practical next step, build path, and the right stack for your project.</p>
-        <div className="contact-details">
+        <span className="eyebrow">Start production</span>
+        <h2>Send your idea to the Webovex build floor.</h2>
+        <p>Share your project goal, deadline, and must-have features. I will reply with a practical next step and stack recommendation.</p>
+        <div className="pill-row">
           <span>subashrishid@gmail.com</span>
           <span>9952019436</span>
           <span>Chennai, Tamil Nadu</span>
         </div>
       </div>
-      <form className="contact-form" id="cForm" noValidate onSubmit={handleSubmit}>
+      <form className="contact-form" noValidate onSubmit={handleSubmit}>
         <label htmlFor="fName">Name</label>
         <input id="fName" name="name" className={errors.name ? 'error' : ''} placeholder="Your name" />
         <span className={errors.name ? 'field-error show' : 'field-error'}>Please enter your name.</span>
@@ -847,7 +603,6 @@ function Contact() {
 export default function App() {
   return (
     <>
-      <WebovexScene />
       <Nav />
       <main>
         <Hero />
@@ -855,8 +610,6 @@ export default function App() {
         <Services />
         <Process />
         <Projects />
-        <Architecture />
-        <Skills />
         <Contact />
       </main>
       <footer className="footer">
