@@ -2,38 +2,40 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Webovex | Immersive AI & Enterprise Software Universe",
+  title: "WEBOVEX | We Forge Digital Empires",
   description:
-    "Webovex engineers AI systems, cloud infrastructure, SaaS platforms, authentication systems, APIs, and immersive enterprise software experiences.",
+    "WEBOVEX builds scalable digital products, modern web applications, enterprise IT systems, immersive 3D experiences, and AI-integrated cloud applications.",
   keywords: [
     "Webovex",
-    "AI systems",
+    "WEBOVEX",
+    "We Forge Digital Empires",
+    "3D portfolio website",
+    "immersive web experiences",
+    "industrial UI UX",
     "PERN stack",
-    "React",
+    "Django",
     "Node.js",
-    "PostgreSQL",
-    "Docker",
-    "enterprise software",
-    "SaaS platforms",
-    "immersive WebGL",
+    "Cloud Applications",
+    "AI Integrations",
+    "enterprise IT systems",
   ],
   authors: [{ name: "Subash N - Webovex" }],
   alternates: {
     canonical: "https://webovex.com/",
   },
   openGraph: {
-    title: "Webovex - Immersive AI & Enterprise Software Universe",
+    title: "WEBOVEX - We Forge Digital Empires",
     description:
-      "A cinematic digital headquarters for AI, cloud, enterprise applications, SaaS systems, and premium software engineering.",
+      "A premium cinematic 3D portfolio for WEBOVEX, a modern development studio forging scalable digital products and enterprise systems.",
     url: "https://webovex.com/",
     siteName: "Webovex",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Webovex - Immersive AI & Enterprise Software Universe",
+    title: "WEBOVEX - We Forge Digital Empires",
     description:
-      "Cinematic WebGL storytelling for AI, cloud, enterprise applications, SaaS, APIs, and secure software architecture.",
+      "WEBOVEX builds scalable digital products, modern web applications, enterprise IT systems, immersive 3D experiences, and AI-integrated cloud applications.",
   },
   robots: {
     index: true,
@@ -56,7 +58,7 @@ const jsonLd = {
       name: "Webovex",
       url: "https://webovex.com/",
       description:
-        "Webovex builds AI systems, PERN applications, cloud infrastructure, authentication systems, APIs, SaaS platforms, automation systems, and immersive enterprise software.",
+        "Webovex is a modern development studio focused on building high-performance web platforms and scalable digital solutions.",
       founder: {
         "@id": "https://webovex.com/#subash-n",
       },
