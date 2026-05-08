@@ -887,7 +887,7 @@ function ServiceCard({ service, index }: { service: (typeof services)[number]; i
 
 function HorizontalShowcase() {
   const ref = useRef<HTMLDivElement>(null);
-  const [shift, setShift] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     let frame = 0;
@@ -895,8 +895,7 @@ function HorizontalShowcase() {
       if (!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
       const travel = Math.max(1, ref.current.offsetHeight - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / travel));
-      setShift(window.innerWidth > 760 ? progress * -54 : 0);
+      setProgress(Math.min(1, Math.max(0, -rect.top / travel)));
       frame = 0;
     };
     const requestUpdate = () => {
@@ -917,9 +916,23 @@ function HorizontalShowcase() {
       <div className="showcase-sticky">
         <div className="section-copy compact">
           <span className="eyebrow">PROJECT SHOWCASE</span>
-          <h2>Cinematic case studies in motion.</h2>
+          <h2>Project room in motion.</h2>
         </div>
-        <motion.div className="project-track" style={{ transform: `translate3d(${shift}%, 0, 0)` }}>
+        <motion.div
+          className="project-room"
+          style={{
+            "--room-progress": progress,
+            "--room-shift": `${progress * -42}%`,
+            "--room-depth": `${progress * 18}vw`,
+          } as React.CSSProperties}
+        >
+          <div className="room-shell" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
+          </div>
+          <div className="project-track">
           {projects.map(([title, copy], index) => (
             <article className="project-scene" key={title}>
               <span>SCENE {String(index + 1).padStart(2, "0")}</span>
@@ -933,6 +946,7 @@ function HorizontalShowcase() {
               </div>
             </article>
           ))}
+          </div>
         </motion.div>
       </div>
     </section>
