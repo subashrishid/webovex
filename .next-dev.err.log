@@ -1,0 +1,40 @@
+ ⨯ Error: Could not find the module "C:\Users\jrexec-mis\Documents\Codex\2026-05-07\github-plugin-github-openai-curated-webovex\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1776230005'
+}
+ ⨯ Error: Could not find the module "C:\Users\jrexec-mis\Documents\Codex\2026-05-07\github-plugin-github-openai-curated-webovex\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '498240625'
+}
+ ⨯ Error: Could not find the module "C:\Users\jrexec-mis\Documents\Codex\2026-05-07\github-plugin-github-openai-curated-webovex\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '498240625'
+}
+ ⨯ Error: Could not find the module "C:\Users\jrexec-mis\Documents\Codex\2026-05-07\github-plugin-github-openai-curated-webovex\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '498240625'
+}
+ ⨯ Error: Could not find the module "C:\Users\jrexec-mis\Documents\Codex\2026-05-07\github-plugin-github-openai-curated-webovex\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1776230005'
+}
+ ⨯ Error: Could not find the module "C:\Users\jrexec-mis\Documents\Codex\2026-05-07\github-plugin-github-openai-curated-webovex\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1776230005'
+}
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  digest: '2577310875'
+}
+ ⨯ Error: Could not find the module "C:\Users\jrexec-mis\Documents\Codex\2026-05-07\github-plugin-github-openai-curated-webovex\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1776230005'
+}
+[TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...

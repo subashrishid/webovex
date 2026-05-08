@@ -4,3 +4,7 @@ dist/
 out/
 .vite/
 npm-debug.log*
+.npm-cache/
+.edge-user-data*/
+.next-dev.*
+webovex-forge-*.png
