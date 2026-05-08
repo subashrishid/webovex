@@ -339,6 +339,11 @@ export default function ForgeExperience() {
                 <small>{project.type}</small>
                 <h3>{project.title}</h3>
                 <p>{project.copy}</p>
+                {"link" in project && (
+                  <a className="project-link" href={project.link} target="_blank" rel="noreferrer">
+                    View LinkedIn
+                  </a>
+                )}
                 <em>0{index + 1}</em>
               </article>
             ))}
