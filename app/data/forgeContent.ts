@@ -1,33 +1,33 @@
 export const forgeServices = [
   {
-    title: "3D Forging & Immersive Experiences",
-    eyebrow: "Realtime WebGL",
-    copy: "Interactive three-dimensional interfaces, cinematic environments, spatial product demos, shader-led visuals, and scroll-led digital showrooms powered by Three.js and React Three Fiber.",
+    title: "Website Development",
+    eyebrow: "Business websites",
+    copy: "Modern, fast, mobile-friendly websites for businesses, personal brands, portfolios, service pages, landing pages, and company profiles.",
   },
   {
-    title: "Industrial UI/UX Systems",
-    eyebrow: "Product Interface Design",
-    copy: "Dense, precise, high-contrast systems for dashboards, enterprise tools, customer portals, CRM workflows, admin panels, and operational software.",
+    title: "App Development",
+    eyebrow: "Web apps and mobile-ready apps",
+    copy: "Useful applications with login, dashboards, forms, database storage, user management, admin panels, and clean screens that are easy to use.",
   },
   {
-    title: "Cinematic Motion & Scroll Storytelling",
-    eyebrow: "Motion Direction",
-    copy: "Timeline-driven narratives, parallax choreography, kinetic sections, smooth scroll cameras, and motion systems that make static content feel alive.",
+    title: "Networking Support",
+    eyebrow: "Setup and troubleshooting",
+    copy: "Basic network setup, system connectivity support, configuration help, troubleshooting, and guidance for small teams and business environments.",
   },
   {
-    title: "Enterprise Development",
-    eyebrow: "PERN / Django / Node.js / Cloud / AI",
-    copy: "PERN Stack, Django, Node.js, Cloud Applications, and AI Integrations engineered into secure, scalable, production-grade systems.",
+    title: "DevOps & Deployment",
+    eyebrow: "Hosting and launch",
+    copy: "Deploying websites and apps, setting up hosting, GitHub workflows, Docker basics, cloud deployment, environment setup, and live production support.",
   },
   {
-    title: "Full-Stack Commerce Platforms",
-    eyebrow: "Orders / Inventory / Payments",
-    copy: "E-commerce systems with product catalogues, carts, order tracking, inventory workflows, checkout flows, admin controls, and database-backed operations.",
+    title: "E-Commerce Solutions",
+    eyebrow: "Online selling systems",
+    copy: "Online stores with product listing, cart, order placement, payment options, stock updates, customer details, and admin management.",
   },
   {
-    title: "Automation & Internal Tools",
-    eyebrow: "Dashboards / Workflows / Reports",
-    copy: "Custom tools for teams: role-based dashboards, reporting interfaces, approval flows, data entry systems, notifications, and workflow automation.",
+    title: "Business Tools",
+    eyebrow: "Simple software for daily work",
+    copy: "Custom tools for managing data, reports, customers, orders, tasks, records, notifications, and day-to-day business workflows.",
   },
 ] as const;
 
@@ -52,92 +52,102 @@ export const technologies = [
 
 export const technicalBlueprint = [
   {
-    title: "Frontend Systems",
-    stack: "Next.js 15, React, Tailwind CSS, GSAP, Lenis",
-    copy: "Fast App Router interfaces with reusable components, cinematic motion timelines, responsive layouts, and clean static-export delivery.",
+    title: "Clean Website Pages",
+    stack: "React, Next.js, responsive design",
+    copy: "Pages that load fast, look good on mobile and desktop, clearly explain the service, and help visitors contact the business easily.",
   },
   {
-    title: "Backend Architecture",
-    stack: "Node.js, Express, Django, REST APIs, Auth",
-    copy: "Service layers, API contracts, authentication flows, validation, role-based access, and maintainable business logic for growing products.",
+    title: "App Backend",
+    stack: "Node.js, Django, APIs, login",
+    copy: "Backend systems for login, user accounts, forms, admin screens, saved records, order data, and secure communication between app and database.",
   },
   {
-    title: "Database Engineering",
-    stack: "PostgreSQL, SQL, Indexing, Query Design",
-    copy: "Schema modelling, normalized data structures, relational joins, inventory records, transactional order data, query optimization, and reporting-ready databases.",
+    title: "Database Management",
+    stack: "SQL, PostgreSQL, data storage",
+    copy: "Organized database setup for customers, products, orders, reports, stock details, user records, and other important business data.",
   },
   {
-    title: "Data & Cloud Layer",
-    stack: "PostgreSQL, Cloud Apps, Storage, Deployments",
-    copy: "Relational schemas, cloud-ready configuration, environment separation, scalable hosting, backup-aware deployment, and production hygiene.",
+    title: "Hosting & Cloud Setup",
+    stack: "Vercel, AWS, domains, SSL",
+    copy: "Helping websites and apps go live with hosting, domain connection, SSL setup, environment configuration, and basic cloud support.",
   },
   {
-    title: "AI Integration Layer",
-    stack: "LLM Workflows, RAG, Automation, Agents",
-    copy: "AI features for copilots, retrieval, summaries, workflow automation, decision support, and enterprise knowledge systems.",
+    title: "AI Features",
+    stack: "Chat, automation, smart workflows",
+    copy: "Simple AI features like chat support, content help, automation, summaries, and smart tools that save time for business users.",
   },
   {
-    title: "DevOps & Release Systems",
-    stack: "GitHub Actions, Docker, Vercel, CI/CD",
-    copy: "Automated builds, deployment workflows, preview environments, static exports, rollback-aware releases, environment variables, and production monitoring.",
+    title: "DevOps Engineering",
+    stack: "GitHub Actions, Docker, CI/CD",
+    copy: "Setting up build and deployment pipelines, version control workflow, Docker support, production releases, and smoother app maintenance.",
   },
   {
-    title: "Commerce Operations",
-    stack: "Cart, Checkout, Orders, Inventory, Admin",
-    copy: "Product management, stock tracking, order placement, payment modes, low-stock notifications, admin dashboards, and customer purchase flows.",
+    title: "Online Store Features",
+    stack: "Cart, checkout, orders, inventory",
+    copy: "Useful e-commerce features including product upload, cart, checkout, order tracking, stock control, payment choices, and admin management.",
   },
   {
-    title: "Realtime Product Features",
-    stack: "Notifications, Status Updates, Live Interfaces",
-    copy: "Live dashboards, order status updates, operational alerts, admin signals, event-driven UI updates, and real-time business visibility.",
+    title: "Networking & Support",
+    stack: "Connectivity, configuration, troubleshooting",
+    copy: "Networking help for connectivity issues, setup guidance, system configuration, troubleshooting, and technical support for small business needs.",
   },
 ] as const;
 
 export const deliveryProcess = [
-  "Discovery and technical scope",
-  "Architecture and data modelling",
-  "UI system and interaction design",
-  "Full-stack implementation",
-  "Performance, security, and deployment review",
-  "Launch support and iteration",
+  "Understand the requirement",
+  "Plan the website or app",
+  "Design simple user screens",
+  "Build and connect features",
+  "Test, deploy, and fix issues",
+  "Support after launch",
 ] as const;
 
 export const projectShowcase = [
   {
     title: "LinkedIn Project Portfolio",
     type: "Completed Projects",
-    copy: "Public project references from Subash N's LinkedIn profile can be showcased here with live links, project scope, technologies used, and measurable implementation details.",
+    copy: "Completed work and project details from Subash N's LinkedIn profile can be viewed here, including website, app, networking, and technical learning projects.",
     link: "https://www.linkedin.com/in/subash-n-a33b38228",
   },
   {
     title: "Medicine E-Commerce System",
     type: "Full-Stack Commerce",
-    copy: "A pharmacy-style e-commerce platform concept with medicine browsing, cart workflow, order placement, UPI and Cash on Delivery options, inventory updates, low-stock alerts, and admin product/order management.",
+    copy: "An online medicine store with product browsing, cart, order placement, UPI and Cash on Delivery options, stock updates, low-stock alerts, and admin controls.",
+  },
+  {
+    title: "Business Website Builds",
+    type: "Website Development",
+    copy: "Clean and responsive websites for businesses, portfolios, service pages, landing pages, and brand presence with contact and enquiry options.",
+  },
+  {
+    title: "Networking & DevOps Support",
+    type: "Technical Support",
+    copy: "Support for basic networking, app deployment, hosting setup, GitHub workflow, Docker basics, domain connection, and live website maintenance.",
   },
   {
     title: "ForgeOS Command Deck",
-    type: "Enterprise Operations",
-    copy: "A futuristic operations surface for approvals, metrics, incident flow, role access, and command-level visibility.",
+    type: "Business Dashboard",
+    copy: "A dashboard-style business tool for approvals, reports, user roles, records, and simple team-level visibility.",
   },
   {
     title: "Molten Commerce Engine",
     type: "Scalable Web Platform",
-    copy: "A conversion-focused web application architecture designed for speed, reliability, and growth-stage product teams.",
+    copy: "A fast web application setup for online selling, customer flow, product management, and business growth.",
   },
   {
     title: "Blue Arc AI Layer",
     type: "AI Integration",
-    copy: "A practical AI layer for retrieval, automation, internal copilots, decision support, and intelligent workflow routing.",
+    copy: "Simple AI support for chat, summaries, automation, smart search, and workflow help inside business applications.",
   },
   {
     title: "Obsidian Cloud Grid",
     type: "Cloud Application",
-    copy: "Cloud-ready services, container-aware architecture, deployment pipelines, and resilient application foundations.",
+    copy: "Cloud-ready app deployment with hosting, environment setup, build process, Docker support, and maintenance-friendly structure.",
   },
 ] as const;
 
 export const forgeMetrics = [
-  ["05", "core forge stacks"],
-  ["24/7", "production mindset"],
-  ["3D", "immersive interface layer"],
+  ["Web", "website builds"],
+  ["App", "custom applications"],
+  ["DevOps", "deployment support"],
 ] as const;
