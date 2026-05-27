@@ -45,15 +45,15 @@ export const technologies = [
   "Docker",
   "Kubernetes",
   "AI & LLM Integration",
-  "Framer Motion",
-  "Three.js",
+  "GSAP",
+  "GitHub Pages",
   "SQL & NoSQL",
 ] as const;
 
 export const technicalBlueprint = [
   {
     title: "Sleek Frontend Architectures",
-    stack: "React, Next.js, Framer Motion",
+    stack: "React, Next.js, GSAP",
     copy: "Bespoke user interfaces that load instantly, respond with liquid smoothness, and represent your brand with absolute clarity.",
   },
   {

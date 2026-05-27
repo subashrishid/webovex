@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Cloud architecture technical image</title>
+  <desc id="desc">A clean architecture diagram with app, API, database, cloud, and AI modules connected.</desc>
+  <rect width="960" height="600" rx="32" fill="#ffffff"/>
+  <circle cx="760" cy="110" r="150" fill="#e82127" opacity="0.07"/>
+  <circle cx="180" cy="500" r="170" fill="#0066cc" opacity="0.08"/>
+  <g stroke="#171a20" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.88">
+    <path d="M250 300 H390"/>
+    <path d="M570 300 H710"/>
+    <path d="M480 210 V160"/>
+    <path d="M480 390 V450"/>
+  </g>
+  <g fill="#ffffff" stroke="#dde3ed" stroke-width="5">
+    <rect x="118" y="236" width="132" height="128" rx="28"/>
+    <rect x="390" y="236" width="180" height="128" rx="28"/>
+    <rect x="710" y="236" width="132" height="128" rx="28"/>
+    <rect x="388" y="70" width="184" height="90" rx="28"/>
+    <rect x="388" y="450" width="184" height="90" rx="28"/>
+  </g>
+  <rect x="150" y="276" width="68" height="16" rx="8" fill="#171a20"/>
+  <rect x="146" y="314" width="76" height="14" rx="7" fill="#a8b0bd"/>
+  <rect x="438" y="274" width="84" height="16" rx="8" fill="#e82127"/>
+  <rect x="428" y="314" width="104" height="14" rx="7" fill="#a8b0bd"/>
+  <rect x="748" y="274" width="56" height="16" rx="8" fill="#171a20"/>
+  <rect x="742" y="314" width="68" height="14" rx="7" fill="#a8b0bd"/>
+  <rect x="438" y="108" width="84" height="16" rx="8" fill="#0066cc"/>
+  <rect x="428" y="486" width="104" height="16" rx="8" fill="#171a20"/>
+  <circle cx="250" cy="300" r="12" fill="#e82127"/>
+  <circle cx="390" cy="300" r="12" fill="#0066cc"/>
+  <circle cx="570" cy="300" r="12" fill="#0066cc"/>
+  <circle cx="710" cy="300" r="12" fill="#e82127"/>
+</svg>

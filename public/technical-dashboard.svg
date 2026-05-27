@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Business dashboard technical image</title>
+  <desc id="desc">A light analytics dashboard with metrics, charts, and table rows.</desc>
+  <rect width="960" height="600" rx="32" fill="#f4f6fa"/>
+  <rect x="72" y="58" width="816" height="484" rx="30" fill="#ffffff" stroke="#dde3ed"/>
+  <rect x="72" y="58" width="168" height="484" rx="30" fill="#171a20"/>
+  <rect x="108" y="106" width="78" height="18" rx="9" fill="#ffffff"/>
+  <rect x="108" y="172" width="92" height="12" rx="6" fill="#707783"/>
+  <rect x="108" y="218" width="82" height="12" rx="6" fill="#707783"/>
+  <rect x="108" y="264" width="110" height="12" rx="6" fill="#e82127"/>
+  <rect x="108" y="310" width="72" height="12" rx="6" fill="#707783"/>
+  <rect x="290" y="112" width="150" height="96" rx="22" fill="#f7f9fc" stroke="#dde3ed"/>
+  <rect x="466" y="112" width="150" height="96" rx="22" fill="#f7f9fc" stroke="#dde3ed"/>
+  <rect x="642" y="112" width="150" height="96" rx="22" fill="#f7f9fc" stroke="#dde3ed"/>
+  <rect x="320" y="142" width="74" height="14" rx="7" fill="#171a20"/>
+  <rect x="496" y="142" width="74" height="14" rx="7" fill="#171a20"/>
+  <rect x="672" y="142" width="74" height="14" rx="7" fill="#171a20"/>
+  <rect x="290" y="246" width="502" height="154" rx="24" fill="#f7f9fc" stroke="#dde3ed"/>
+  <path d="M326 354 C382 294 430 344 482 286 C536 226 584 310 640 264 C686 226 724 250 758 214" fill="none" stroke="#e82127" stroke-width="10" stroke-linecap="round"/>
+  <rect x="290" y="430" width="502" height="52" rx="16" fill="#ffffff" stroke="#dde3ed"/>
+  <rect x="320" y="448" width="120" height="14" rx="7" fill="#171a20"/>
+  <rect x="492" y="448" width="90" height="14" rx="7" fill="#a8b0bd"/>
+  <rect x="650" y="448" width="96" height="14" rx="7" fill="#0066cc"/>
+</svg>

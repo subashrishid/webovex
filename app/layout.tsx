@@ -2,16 +2,17 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WEBOVEX | We Forge Digital Empires",
+  title: "WEBOVEX | Premium Websites, Apps, and Business Systems",
   description:
-    "WEBOVEX builds scalable digital products, modern web applications, enterprise IT systems, immersive 3D experiences, and AI-integrated cloud applications.",
+    "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications.",
   keywords: [
     "Webovex",
     "WEBOVEX",
     "We Forge Digital Empires",
-    "3D portfolio website",
-    "immersive web experiences",
-    "industrial UI UX",
+    "premium website development",
+    "Apple style website",
+    "Tesla style website",
+    "business dashboard development",
     "PERN stack",
     "Django",
     "Node.js",
@@ -24,18 +25,18 @@ export const metadata: Metadata = {
     canonical: "https://webovex.com/",
   },
   openGraph: {
-    title: "WEBOVEX - We Forge Digital Empires",
+    title: "WEBOVEX - Premium Websites, Apps, and Business Systems",
     description:
-      "A premium cinematic 3D portfolio for WEBOVEX, a modern development studio forging scalable digital products and enterprise systems.",
+      "A clean premium product-style website for WEBOVEX, a modern development studio building scalable digital products and enterprise systems.",
     url: "https://webovex.com/",
     siteName: "Webovex",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WEBOVEX - We Forge Digital Empires",
+    title: "WEBOVEX - Premium Websites, Apps, and Business Systems",
     description:
-      "WEBOVEX builds scalable digital products, modern web applications, enterprise IT systems, immersive 3D experiences, and AI-integrated cloud applications.",
+      "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications.",
   },
   robots: {
     index: true,
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#03040a",
+  themeColor: "#f7f8fb",
 };
 
 const jsonLd = {

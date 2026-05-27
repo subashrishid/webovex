@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Deployment pipeline technical image</title>
+  <desc id="desc">A production deployment pipeline with code, build, test, deploy, and live site stages.</desc>
+  <rect width="960" height="600" rx="32" fill="#f7f8fb"/>
+  <rect x="82" y="106" width="796" height="388" rx="34" fill="#ffffff" stroke="#dde3ed"/>
+  <g fill="#ffffff" stroke="#dde3ed" stroke-width="5">
+    <rect x="132" y="238" width="120" height="124" rx="26"/>
+    <rect x="304" y="238" width="120" height="124" rx="26"/>
+    <rect x="476" y="238" width="120" height="124" rx="26"/>
+    <rect x="648" y="238" width="120" height="124" rx="26"/>
+  </g>
+  <g stroke="#171a20" stroke-width="6" stroke-linecap="round">
+    <path d="M252 300 H304"/>
+    <path d="M424 300 H476"/>
+    <path d="M596 300 H648"/>
+  </g>
+  <rect x="162" y="280" width="60" height="14" rx="7" fill="#171a20"/>
+  <rect x="154" y="312" width="76" height="12" rx="6" fill="#a8b0bd"/>
+  <rect x="334" y="280" width="60" height="14" rx="7" fill="#0066cc"/>
+  <rect x="326" y="312" width="76" height="12" rx="6" fill="#a8b0bd"/>
+  <rect x="506" y="280" width="60" height="14" rx="7" fill="#e82127"/>
+  <rect x="498" y="312" width="76" height="12" rx="6" fill="#a8b0bd"/>
+  <rect x="678" y="280" width="60" height="14" rx="7" fill="#171a20"/>
+  <rect x="670" y="312" width="76" height="12" rx="6" fill="#a8b0bd"/>
+  <rect x="132" y="408" width="636" height="24" rx="12" fill="#edf1f7"/>
+  <rect x="132" y="408" width="520" height="24" rx="12" fill="#e82127"/>
+  <rect x="154" y="152" width="188" height="18" rx="9" fill="#171a20"/>
+  <rect x="154" y="188" width="320" height="14" rx="7" fill="#a8b0bd"/>
+  <circle cx="788" cy="164" r="26" fill="#e82127" opacity="0.95"/>
+  <path d="M776 164 L786 174 L804 150" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
