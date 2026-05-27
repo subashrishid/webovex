@@ -224,6 +224,10 @@ img {
   box-shadow: var(--shadow);
 }
 
+.hero-technical {
+  width: 100%;
+}
+
 .hero-visual::after {
   position: absolute;
   inset: 0;
@@ -238,6 +242,24 @@ img {
   100% {
     transform: translateX(120%);
   }
+}
+
+.hero-photo-strip {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.8fr;
+  gap: 0.65rem;
+}
+
+.hero-photo-strip img {
+  width: 100%;
+  height: clamp(84px, 11vw, 132px);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(34, 45, 67, 0.16);
+  object-fit: cover;
 }
 
 .launch-strip {
@@ -288,7 +310,9 @@ img {
 
 .service-grid,
 .image-grid,
-.work-grid {
+.work-grid,
+.client-media-grid,
+.video-grid {
   display: grid;
   width: min(1180px, 100%);
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -297,6 +321,8 @@ img {
 
 .service-card,
 .image-card,
+.media-card,
+.video-card,
 .blueprint-list article,
 .process-card,
 .work-card,
@@ -320,6 +346,8 @@ img {
 
 .service-card h3,
 .image-card h3,
+.media-card h3,
+.video-card h3,
 .blueprint-list h3,
 .process-card h3,
 .work-card h3 {
@@ -331,6 +359,8 @@ img {
 
 .service-card p,
 .image-card p,
+.media-card p,
+.video-card p,
 .blueprint-list p,
 .work-card p {
   margin: 0;
@@ -342,19 +372,59 @@ img {
   background: linear-gradient(180deg, transparent, #ffffff 30%, #f5f7fb 100%);
 }
 
-.image-card {
+.image-card,
+.media-card,
+.video-card {
   overflow: hidden;
 }
 
-.image-card img {
+.image-card img,
+.media-card img,
+.video-card video {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   background: var(--surface-soft);
 }
 
-.image-card div {
+.image-card div,
+.media-card div,
+.video-card div {
   padding: 1.25rem;
+}
+
+.media-section {
+  background:
+    linear-gradient(180deg, #f5f7fb 0%, #ffffff 46%, #f7f8fb 100%);
+}
+
+.client-media-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.media-card {
+  background: #fff;
+}
+
+.media-card img {
+  aspect-ratio: 4 / 5;
+}
+
+.video-section {
+  background: #fff;
+}
+
+.video-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.video-card {
+  background: linear-gradient(145deg, #ffffff, #f4f6fa);
+}
+
+.video-card video {
+  display: block;
+  aspect-ratio: 16 / 9;
 }
 
 .stack-layout {
@@ -545,7 +615,8 @@ img {
 
   .service-grid,
   .image-grid,
-  .work-grid {
+  .work-grid,
+  .client-media-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -580,6 +651,8 @@ img {
   .launch-strip,
   .service-grid,
   .image-grid,
+  .client-media-grid,
+  .video-grid,
   .blueprint-list,
   .process-rail,
   .work-grid,
@@ -591,5 +664,15 @@ img {
   .text-btn,
   .contact-card button {
     width: 100%;
+  }
+
+  .hero-photo-strip {
+    position: static;
+    padding: 0 1rem 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo-strip img {
+    height: 150px;
   }
 }

@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "WEBOVEX | Premium Websites, Apps, and Business Systems",
   description:
-    "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications.",
+    "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications with polished client-focused visuals.",
   keywords: [
     "Webovex",
     "WEBOVEX",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WEBOVEX - Premium Websites, Apps, and Business Systems",
     description:
-      "A clean premium product-style website for WEBOVEX, a modern development studio building scalable digital products and enterprise systems.",
+      "A clean premium product-style website for WEBOVEX with client-focused images, video proof, and scalable digital product services.",
     url: "https://webovex.com/",
     siteName: "Webovex",
     type: "website",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WEBOVEX - Premium Websites, Apps, and Business Systems",
     description:
-      "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications.",
+      "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications with polished client-focused visuals.",
   },
   robots: {
     index: true,

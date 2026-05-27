@@ -29,6 +29,44 @@ const imageCards = [
   },
 ] as const;
 
+const clientMedia = [
+  {
+    src: "/client-workspace.jpg",
+    title: "Premium client workspace",
+    copy: "Bright business imagery that makes the brand feel trustworthy, active, and ready for serious clients.",
+  },
+  {
+    src: "/developer-review.jpg",
+    title: "Project review clarity",
+    copy: "Code, planning, and delivery visuals that show Webovex understands technical work end to end.",
+  },
+  {
+    src: "/team-coding.jpg",
+    title: "Build team confidence",
+    copy: "Collaborative software visuals help visitors imagine a real team improving their business systems.",
+  },
+  {
+    src: "/software-engineer.jpg",
+    title: "Engineer-led delivery",
+    copy: "Focused development imagery gives the site more proof, warmth, and professional energy.",
+  },
+] as const;
+
+const videoStories = [
+  {
+    src: "/client-growth-laptop.mp4",
+    poster: "/developer-review.jpg",
+    title: "Client growth in motion",
+    copy: "A short business-tech loop for the first impression: planning, dashboards, and growth decisions.",
+  },
+  {
+    src: "/client-meeting.mp4",
+    poster: "/client-workspace.jpg",
+    title: "Consultation confidence",
+    copy: "Meeting footage gives the page a polished agency feel and supports stronger client enquiries.",
+  },
+] as const;
+
 function useLightReveals() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -102,6 +140,7 @@ export default function ForgeExperience() {
         <div className="nav-links">
           <a href="#services">Services</a>
           <a href="#images">Tech visuals</a>
+          <a href="#client-media">Clients</a>
           <a href="#process">Process</a>
           <a href="#contact">Contact</a>
         </div>
@@ -129,7 +168,16 @@ export default function ForgeExperience() {
             </div>
           </div>
           <div className="hero-visual reveal">
-            <img src="/technical-hero.svg" alt="Technical product dashboard and cloud architecture preview" />
+            <img
+              className="hero-technical"
+              src="/technical-hero.svg"
+              alt="Technical product dashboard and cloud architecture preview"
+            />
+            <div className="hero-photo-strip" aria-label="Client growth preview images">
+              <img src="/client-workspace.jpg" alt="Professional workspace for client projects" />
+              <img src="/team-coding.jpg" alt="Software team working on a client build" />
+              <img src="/software-engineer.jpg" alt="Software engineer building a modern web product" />
+            </div>
           </div>
         </section>
 
@@ -186,6 +234,62 @@ export default function ForgeExperience() {
                 <div>
                   <h3>{card.title}</h3>
                   <p>{card.copy}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section media-section" id="client-media">
+          <div className="section-heading reveal">
+            <span className="eyebrow">Client-improving media</span>
+            <h2>More real images that make Webovex feel active, premium, and trustworthy.</h2>
+            <p>
+              Business clients decide fast. These visuals add proof, human energy, and a more
+              professional first impression across the page.
+            </p>
+          </div>
+
+          <div className="client-media-grid">
+            {clientMedia.map((item) => (
+              <article className="media-card reveal" key={item.title}>
+                <img src={item.src} alt={item.title} />
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section video-section">
+          <div className="section-heading reveal">
+            <span className="eyebrow">Video proof</span>
+            <h2>Short polished video loops for stronger client confidence.</h2>
+            <p>
+              Smooth motion makes the website feel more alive while keeping the page clean,
+              bright, and lightweight.
+            </p>
+          </div>
+
+          <div className="video-grid">
+            {videoStories.map((video) => (
+              <article className="video-card reveal" key={video.title}>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster={video.poster}
+                  preload="metadata"
+                  aria-label={video.title}
+                >
+                  <source src={video.src} type="video/mp4" />
+                </video>
+                <div>
+                  <h3>{video.title}</h3>
+                  <p>{video.copy}</p>
                 </div>
               </article>
             ))}
