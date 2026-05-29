@@ -4,11 +4,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "WEBOVEX | Premium Websites, Apps, and Business Systems",
   description:
-    "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications with polished client-focused visuals.",
+    "WEBOVEX builds premium websites, apps, e-commerce platforms, and business dashboards for serious Indian business clients.",
   keywords: [
     "Webovex",
     "WEBOVEX",
-    "We Forge Digital Empires",
     "premium website development",
     "Apple style website",
     "Tesla style website",
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WEBOVEX - Premium Websites, Apps, and Business Systems",
     description:
-      "A clean premium product-style website for WEBOVEX with client-focused images, video proof, and scalable digital product services.",
+      "A clean premium website for WEBOVEX, a Chennai-based development studio building websites, apps, e-commerce platforms, and dashboards.",
     url: "https://webovex.com/",
     siteName: "Webovex",
     type: "website",
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WEBOVEX - Premium Websites, Apps, and Business Systems",
     description:
-      "WEBOVEX builds premium websites, modern applications, enterprise IT systems, ecommerce platforms, dashboards, and AI-integrated cloud applications with polished client-focused visuals.",
+      "WEBOVEX builds premium websites, apps, e-commerce platforms, and business dashboards for serious Indian business clients.",
   },
   robots: {
     index: true,

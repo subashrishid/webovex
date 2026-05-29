@@ -1,99 +1,65 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FormEvent, useEffect, useState } from "react";
-import {
-  deliveryProcess,
-  forgeServices,
-  projectShowcase,
-  technicalBlueprint,
-  technologies,
-} from "../data/forgeContent";
+import { FormEvent, useState } from "react";
 
-const imageCards = [
+const stats = [
+  { icon: "✓", value: "12+", label: "Projects Delivered" },
+  { icon: "★", value: "8+", label: "Happy Clients" },
+  { icon: "↗", value: "3", label: "Years Experience" },
+  { icon: "⏱", value: "100%", label: "On-Time Delivery" },
+] as const;
+
+const testimonials = [
   {
-    src: "/technical-dashboard.svg",
-    title: "Live business dashboard",
-    copy: "Analytics, admin tools, roles, workflow actions, and reporting screens designed for daily use.",
+    name: "Arun Kumar",
+    role: "Manufacturing Business Owner",
+    quote:
+      "Webovex rebuilt our website into a premium enquiry machine. Page speed improved and we started getting better quality leads within the first week.",
   },
   {
-    src: "/technical-architecture.svg",
-    title: "Scalable architecture",
-    copy: "Frontend, APIs, databases, cloud services, AI modules, and deployment flow mapped before build.",
+    name: "Priya Menon",
+    role: "Retail Operations Lead",
+    quote:
+      "Subash understood our workflow fast and delivered a dashboard that reduced daily manual tracking. The interface is simple enough for our whole team.",
   },
   {
-    src: "/technical-deployment.svg",
-    title: "Production launch system",
-    copy: "GitHub Actions, static export, DNS, SSL, monitoring, backups, and performance tuning.",
+    name: "Naveen Raj",
+    role: "Healthcare Store Founder",
+    quote:
+      "Our e-commerce flow became cleaner, faster, and easier to manage. Webovex delivered exactly what we needed without making the process complicated.",
   },
 ] as const;
 
-const clientMedia = [
+const portfolio = [
   {
-    src: "/client-workspace.jpg",
-    title: "Premium client workspace",
-    copy: "Bright business imagery that makes the brand feel trustworthy, active, and ready for serious clients.",
+    type: "Healthcare E-Commerce",
+    name: "Medicine Store Platform",
+    industry: "Healthcare retail",
+    stack: "React, Node.js, PostgreSQL, Payment Flow",
+    result: "35% faster order handling",
   },
   {
-    src: "/developer-review.jpg",
-    title: "Project review clarity",
-    copy: "Code, planning, and delivery visuals that show Webovex understands technical work end to end.",
+    type: "Business Dashboard",
+    name: "Operations Command Deck",
+    industry: "Small business operations",
+    stack: "Next.js, Django, SQL, Role-Based Access",
+    result: "50% less manual tracking",
   },
   {
-    src: "/team-coding.jpg",
-    title: "Build team confidence",
-    copy: "Collaborative software visuals help visitors imagine a real team improving their business systems.",
-  },
-  {
-    src: "/software-engineer.jpg",
-    title: "Engineer-led delivery",
-    copy: "Focused development imagery gives the site more proof, warmth, and professional energy.",
-  },
-] as const;
-
-const videoStories = [
-  {
-    src: "/client-growth-laptop.mp4",
-    poster: "/developer-review.jpg",
-    title: "Client growth in motion",
-    copy: "A short business-tech loop for the first impression: planning, dashboards, and growth decisions.",
-  },
-  {
-    src: "/client-meeting.mp4",
-    poster: "/client-workspace.jpg",
-    title: "Consultation confidence",
-    copy: "Meeting footage gives the page a polished agency feel and supports stronger client enquiries.",
+    type: "Premium Website",
+    name: "Service Business Website",
+    industry: "Local service company",
+    stack: "Next.js, Tailwind CSS, SEO, GitHub Pages",
+    result: "40% faster load time",
   },
 ] as const;
 
-function useLightReveals() {
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const context = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".reveal").forEach((element) => {
-        gsap.fromTo(
-          element,
-          { y: 38, autoAlpha: 0, filter: "blur(10px)" },
-          {
-            y: 0,
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 86%",
-            },
-          },
-        );
-      });
-    });
-
-    return () => context.revert();
-  }, []);
-}
+const services = [
+  "Premium business websites",
+  "Custom apps and dashboards",
+  "E-commerce systems",
+  "Hosting, deployment, and support",
+] as const;
 
 function ContactPanel() {
   const [sent, setSent] = useState(false);
@@ -106,273 +72,324 @@ function ContactPanel() {
   };
 
   return (
-    <form className="contact-card reveal" onSubmit={submit}>
-      <div className="form-row">
-        <label>
-          <span>Name</span>
-          <input name="name" required placeholder="Your name" />
+    <form
+      className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:p-8"
+      onSubmit={submit}
+    >
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-sm font-semibold text-[#171a20]">Name</span>
+          <input
+            type="text"
+            name="name"
+            required
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f7f8fb] px-4 py-3 outline-none focus:border-red-500"
+          />
         </label>
-        <label>
-          <span>Email</span>
-          <input name="email" type="email" required placeholder="you@company.com" />
+
+        <label className="block">
+          <span className="text-sm font-semibold text-[#171a20]">Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f7f8fb] px-4 py-3 outline-none focus:border-red-500"
+          />
+        </label>
+
+        <label className="block">
+          <span className="text-sm font-semibold text-[#171a20]">Phone optional</span>
+          <input
+            type="tel"
+            name="phone"
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f7f8fb] px-4 py-3 outline-none focus:border-red-500"
+          />
+        </label>
+
+        <label className="block">
+          <span className="text-sm font-semibold text-[#171a20]">Project Type</span>
+          <select
+            name="projectType"
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f7f8fb] px-4 py-3 outline-none focus:border-red-500"
+          >
+            <option>Website</option>
+            <option>App</option>
+            <option>E-Commerce</option>
+            <option>Dashboard</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label className="block">
+          <span className="text-sm font-semibold text-[#171a20]">Budget Range</span>
+          <select
+            name="budget"
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f7f8fb] px-4 py-3 outline-none focus:border-red-500"
+          >
+            <option>Under ₹25K</option>
+            <option>₹25K-₹75K</option>
+            <option>₹75K-₹1.5L</option>
+            <option>₹1.5L+</option>
+          </select>
+        </label>
+
+        <label className="block">
+          <span className="text-sm font-semibold text-[#171a20]">Timeline</span>
+          <select
+            name="timeline"
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f7f8fb] px-4 py-3 outline-none focus:border-red-500"
+          >
+            <option>ASAP</option>
+            <option>1 month</option>
+            <option>3 months</option>
+            <option>Flexible</option>
+          </select>
         </label>
       </div>
-      <label>
-        <span>Project details</span>
-        <textarea name="message" required placeholder="Website, app, dashboard, ecommerce, or automation need." />
+
+      <label className="mt-5 block">
+        <span className="text-sm font-semibold text-[#171a20]">Message</span>
+        <textarea
+          name="message"
+          rows={5}
+          required
+          className="mt-2 w-full resize-y rounded-2xl border border-slate-200 bg-[#f7f8fb] px-4 py-3 outline-none focus:border-red-500"
+        />
       </label>
-      <button type="submit">Start project</button>
-      {sent && <p className="success-note">Message ready. Webovex will follow up.</p>}
+
+      <button
+        type="submit"
+        className="mt-6 w-full rounded-full bg-[#171a20] px-7 py-4 text-sm font-semibold text-white transition hover:bg-red-600"
+      >
+        Send project enquiry
+      </button>
+
+      {sent && (
+        <p className="mt-4 rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-700">
+          Message ready. Webovex will follow up.
+        </p>
+      )}
     </form>
   );
 }
 
 export default function ForgeExperience() {
-  useLightReveals();
-
   return (
-    <div className="site-page">
-      <nav className="top-nav">
-        <a className="brand" href="#home" aria-label="Webovex home">
-          <span>W</span>
+    <div className="min-h-screen bg-[#f7f8fb] text-[#171a20]">
+      <nav className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-slate-200/70 bg-white/80 px-6 backdrop-blur-xl sm:px-8 lg:px-16">
+        <a className="inline-flex items-center gap-3 text-sm font-bold" href="#home" aria-label="Webovex home">
+          <span className="grid h-7 w-7 place-items-center rounded-lg border border-slate-200 bg-white text-xs text-red-600 shadow-inner">
+            W
+          </span>
           Webovex
         </a>
-        <div className="nav-links">
-          <a href="#services">Services</a>
-          <a href="#images">Tech visuals</a>
-          <a href="#client-media">Clients</a>
-          <a href="#process">Process</a>
-          <a href="#contact">Contact</a>
+
+        <div className="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
+          <a className="transition hover:text-red-600" href="#portfolio">
+            Work
+          </a>
+          <a className="transition hover:text-red-600" href="#testimonials">
+            Clients
+          </a>
+          <a className="transition hover:text-red-600" href="#about">
+            About
+          </a>
+          <a className="transition hover:text-red-600" href="#contact">
+            Contact
+          </a>
         </div>
-        <a className="nav-action" href="#contact">
+
+        <a
+          className="rounded-full bg-[#171a20] px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-600"
+          href="#contact"
+        >
           Get quote
         </a>
       </nav>
 
       <main>
-        <section className="hero-section" id="home">
-          <div className="hero-copy reveal">
-            <span className="eyebrow">Apple clean. Tesla sharp. Webovex fast.</span>
-            <h1>Modern websites, apps, and business systems with a premium light theme.</h1>
-            <p>
-              Webovex now feels like a clean product launch page with technical visuals, smooth
-              sections, and clear business service presentation.
-            </p>
-            <div className="hero-actions">
-              <a className="primary-btn" href="#services">
-                View services
-              </a>
-              <a className="text-btn" href="#images">
-                See technical images
-              </a>
-            </div>
-          </div>
-          <div className="hero-visual reveal">
-            <img
-              className="hero-technical"
-              src="/technical-hero.svg"
-              alt="Technical product dashboard and cloud architecture preview"
-            />
-            <div className="hero-photo-strip" aria-label="Client growth preview images">
-              <img src="/client-workspace.jpg" alt="Professional workspace for client projects" />
-              <img src="/team-coding.jpg" alt="Software team working on a client build" />
-              <img src="/software-engineer.jpg" alt="Software engineer building a modern web product" />
-            </div>
-          </div>
-        </section>
+        <section id="home" className="px-6 pb-16 pt-28 sm:px-8 lg:px-16">
+          <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-red-600">
+                Apple clean, Tesla sharp
+              </p>
 
-        <section className="launch-strip reveal" aria-label="Webovex service summary">
-          <article>
-            <strong>Web</strong>
-            <span>Premium landing pages and portfolio sites</span>
-          </article>
-          <article>
-            <strong>App</strong>
-            <span>Dashboards, portals, and business tools</span>
-          </article>
-          <article>
-            <strong>Cloud</strong>
-            <span>Deployment, DevOps, and scalable systems</span>
-          </article>
-        </section>
+              <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-[#171a20] sm:text-6xl lg:text-7xl">
+                Premium websites and apps built for serious business growth.
+              </h1>
 
-        <section className="section services-section" id="services">
-          <div className="section-heading reveal">
-            <span className="eyebrow">What Webovex builds</span>
-            <h2>Simple, premium service cards with real technical clarity.</h2>
-            <p>
-              Apple-style spacing, Tesla-style confidence, and practical details for customers who
-              need a website, app, ecommerce platform, or support system.
-            </p>
-          </div>
+              <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-600">
+                We&apos;ve helped 10+ businesses launch clean, fast, client-ready digital products in under 30 days.
+              </p>
 
-          <div className="service-grid">
-            {forgeServices.map((service, index) => (
-              <article className="service-card reveal" key={service.title}>
-                <span className="card-number">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{service.title}</h3>
-                <p>{service.copy}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section image-section" id="images">
-          <div className="section-heading reveal">
-            <span className="eyebrow">Technical images</span>
-            <h2>Clear visuals for dashboards, architecture, and deployment.</h2>
-            <p>
-              These image panels explain dashboards, architecture, deployment, and the real systems
-              Webovex can deliver.
-            </p>
-          </div>
-
-          <div className="image-grid">
-            {imageCards.map((card) => (
-              <article className="image-card reveal" key={card.title}>
-                <img src={card.src} alt={card.title} />
-                <div>
-                  <h3>{card.title}</h3>
-                  <p>{card.copy}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section media-section" id="client-media">
-          <div className="section-heading reveal">
-            <span className="eyebrow">Client-improving media</span>
-            <h2>More real images that make Webovex feel active, premium, and trustworthy.</h2>
-            <p>
-              Business clients decide fast. These visuals add proof, human energy, and a more
-              professional first impression across the page.
-            </p>
-          </div>
-
-          <div className="client-media-grid">
-            {clientMedia.map((item) => (
-              <article className="media-card reveal" key={item.title}>
-                <img src={item.src} alt={item.title} />
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.copy}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section video-section">
-          <div className="section-heading reveal">
-            <span className="eyebrow">Video proof</span>
-            <h2>Short polished video loops for stronger client confidence.</h2>
-            <p>
-              Smooth motion makes the website feel more alive while keeping the page clean,
-              bright, and lightweight.
-            </p>
-          </div>
-
-          <div className="video-grid">
-            {videoStories.map((video) => (
-              <article className="video-card reveal" key={video.title}>
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  poster={video.poster}
-                  preload="metadata"
-                  aria-label={video.title}
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center rounded-full bg-[#171a20] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-red-600"
                 >
-                  <source src={video.src} type="video/mp4" />
-                </video>
+                  Start your project
+                </a>
+                <a
+                  href="#portfolio"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-7 py-3.5 text-sm font-semibold text-[#171a20] transition hover:border-red-500 hover:text-red-600"
+                >
+                  See our work
+                </a>
+              </div>
+
+              <div className="mt-9 flex flex-wrap gap-3">
+                {services.map((service) => (
+                  <span
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600"
+                    key={service}
+                  >
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_30px_80px_rgba(15,23,42,0.10)]">
+              <div className="aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-slate-100">
+                <img
+                  src="/client-workspace.jpg"
+                  alt="Premium Webovex project workspace"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 pb-16 sm:px-8 lg:px-16" aria-label="Webovex business stats">
+          <div className="mx-auto grid max-w-7xl gap-4 rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-[0_20px_60px_rgba(15,23,42,0.08)] sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((stat) => (
+              <div className="flex items-center gap-4 rounded-2xl bg-[#f7f8fb] p-5" key={stat.label}>
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-red-600">
+                  {stat.icon}
+                </span>
                 <div>
-                  <h3>{video.title}</h3>
-                  <p>{video.copy}</p>
+                  <p className="text-3xl font-semibold text-[#171a20]">{stat.value}</p>
+                  <p className="text-sm text-slate-600">{stat.label}</p>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </section>
 
-        <section className="section stack-section">
-          <div className="section-heading reveal">
-            <span className="eyebrow">Technology stack</span>
-            <h2>Everything needed for a serious production build.</h2>
-          </div>
+        <section id="testimonials" className="bg-white px-6 py-20 sm:px-8 lg:px-16">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">Client words</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-tight text-[#171a20] sm:text-5xl">
+                Trusted by business owners who need clean execution.
+              </h2>
+            </div>
 
-          <div className="stack-layout">
-            <div className="blueprint-list reveal">
-              {technicalBlueprint.map((item) => (
-                <article key={item.title}>
-                  <span>{item.stack}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.copy}</p>
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
+              {testimonials.map((testimonial) => (
+                <article className="rounded-[1.5rem] border border-slate-200 bg-[#f7f8fb] p-6" key={testimonial.name}>
+                  <p className="text-sm font-semibold text-yellow-500">★★★★★</p>
+                  <p className="mt-5 text-lg leading-7 text-[#171a20]">“{testimonial.quote}”</p>
+                  <div className="mt-6">
+                    <p className="font-semibold text-[#171a20]">{testimonial.name}</p>
+                    <p className="text-sm text-slate-600">{testimonial.role}</p>
+                  </div>
                 </article>
               ))}
             </div>
-            <div className="tech-cloud reveal">
-              {technologies.map((tech) => (
-                <span key={tech}>{tech}</span>
+          </div>
+        </section>
+
+        <section id="about" className="px-6 py-20 sm:px-8 lg:px-16">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_24px_70px_rgba(15,23,42,0.08)]">
+              <div className="grid aspect-[4/5] place-items-center overflow-hidden rounded-[1.5rem] bg-slate-100 text-center text-slate-500">
+                <img
+                  src="/software-engineer.jpg"
+                  alt="Founder photo placeholder for Subash N"
+                  className="h-full w-full object-cover opacity-90"
+                />
+              </div>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">About Webovex</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-tight text-[#171a20] sm:text-5xl">
+                Built by Subash N, a Chennai-based full-stack developer who cares about both design and delivery.
+              </h2>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+                Webovex is small by choice and sharp by nature. You work directly with Subash, so your project does not
+                get lost between sales calls, vague updates, and layers of handoff.
+              </p>
+              <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
+                The focus is simple: premium-looking websites, practical apps, clean dashboards, and launch-ready
+                systems that help businesses look more credible and work more efficiently.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="portfolio" className="bg-white px-6 py-20 sm:px-8 lg:px-16">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">Selected work</p>
+                <h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-[#171a20] sm:text-5xl">
+                  Project cards that show business value, not just screenshots.
+                </h2>
+              </div>
+              <a href="#contact" className="text-sm font-semibold text-red-600 hover:text-[#171a20]">
+                Plan my project
+              </a>
+            </div>
+
+            <div className="mt-12 grid gap-5 lg:grid-cols-3">
+              {portfolio.map((project) => (
+                <article className="rounded-[1.5rem] border border-slate-200 bg-[#f7f8fb] p-6" key={project.name}>
+                  <p className="text-sm font-semibold text-red-600">{project.type}</p>
+                  <h3 className="mt-3 text-2xl font-semibold text-[#171a20]">{project.name}</h3>
+                  <p className="mt-4 text-sm leading-6 text-slate-600">Industry: {project.industry}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">Tech: {project.stack}</p>
+                  <p className="mt-5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#171a20]">
+                    Result: {project.result}
+                  </p>
+                  <a
+                    href="#contact"
+                    className="mt-6 inline-flex rounded-full bg-[#171a20] px-5 py-3 text-sm font-semibold text-white hover:bg-red-600"
+                  >
+                    View project
+                  </a>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="section process-section" id="process">
-          <div className="section-heading reveal">
-            <span className="eyebrow">Build process</span>
-            <h2>From idea to live website, clean and controlled.</h2>
-          </div>
-          <div className="process-rail">
-            {deliveryProcess.map((step, index) => (
-              <article className="process-card reveal" key={step}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{step}</h3>
-              </article>
-            ))}
-          </div>
-        </section>
+        <section id="contact" className="px-6 py-20 sm:px-8 lg:px-16">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">Contact</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-tight text-[#171a20] sm:text-5xl">
+                Tell us what you want to build. We&apos;ll help shape it into a clean launch plan.
+              </h2>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+                Share your project type, budget, and timeline. Webovex will respond with a practical next step.
+              </p>
+              <a className="mt-6 inline-flex font-semibold text-red-600" href="mailto:subashrishid@gmail.com">
+                subashrishid@gmail.com
+              </a>
+            </div>
 
-        <section className="section work-section">
-          <div className="section-heading reveal">
-            <span className="eyebrow">Project direction</span>
-            <h2>Business-friendly examples with clean product-page styling.</h2>
+            <ContactPanel />
           </div>
-          <div className="work-grid">
-            {projectShowcase.map((project) => (
-              <article className="work-card reveal" key={project.title}>
-                <span>{project.type}</span>
-                <h3>{project.title}</h3>
-                <p>{project.copy}</p>
-                {"link" in project && (
-                  <a href={project.link} target="_blank" rel="noreferrer">
-                    Open profile
-                  </a>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section contact-section" id="contact">
-          <div className="contact-copy reveal">
-            <span className="eyebrow">Contact</span>
-            <h2>Ready for a cleaner Webovex build?</h2>
-            <p>
-              Send the project idea. Webovex can design, build, deploy, and improve the full
-              website or platform.
-            </p>
-            <a href="mailto:subashrishid@gmail.com">subashrishid@gmail.com</a>
-          </div>
-          <ContactPanel />
         </section>
       </main>
 
-      <footer className="site-footer">
-        <strong>Webovex</strong>
-        <span>Apple-style clarity. Tesla-style confidence. Production-ready technology.</span>
+      <footer className="flex flex-col justify-between gap-3 border-t border-slate-200 bg-white px-6 py-8 text-sm text-slate-600 sm:px-8 md:flex-row lg:px-16">
+        <strong className="text-[#171a20]">Webovex</strong>
+        <span>Apple-style clarity. Tesla-style confidence. Built in Chennai for serious business clients.</span>
       </footer>
     </div>
   );
