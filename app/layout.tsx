@@ -71,6 +71,31 @@ const jsonLd = {
       email: "subashrishid@gmail.com",
     },
     {
+      "@type": "LocalBusiness",
+      "@id": "https://webovex.com/#local-business",
+      name: "Webovex",
+      url: "https://webovex.com/",
+      email: "subashrishid@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Chennai",
+        addressRegion: "Tamil Nadu",
+        addressCountry: "IN",
+      },
+      areaServed: ["Chennai", "Tamil Nadu", "India"],
+      priceRange: "Rs.25000+",
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webovex.com/#website-development-service",
+      name: "Website and App Development",
+      provider: {
+        "@id": "https://webovex.com/#organization",
+      },
+      areaServed: "India",
+      serviceType: ["Website Development", "App Development", "E-Commerce Development", "Business Dashboard Development"],
+    },
+    {
       "@type": "WebSite",
       "@id": "https://webovex.com/#website",
       name: "Webovex",
@@ -90,6 +115,36 @@ const jsonLd = {
       worksFor: {
         "@id": "https://webovex.com/#organization",
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://webovex.com/#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Does Webovex redesign existing business websites?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Webovex can audit an existing website and improve trust, speed, SEO structure, WhatsApp flow, and enquiry conversion.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can Webovex add WhatsApp lead generation?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Webovex can add floating WhatsApp buttons, sticky mobile CTAs, quick audit links, and outreach landing page flows.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Where is Webovex based?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Webovex is based in Chennai, Tamil Nadu and serves business clients across India.",
+          },
+        },
+      ],
     },
   ],
 };
